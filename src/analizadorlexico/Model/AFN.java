@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package analizadorlexico.Controller;
+package analizadorlexico.Model;
 
 import analizadorlexico.Model.CaracteresEspeciales;
 import analizadorlexico.Model.Estado;
@@ -311,7 +311,7 @@ public class AFN {
             for (char c : alfabeto) {
                 Ik = new EstadoIj();
                 Ik.setConjuntoIj(IrA(Ij.getConjuntoIj(), c));
-                if (Ik.ConjuntoIj.size() == 0) {
+                if (Ik.ConjuntoIj.isEmpty()) {
                     continue;
                 }
                 existe = false;
@@ -332,7 +332,20 @@ public class AFN {
             }
         }
         NumEdoAFD = j;
-
+        for (EstadoIj ij : EstadosAFD) {
+            ConjuntoAux.clear();
+            ConjuntoAux.addAll(ij.ConjuntoIj);
+            ConjuntoAux.retainAll(this.estadosAceptacion);
+            if (!ConjuntoAux.isEmpty()) {
+                for (Estado aceptacion : ConjuntoAux) {
+                    ij.trascionesAFD[alfabeto.size()] = aceptacion.getToken();
+                    break;
+                }
+            }else{
+                Ij.trascionesAFD[alfabeto.size()] = -1;
+            }
+        }
+        
         return null;
     }
 }

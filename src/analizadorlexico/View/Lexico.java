@@ -8,15 +8,15 @@ package analizadorlexico.View;
  *
  * @author Israel Morales
  */
-public class AnalizadorLexico {
+public class Lexico {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        System.out.println("Hola mundo!");
+        mainView mainframe = new mainView();
+        mainframe.setVisible(true);
     }
-    
+
 }

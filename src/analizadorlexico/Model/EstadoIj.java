@@ -41,5 +41,9 @@ public class EstadoIj {
     }
 
     public EstadoIj() {
+        this.trascionesAFD = new int[CaracteresEspeciales.ARREGLO];
+        for (int i = 0; i < CaracteresEspeciales.ARREGLO; i++) {
+            this.trascionesAFD[i] = -1;
+        }
     }
 }

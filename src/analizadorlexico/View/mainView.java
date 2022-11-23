@@ -3,8 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package analizadorlexico.View;
+import analizadorlexico.Model.AFD;
+import analizadorlexico.Model.AFN;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Iterator;
+import java.util.Locale;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,14 +20,22 @@ public class mainView extends javax.swing.JFrame {
     /**
      * Creates new form mainView
      */
+    Dimension dimension;
+    AFN afnprinicipal;
+    
     public mainView() {
         initComponents();
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) ((dimension.getWidth() - getWidth()) / 2);
-        int y = (int) ((dimension.getHeight() - getHeight()) / 2);
-        setLocation(x, y);
+        int x,y;
+        int WIDTH,HEIGHT;
+        dimension= Toolkit.getDefaultToolkit().getScreenSize();
+        WIDTH = (int) (dimension.getWidth() * 0.75);
+        HEIGHT = (int) (dimension.getHeight() * 0.75);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        setBounds(x, y, WIDTH, HEIGHT);
+        afnprinicipal = new AFN();
+        afnprinicipal.setIdAFN(0);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,57 +45,257 @@ public class mainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        FrameAFNBasico = new javax.swing.JFrame();
+        PanelAFNBasico = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        TextCaracterInferior = new javax.swing.JTextField();
+        TextCaracterSuperior = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        TextIDAFN = new javax.swing.JTextField();
+        ButtonCrearAFN = new javax.swing.JButton();
+        MenuBar = new javax.swing.JMenuBar();
+        MenuAFN = new javax.swing.JMenu();
+        MenuAFNBasico = new javax.swing.JMenuItem();
+        MenuUnirAFNS = new javax.swing.JMenuItem();
+        MenuConcatenarAFN = new javax.swing.JMenuItem();
+        MenuCerraduraTransitivaAFN = new javax.swing.JMenuItem();
+        MenuCerraduraEpsilon = new javax.swing.JMenuItem();
+        MenuERaAFN = new javax.swing.JMenuItem();
+        MenuUnion = new javax.swing.JMenuItem();
+        MenuAFNaAFD = new javax.swing.JMenuItem();
+        MenuAnalizarCadena = new javax.swing.JMenuItem();
+        MenuAnalizadorLexico = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+
+        FrameAFNBasico.setTitle("Creacion de AFN Basico");
+        FrameAFNBasico.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameAFNBasicoWindowClosing(evt);
+            }
+        });
+
+        jLabel1.setText("Caracter Inferior: ");
+        jLabel1.setInheritsPopupMenu(false);
+
+        jLabel2.setText("Caracter Superior: ");
+
+        TextCaracterInferior.setColumns(1);
+        TextCaracterInferior.setToolTipText("");
+        TextCaracterInferior.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextCaracterInferiorKeyTyped(evt);
+            }
+        });
+
+        TextCaracterSuperior.setColumns(1);
+        TextCaracterSuperior.setToolTipText("");
+        TextCaracterSuperior.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextCaracterSuperiorKeyTyped(evt);
+            }
+        });
+
+        jLabel3.setText("Id AFN");
+
+        TextIDAFN.setColumns(1);
+        TextIDAFN.setToolTipText("");
+        TextIDAFN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextIDAFNKeyTyped(evt);
+            }
+        });
+
+        ButtonCrearAFN.setText("Crear AFN");
+        ButtonCrearAFN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonCrearAFNMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelAFNBasicoLayout = new javax.swing.GroupLayout(PanelAFNBasico);
+        PanelAFNBasico.setLayout(PanelAFNBasicoLayout);
+        PanelAFNBasicoLayout.setHorizontalGroup(
+            PanelAFNBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNBasicoLayout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addGroup(PanelAFNBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelAFNBasicoLayout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(42, 42, 42)))
+                .addGap(18, 18, 18)
+                .addGroup(PanelAFNBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonCrearAFN, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                    .addComponent(TextCaracterInferior)
+                    .addComponent(TextCaracterSuperior)
+                    .addComponent(TextIDAFN))
+                .addGap(122, 122, 122))
+        );
+        PanelAFNBasicoLayout.setVerticalGroup(
+            PanelAFNBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNBasicoLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(PanelAFNBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TextCaracterInferior))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelAFNBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TextCaracterSuperior))
+                .addGap(55, 55, 55)
+                .addGroup(PanelAFNBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TextIDAFN))
+                .addGap(57, 57, 57)
+                .addComponent(ButtonCrearAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
+        );
+
+        javax.swing.GroupLayout FrameAFNBasicoLayout = new javax.swing.GroupLayout(FrameAFNBasico.getContentPane());
+        FrameAFNBasico.getContentPane().setLayout(FrameAFNBasicoLayout);
+        FrameAFNBasicoLayout.setHorizontalGroup(
+            FrameAFNBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNBasicoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNBasico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameAFNBasicoLayout.setVerticalGroup(
+            FrameAFNBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNBasicoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNBasico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Analizador Lexico");
+        setTitle("Compiladores");
         setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(200, 200));
         setName("mainViewFrame"); // NOI18N
 
-        jButton1.setText("Init");
+        MenuAFN.setText("AFN");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(706, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(109, 109, 109))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jButton1)
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
+        MenuAFNBasico.setText("AFN Basico");
+        MenuAFNBasico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuAFNBasicoMousePressed(evt);
+            }
+        });
+        MenuAFN.add(MenuAFNBasico);
+
+        MenuUnirAFNS.setText("Unir AFN'S");
+        MenuAFN.add(MenuUnirAFNS);
+
+        MenuConcatenarAFN.setText("Concatenar AFN'S");
+        MenuAFN.add(MenuConcatenarAFN);
+
+        MenuCerraduraTransitivaAFN.setText("Cerradura Transitiva AFN'S");
+        MenuAFN.add(MenuCerraduraTransitivaAFN);
+
+        MenuCerraduraEpsilon.setText("Cerradura Epsilon AFN'S");
+        MenuCerraduraEpsilon.setToolTipText("");
+        MenuAFN.add(MenuCerraduraEpsilon);
+
+        MenuERaAFN.setText("ER a AFN");
+        MenuAFN.add(MenuERaAFN);
+
+        MenuUnion.setText("Union");
+        MenuAFN.add(MenuUnion);
+
+        MenuAFNaAFD.setText("Convertir AFN a AFD");
+        MenuAFN.add(MenuAFNaAFD);
+
+        MenuAnalizarCadena.setText("Analizar una cadena");
+        MenuAFN.add(MenuAnalizarCadena);
+
+        MenuAnalizadorLexico.setText("Analizador Lexico");
+        MenuAFN.add(MenuAnalizadorLexico);
+
+        MenuBar.add(MenuAFN);
+
+        jMenu3.setText("Edit");
+        MenuBar.add(jMenu3);
+
+        setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 874, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(394, Short.MAX_VALUE))
+            .addGap(0, 466, Short.MAX_VALUE)
         );
-
-        jPanel1.getAccessibleContext().setAccessibleName("");
 
         getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MenuAFNBasicoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAFNBasicoMousePressed
+        // TODO add your handling code here:
+        int x,y;
+        int WIDTH,HEIGHT;
+        WIDTH = (int) (dimension.getWidth() * 0.50);
+        HEIGHT = (int) (dimension.getHeight() * 0.50);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        FrameAFNBasico.setBounds(x, y, WIDTH, HEIGHT);
+        FrameAFNBasico.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuAFNBasicoMousePressed
+
+    private void FrameAFNBasicoWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameAFNBasicoWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameAFNBasicoWindowClosing
+
+    private void TextCaracterInferiorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextCaracterInferiorKeyTyped
+        // TODO add your handling code here:
+        if(TextCaracterInferior.getText().length()>=1)
+        {
+            TextCaracterInferior.setText(TextCaracterInferior.getText().substring(0, 0));
+        }
+    }//GEN-LAST:event_TextCaracterInferiorKeyTyped
+
+    private void TextCaracterSuperiorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextCaracterSuperiorKeyTyped
+        // TODO add your handling code here:
+        if(TextCaracterSuperior.getText().length()>=1)
+        {
+            TextCaracterSuperior.setText(TextCaracterSuperior.getText().substring(0, 0));
+        }
+    }//GEN-LAST:event_TextCaracterSuperiorKeyTyped
+
+    private void TextIDAFNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextIDAFNKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!((c >= '0') && (c <= '9') ||
+           (c == evt.VK_BACK_SPACE) ||
+           (c == evt.VK_DELETE))) {
+          getToolkit().beep();
+          evt.consume();
+        }
+    }//GEN-LAST:event_TextIDAFNKeyTyped
+
+    private void ButtonCrearAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCrearAFNMousePressed
+        // TODO add your handling code here:
+        AFN afn = new AFN();
+        afn.setIdAFN(Integer.parseInt(TextIDAFN.getText()));
+        
+        AFN.conjuntoAFN.add(afn.CrearAFNBasico(TextCaracterInferior.getText().charAt(0), TextCaracterSuperior.getText().charAt(0)));
+        for (AFN item : AFN.conjuntoAFN) {
+            System.out.println("Valor: "+ "Id: " +item.getIdAFN() +"" +item.estadosAFN.toString());
+        }
+        JOptionPane.showMessageDialog(this,"Creacion Correcta del AFN.","Exito",JOptionPane.WARNING_MESSAGE);
+        System.out.println("Vamos a crear AFN");
+        FrameAFNBasico.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_ButtonCrearAFNMousePressed
 
     /**
      * @param args the command line arguments
@@ -121,7 +334,27 @@ public class mainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton ButtonCrearAFN;
+    private javax.swing.JFrame FrameAFNBasico;
+    private javax.swing.JMenu MenuAFN;
+    private javax.swing.JMenuItem MenuAFNBasico;
+    private javax.swing.JMenuItem MenuAFNaAFD;
+    private javax.swing.JMenuItem MenuAnalizadorLexico;
+    private javax.swing.JMenuItem MenuAnalizarCadena;
+    private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenuItem MenuCerraduraEpsilon;
+    private javax.swing.JMenuItem MenuCerraduraTransitivaAFN;
+    private javax.swing.JMenuItem MenuConcatenarAFN;
+    private javax.swing.JMenuItem MenuERaAFN;
+    private javax.swing.JMenuItem MenuUnion;
+    private javax.swing.JMenuItem MenuUnirAFNS;
+    private javax.swing.JPanel PanelAFNBasico;
+    private javax.swing.JTextField TextCaracterInferior;
+    private javax.swing.JTextField TextCaracterSuperior;
+    private javax.swing.JTextField TextIDAFN;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu3;
     // End of variables declaration//GEN-END:variables
 }

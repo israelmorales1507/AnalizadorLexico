@@ -21,6 +21,5 @@ public class AFD {
     }
     
     public AFD() {
-        
     }
 }

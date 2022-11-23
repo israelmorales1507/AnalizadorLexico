@@ -21,10 +21,18 @@ public class AFN {
     public Estado initEstado;
     public ArrayList<Estado> estadosAFN = new ArrayList<Estado>();
     public ArrayList<Estado> estadosAceptacion = new ArrayList<Estado>();
-    public ArrayList<Character> alfabeto = new ArrayList<Character>();
-    public int idAFN;
+    public ArrayList<Character> alfabeto = new ArrayList<Character>();    
     public boolean SeAgregoAFNUnionLexico;
+    private int idAFN;
+    
+    public int getIdAFN() {
+        return idAFN;
+    }
 
+    public void setIdAFN(int idAFN) {
+        this.idAFN = idAFN;
+    }
+    
     public AFN() {
         idAFN = 0;
         initEstado = null;

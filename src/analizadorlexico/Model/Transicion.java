@@ -72,4 +72,11 @@ public class Transicion {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Transicion{" + "simbInf=" + simbInf + ", simbSup=" + simbSup + ", estado=" + estado + '}';
+    }
+    
+    
 }

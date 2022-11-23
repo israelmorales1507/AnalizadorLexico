@@ -11,12 +11,12 @@ import java.util.ArrayList;
  * @author Israel Morales
  */
 public class Estado {
-    
+
     public static int ContadorEstados = 0;
     private int idEstado;
     private boolean edoAceptacion;
     private int token;
-    public ArrayList<Transicion> listTransicions;
+    public ArrayList<Transicion> listTransicions = new ArrayList<>();
 
     public static int getContadorEstados() {
         return ContadorEstados;
@@ -58,10 +58,14 @@ public class Estado {
         this.listTransicions = listTransicions;
     }
 
+    @Override
+    public String toString() {
+        return "Estado{" + "idEstado=" + idEstado + ", edoAceptacion=" + edoAceptacion + ", token=" + token + ", listTransicions=" + listTransicions.toString() + '}';
+    }
+    
     public Estado() {
         edoAceptacion = false;
         token = -1;
         idEstado = ContadorEstados++;
-        listTransicions.clear();
     }
 }

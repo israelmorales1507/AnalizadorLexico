@@ -23,7 +23,7 @@ public class AFN {
     public ArrayList<Estado> estadosAceptacion = new ArrayList<Estado>();
     public ArrayList<Character> alfabeto = new ArrayList<Character>();    
     public boolean SeAgregoAFNUnionLexico;
-    private int idAFN;
+    public int idAFN;
     
     public int getIdAFN() {
         return idAFN;

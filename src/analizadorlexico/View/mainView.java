@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package analizadorlexico.View;
+
 import analizadorlexico.Model.AFD;
 import analizadorlexico.Model.AFN;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.Optional;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,21 +24,19 @@ public class mainView extends javax.swing.JFrame {
      * Creates new form mainView
      */
     Dimension dimension;
-    AFN afnprinicipal;
-    
+
     public mainView() {
         initComponents();
-        int x,y;
-        int WIDTH,HEIGHT;
-        dimension= Toolkit.getDefaultToolkit().getScreenSize();
+        int x, y;
+        int WIDTH, HEIGHT;
+        dimension = Toolkit.getDefaultToolkit().getScreenSize();
         WIDTH = (int) (dimension.getWidth() * 0.75);
         HEIGHT = (int) (dimension.getHeight() * 0.75);
         x = (int) ((dimension.getWidth() - WIDTH) / 2);
         y = (int) ((dimension.getHeight() - HEIGHT) / 2);
         setBounds(x, y, WIDTH, HEIGHT);
-        afnprinicipal = new AFN();
-        afnprinicipal.setIdAFN(0);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,6 +55,12 @@ public class mainView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         TextIDAFN = new javax.swing.JTextField();
         ButtonCrearAFN = new javax.swing.JButton();
+        FrameAFNConcatenar = new javax.swing.JFrame();
+        PanelAFNConcatenar = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        ComboBoxConcatenar1 = new javax.swing.JComboBox<>();
+        ComboBoxConcatenar2 = new javax.swing.JComboBox<>();
         MenuBar = new javax.swing.JMenuBar();
         MenuAFN = new javax.swing.JMenu();
         MenuAFNBasico = new javax.swing.JMenuItem();
@@ -170,6 +177,75 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        FrameAFNConcatenar.setTitle("Creacion de AFN Basico");
+        FrameAFNConcatenar.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameAFNConcatenarWindowClosing(evt);
+            }
+        });
+
+        jLabel4.setText("Concatenar AFN: ");
+        jLabel4.setInheritsPopupMenu(false);
+
+        jLabel5.setText("Con AFN:");
+
+        ComboBoxConcatenar1.setSelectedIndex(-1);
+        ComboBoxConcatenar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxConcatenar1MousePressed(evt);
+            }
+        });
+
+        ComboBoxConcatenar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxConcatenar2MousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelAFNConcatenarLayout = new javax.swing.GroupLayout(PanelAFNConcatenar);
+        PanelAFNConcatenar.setLayout(PanelAFNConcatenarLayout);
+        PanelAFNConcatenarLayout.setHorizontalGroup(
+            PanelAFNConcatenarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNConcatenarLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ComboBoxConcatenar1, 0, 80, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ComboBoxConcatenar2, 0, 80, Short.MAX_VALUE)
+                .addGap(81, 81, 81))
+        );
+        PanelAFNConcatenarLayout.setVerticalGroup(
+            PanelAFNConcatenarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNConcatenarLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(PanelAFNConcatenarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboBoxConcatenar1)
+                    .addComponent(ComboBoxConcatenar2))
+                .addGap(178, 178, 178))
+        );
+
+        javax.swing.GroupLayout FrameAFNConcatenarLayout = new javax.swing.GroupLayout(FrameAFNConcatenar.getContentPane());
+        FrameAFNConcatenar.getContentPane().setLayout(FrameAFNConcatenarLayout);
+        FrameAFNConcatenarLayout.setHorizontalGroup(
+            FrameAFNConcatenarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNConcatenarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNConcatenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameAFNConcatenarLayout.setVerticalGroup(
+            FrameAFNConcatenarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNConcatenarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNConcatenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Compiladores");
         setLocation(new java.awt.Point(0, 0));
@@ -190,6 +266,11 @@ public class mainView extends javax.swing.JFrame {
         MenuAFN.add(MenuUnirAFNS);
 
         MenuConcatenarAFN.setText("Concatenar AFN'S");
+        MenuConcatenarAFN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuConcatenarAFNMousePressed(evt);
+            }
+        });
         MenuAFN.add(MenuConcatenarAFN);
 
         MenuCerraduraTransitivaAFN.setText("Cerradura Transitiva AFN'S");
@@ -239,13 +320,16 @@ public class mainView extends javax.swing.JFrame {
 
     private void MenuAFNBasicoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAFNBasicoMousePressed
         // TODO add your handling code here:
-        int x,y;
-        int WIDTH,HEIGHT;
+        int x, y;
+        int WIDTH, HEIGHT;
         WIDTH = (int) (dimension.getWidth() * 0.50);
         HEIGHT = (int) (dimension.getHeight() * 0.50);
         x = (int) ((dimension.getWidth() - WIDTH) / 2);
         y = (int) ((dimension.getHeight() - HEIGHT) / 2);
         FrameAFNBasico.setBounds(x, y, WIDTH, HEIGHT);
+        TextCaracterInferior.setText("");
+        TextCaracterSuperior.setText("");
+        TextIDAFN.setText("");
         FrameAFNBasico.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuAFNBasicoMousePressed
@@ -257,16 +341,14 @@ public class mainView extends javax.swing.JFrame {
 
     private void TextCaracterInferiorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextCaracterInferiorKeyTyped
         // TODO add your handling code here:
-        if(TextCaracterInferior.getText().length()>=1)
-        {
+        if (TextCaracterInferior.getText().length() >= 1) {
             TextCaracterInferior.setText(TextCaracterInferior.getText().substring(0, 0));
         }
     }//GEN-LAST:event_TextCaracterInferiorKeyTyped
 
     private void TextCaracterSuperiorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextCaracterSuperiorKeyTyped
         // TODO add your handling code here:
-        if(TextCaracterSuperior.getText().length()>=1)
-        {
+        if (TextCaracterSuperior.getText().length() >= 1) {
             TextCaracterSuperior.setText(TextCaracterSuperior.getText().substring(0, 0));
         }
     }//GEN-LAST:event_TextCaracterSuperiorKeyTyped
@@ -274,28 +356,77 @@ public class mainView extends javax.swing.JFrame {
     private void TextIDAFNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextIDAFNKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (!((c >= '0') && (c <= '9') ||
-           (c == evt.VK_BACK_SPACE) ||
-           (c == evt.VK_DELETE))) {
-          getToolkit().beep();
-          evt.consume();
+        if (!((c >= '0') && (c <= '9')
+                || (c == evt.VK_BACK_SPACE)
+                || (c == evt.VK_DELETE))) {
+            getToolkit().beep();
+            evt.consume();
         }
     }//GEN-LAST:event_TextIDAFNKeyTyped
 
     private void ButtonCrearAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCrearAFNMousePressed
         // TODO add your handling code here:
         AFN afn = new AFN();
-        afn.setIdAFN(Integer.parseInt(TextIDAFN.getText()));
-        
-        AFN.conjuntoAFN.add(afn.CrearAFNBasico(TextCaracterInferior.getText().charAt(0), TextCaracterSuperior.getText().charAt(0)));
-        for (AFN item : AFN.conjuntoAFN) {
-            System.out.println("Valor: "+ "Id: " +item.getIdAFN() +"" +item.estadosAFN.toString());
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(TextIDAFN.getText())).findFirst();
+        if (!op.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Id ya existe.", "ERROR", JOptionPane.OK_OPTION);
+        } else {
+            afn.setIdAFN(Integer.parseInt(TextIDAFN.getText()));
+            AFN.conjuntoAFN.add(afn.CrearAFNBasico(TextCaracterInferior.getText().charAt(0), TextCaracterSuperior.getText().charAt(0)));
+            for (AFN item : AFN.conjuntoAFN) {
+                System.out.println("Valor: " + "Id: " + item.getIdAFN() + "" + item.estadosAFN.toString());
+            }
+            JOptionPane.showMessageDialog(this, "Creacion Correcta del AFN.", "Exito", JOptionPane.WARNING_MESSAGE);
+            System.out.println("Vamos a crear AFN");
+            FrameAFNBasico.dispose();
+            this.setVisible(true);
         }
-        JOptionPane.showMessageDialog(this,"Creacion Correcta del AFN.","Exito",JOptionPane.WARNING_MESSAGE);
-        System.out.println("Vamos a crear AFN");
-        FrameAFNBasico.dispose();
-        this.setVisible(true);
+
     }//GEN-LAST:event_ButtonCrearAFNMousePressed
+
+    private void FrameAFNConcatenarWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameAFNConcatenarWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameAFNConcatenarWindowClosing
+
+    private void MenuConcatenarAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuConcatenarAFNMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxConcatenar1.setModel(model);
+        DefaultComboBoxModel mode2 = new DefaultComboBoxModel();
+        mode2.removeAllElements();
+        ComboBoxConcatenar2.setModel(mode2);
+        WIDTH = (int) (dimension.getWidth() * 0.50);
+        HEIGHT = (int) (dimension.getHeight() * 0.50);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        FrameAFNConcatenar.setBounds(x, y, WIDTH, HEIGHT);
+        FrameAFNConcatenar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuConcatenarAFNMousePressed
+
+    private void ComboBoxConcatenar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxConcatenar1MousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxConcatenar1.getModel();
+        model.removeAllElements();
+        for (AFN item : AFN.conjuntoAFN) {
+            model.addElement("Id AFN: " + item.getIdAFN());
+        }
+        ComboBoxConcatenar1.setModel(model);
+    }//GEN-LAST:event_ComboBoxConcatenar1MousePressed
+
+    private void ComboBoxConcatenar2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxConcatenar2MousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxConcatenar2.getModel();
+        model.removeAllElements();
+        for (AFN item : AFN.conjuntoAFN) {
+            model.addElement("Id AFN: " + item.getIdAFN());
+        }
+        ComboBoxConcatenar2.setModel(model);
+    }//GEN-LAST:event_ComboBoxConcatenar2MousePressed
 
     /**
      * @param args the command line arguments
@@ -322,7 +453,7 @@ public class mainView extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(mainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -335,7 +466,10 @@ public class mainView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCrearAFN;
+    private javax.swing.JComboBox<String> ComboBoxConcatenar1;
+    private javax.swing.JComboBox<String> ComboBoxConcatenar2;
     private javax.swing.JFrame FrameAFNBasico;
+    private javax.swing.JFrame FrameAFNConcatenar;
     private javax.swing.JMenu MenuAFN;
     private javax.swing.JMenuItem MenuAFNBasico;
     private javax.swing.JMenuItem MenuAFNaAFD;
@@ -349,12 +483,15 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuUnion;
     private javax.swing.JMenuItem MenuUnirAFNS;
     private javax.swing.JPanel PanelAFNBasico;
+    private javax.swing.JPanel PanelAFNConcatenar;
     private javax.swing.JTextField TextCaracterInferior;
     private javax.swing.JTextField TextCaracterSuperior;
     private javax.swing.JTextField TextIDAFN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu3;
     // End of variables declaration//GEN-END:variables
 }

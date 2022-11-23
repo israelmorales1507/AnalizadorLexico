@@ -75,7 +75,7 @@ public class Transicion {
 
     @Override
     public String toString() {
-        return "Transicion{" + "simbInf=" + simbInf + ", simbSup=" + simbSup + ", estado=" + estado + '}';
+        return "Transicion{" + "simbInf=" + simbInf + ", simbSup=" + simbSup + ", estado fin=" + estado.getIdEstado() + '}';
     }
     
     

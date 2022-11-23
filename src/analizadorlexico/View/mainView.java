@@ -4,12 +4,9 @@
  */
 package analizadorlexico.View;
 
-import analizadorlexico.Model.AFD;
 import analizadorlexico.Model.AFN;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.Iterator;
-import java.util.Locale;
 import java.util.Optional;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -61,13 +58,24 @@ public class mainView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         ComboBoxConcatenar1 = new javax.swing.JComboBox<>();
         ComboBoxConcatenar2 = new javax.swing.JComboBox<>();
+        ButtonConcatenarAFN = new javax.swing.JButton();
+        FrameAFNCerraduraTransitiva = new javax.swing.JFrame();
+        PanelAFNCerraduraTransitiva = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        ComboBoxCerraduraTransitiva = new javax.swing.JComboBox<>();
+        ButtonCerraduraTransitivaAFN = new javax.swing.JButton();
+        FrameAFNCerraduraKleen = new javax.swing.JFrame();
+        PanelAFNCerraduraKleen = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        ComboBoxCerraduraKleen = new javax.swing.JComboBox<>();
+        ButtonCerraduraKleenAFN = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         MenuAFN = new javax.swing.JMenu();
         MenuAFNBasico = new javax.swing.JMenuItem();
         MenuUnirAFNS = new javax.swing.JMenuItem();
         MenuConcatenarAFN = new javax.swing.JMenuItem();
         MenuCerraduraTransitivaAFN = new javax.swing.JMenuItem();
-        MenuCerraduraEpsilon = new javax.swing.JMenuItem();
+        MenuCerraduraKleen = new javax.swing.JMenuItem();
         MenuERaAFN = new javax.swing.JMenuItem();
         MenuUnion = new javax.swing.JMenuItem();
         MenuAFNaAFD = new javax.swing.JMenuItem();
@@ -177,7 +185,7 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        FrameAFNConcatenar.setTitle("Creacion de AFN Basico");
+        FrameAFNConcatenar.setTitle("Concatenacion de AFNS");
         FrameAFNConcatenar.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 FrameAFNConcatenarWindowClosing(evt);
@@ -189,7 +197,6 @@ public class mainView extends javax.swing.JFrame {
 
         jLabel5.setText("Con AFN:");
 
-        ComboBoxConcatenar1.setSelectedIndex(-1);
         ComboBoxConcatenar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ComboBoxConcatenar1MousePressed(evt);
@@ -202,17 +209,29 @@ public class mainView extends javax.swing.JFrame {
             }
         });
 
+        ButtonConcatenarAFN.setText("Concatenar AFN'S");
+        ButtonConcatenarAFN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonConcatenarAFNMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelAFNConcatenarLayout = new javax.swing.GroupLayout(PanelAFNConcatenar);
         PanelAFNConcatenar.setLayout(PanelAFNConcatenarLayout);
         PanelAFNConcatenarLayout.setHorizontalGroup(
             PanelAFNConcatenarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAFNConcatenarLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ComboBoxConcatenar1, 0, 80, Short.MAX_VALUE)
-                .addGap(51, 51, 51)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelAFNConcatenarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelAFNConcatenarLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButtonConcatenarAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelAFNConcatenarLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ComboBoxConcatenar1, 0, 80, Short.MAX_VALUE)
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboBoxConcatenar2, 0, 80, Short.MAX_VALUE)
                 .addGap(81, 81, 81))
@@ -226,7 +245,9 @@ public class mainView extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ComboBoxConcatenar1)
                     .addComponent(ComboBoxConcatenar2))
-                .addGap(178, 178, 178))
+                .addGap(52, 52, 52)
+                .addComponent(ButtonConcatenarAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83))
         );
 
         javax.swing.GroupLayout FrameAFNConcatenarLayout = new javax.swing.GroupLayout(FrameAFNConcatenar.getContentPane());
@@ -243,6 +264,142 @@ public class mainView extends javax.swing.JFrame {
             .addGroup(FrameAFNConcatenarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PanelAFNConcatenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        FrameAFNCerraduraTransitiva.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        FrameAFNCerraduraTransitiva.setTitle("Cerradura Transitiva");
+        FrameAFNCerraduraTransitiva.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameAFNCerraduraTransitivaWindowClosing(evt);
+            }
+        });
+
+        jLabel6.setText("Aplicar cerradura transitiva a: ");
+        jLabel6.setInheritsPopupMenu(false);
+
+        ComboBoxCerraduraTransitiva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxCerraduraTransitivaMousePressed(evt);
+            }
+        });
+
+        ButtonCerraduraTransitivaAFN.setText("Relizar operacion +");
+        ButtonCerraduraTransitivaAFN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonCerraduraTransitivaAFNMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelAFNCerraduraTransitivaLayout = new javax.swing.GroupLayout(PanelAFNCerraduraTransitiva);
+        PanelAFNCerraduraTransitiva.setLayout(PanelAFNCerraduraTransitivaLayout);
+        PanelAFNCerraduraTransitivaLayout.setHorizontalGroup(
+            PanelAFNCerraduraTransitivaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNCerraduraTransitivaLayout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(jLabel6)
+                .addGap(40, 40, 40)
+                .addComponent(ComboBoxCerraduraTransitiva, 0, 80, Short.MAX_VALUE)
+                .addGap(141, 141, 141))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNCerraduraTransitivaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ButtonCerraduraTransitivaAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(181, 181, 181))
+        );
+        PanelAFNCerraduraTransitivaLayout.setVerticalGroup(
+            PanelAFNCerraduraTransitivaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNCerraduraTransitivaLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(PanelAFNCerraduraTransitivaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboBoxCerraduraTransitiva))
+                .addGap(49, 49, 49)
+                .addComponent(ButtonCerraduraTransitivaAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
+        );
+
+        javax.swing.GroupLayout FrameAFNCerraduraTransitivaLayout = new javax.swing.GroupLayout(FrameAFNCerraduraTransitiva.getContentPane());
+        FrameAFNCerraduraTransitiva.getContentPane().setLayout(FrameAFNCerraduraTransitivaLayout);
+        FrameAFNCerraduraTransitivaLayout.setHorizontalGroup(
+            FrameAFNCerraduraTransitivaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNCerraduraTransitivaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNCerraduraTransitiva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameAFNCerraduraTransitivaLayout.setVerticalGroup(
+            FrameAFNCerraduraTransitivaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNCerraduraTransitivaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNCerraduraTransitiva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        FrameAFNCerraduraKleen.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        FrameAFNCerraduraKleen.setTitle("Cerradura de kleen");
+        FrameAFNCerraduraKleen.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameAFNCerraduraKleenWindowClosing(evt);
+            }
+        });
+
+        jLabel7.setText("Aplicar cerradura kleen a: ");
+        jLabel7.setInheritsPopupMenu(false);
+
+        ComboBoxCerraduraKleen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxCerraduraKleenMousePressed(evt);
+            }
+        });
+
+        ButtonCerraduraKleenAFN.setText("Realizar Operacion *");
+        ButtonCerraduraKleenAFN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonCerraduraKleenAFNMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelAFNCerraduraKleenLayout = new javax.swing.GroupLayout(PanelAFNCerraduraKleen);
+        PanelAFNCerraduraKleen.setLayout(PanelAFNCerraduraKleenLayout);
+        PanelAFNCerraduraKleenLayout.setHorizontalGroup(
+            PanelAFNCerraduraKleenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNCerraduraKleenLayout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(jLabel7)
+                .addGap(27, 27, 27)
+                .addComponent(ComboBoxCerraduraKleen, 0, 100, Short.MAX_VALUE)
+                .addGap(154, 154, 154))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNCerraduraKleenLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ButtonCerraduraKleenAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(181, 181, 181))
+        );
+        PanelAFNCerraduraKleenLayout.setVerticalGroup(
+            PanelAFNCerraduraKleenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNCerraduraKleenLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(PanelAFNCerraduraKleenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboBoxCerraduraKleen))
+                .addGap(49, 49, 49)
+                .addComponent(ButtonCerraduraKleenAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
+        );
+
+        javax.swing.GroupLayout FrameAFNCerraduraKleenLayout = new javax.swing.GroupLayout(FrameAFNCerraduraKleen.getContentPane());
+        FrameAFNCerraduraKleen.getContentPane().setLayout(FrameAFNCerraduraKleenLayout);
+        FrameAFNCerraduraKleenLayout.setHorizontalGroup(
+            FrameAFNCerraduraKleenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNCerraduraKleenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNCerraduraKleen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameAFNCerraduraKleenLayout.setVerticalGroup(
+            FrameAFNCerraduraKleenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNCerraduraKleenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNCerraduraKleen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -274,11 +431,16 @@ public class mainView extends javax.swing.JFrame {
         MenuAFN.add(MenuConcatenarAFN);
 
         MenuCerraduraTransitivaAFN.setText("Cerradura Transitiva AFN'S");
+        MenuCerraduraTransitivaAFN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuCerraduraTransitivaAFNMousePressed(evt);
+            }
+        });
         MenuAFN.add(MenuCerraduraTransitivaAFN);
 
-        MenuCerraduraEpsilon.setText("Cerradura Epsilon AFN'S");
-        MenuCerraduraEpsilon.setToolTipText("");
-        MenuAFN.add(MenuCerraduraEpsilon);
+        MenuCerraduraKleen.setText("Cerradura Kleen AFN'S");
+        MenuCerraduraKleen.setToolTipText("");
+        MenuAFN.add(MenuCerraduraKleen);
 
         MenuERaAFN.setText("ER a AFN");
         MenuAFN.add(MenuERaAFN);
@@ -408,8 +570,31 @@ public class mainView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_MenuConcatenarAFNMousePressed
 
+    private void ButtonConcatenarAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConcatenarAFNMousePressed
+        // TODO add your handling code here:
+        String[] r = ComboBoxConcatenar1.getSelectedItem().toString().split(" ");
+        String[] r2 = ComboBoxConcatenar2.getSelectedItem().toString().split(" ");
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[2])).findFirst();
+        Optional<AFN> op2 = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r2[2])).findFirst();
+        AFN.conjuntoAFN.remove(op.get());
+        AFN.conjuntoAFN.remove(op2.get());
+        AFN afn1 = op.get();
+        AFN afn2 = op2.get();
+        System.out.println("AFN 1 a concatenar: " + afn1.estadosAFN.toString());
+        System.out.println("AFN 2 a concatenar: " + afn2.estadosAFN.toString());
+        afn1.ConcatenacionAFN(afn2);
+        AFN.conjuntoAFN.add(afn1);
+        System.out.println("Se concatenaron...  ");
+//        for (AFN item : AFN.conjuntoAFN) {
+//            System.out.println("Valor: " + "Id: " + item.getIdAFN() + "" + item.estadosAFN.toString());
+//        }
+        FrameAFNConcatenar.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_ButtonConcatenarAFNMousePressed
+
     private void ComboBoxConcatenar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxConcatenar1MousePressed
         // TODO add your handling code here:
+
         DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxConcatenar1.getModel();
         model.removeAllElements();
         for (AFN item : AFN.conjuntoAFN) {
@@ -427,6 +612,74 @@ public class mainView extends javax.swing.JFrame {
         }
         ComboBoxConcatenar2.setModel(model);
     }//GEN-LAST:event_ComboBoxConcatenar2MousePressed
+
+    private void ComboBoxCerraduraTransitivaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxCerraduraTransitivaMousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxCerraduraTransitiva.getModel();
+        model.removeAllElements();
+        for (AFN item : AFN.conjuntoAFN) {
+            model.addElement("Id AFN: " + item.getIdAFN());
+        }
+        ComboBoxCerraduraTransitiva.setModel(model);
+    }//GEN-LAST:event_ComboBoxCerraduraTransitivaMousePressed
+
+    private void ButtonCerraduraTransitivaAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCerraduraTransitivaAFNMousePressed
+        // TODO add your handling code here:
+        String[] r = ComboBoxCerraduraTransitiva.getSelectedItem().toString().split(" ");
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[2])).findFirst();
+        AFN.conjuntoAFN.remove(op.get());
+        AFN afn1 = op.get();
+        System.out.println("AFN 1 se aplica cerradura transitiva: " + afn1.estadosAFN.toString());
+        afn1.CerraduraPos();
+        AFN.conjuntoAFN.add(afn1);
+        System.out.println("Se aplico cerradura transitiva...");
+//        for (AFN item : AFN.conjuntoAFN) {
+//            System.out.println("Valor: " + "Id: " + item.getIdAFN() + "" + item.estadosAFN.toString());
+//        }
+        FrameAFNCerraduraTransitiva.dispose();
+        this.setVisible(true);
+
+    }//GEN-LAST:event_ButtonCerraduraTransitivaAFNMousePressed
+
+    private void FrameAFNCerraduraTransitivaWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameAFNCerraduraTransitivaWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameAFNCerraduraTransitivaWindowClosing
+
+    private void MenuCerraduraTransitivaAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCerraduraTransitivaAFNMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxCerraduraTransitiva.setModel(model);
+        WIDTH = (int) (dimension.getWidth() * 0.50);
+        HEIGHT = (int) (dimension.getHeight() * 0.50);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        FrameAFNCerraduraTransitiva.setBounds(x, y, WIDTH, HEIGHT);
+        FrameAFNCerraduraTransitiva.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuCerraduraTransitivaAFNMousePressed
+
+    private void ComboBoxCerraduraKleenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxCerraduraKleenMousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxCerraduraKleen.getModel();
+        model.removeAllElements();
+        for (AFN item : AFN.conjuntoAFN) {
+            model.addElement("Id AFN: " + item.getIdAFN());
+        }
+        ComboBoxCerraduraKleen.setModel(model);
+    }//GEN-LAST:event_ComboBoxCerraduraKleenMousePressed
+
+    private void ButtonCerraduraKleenAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCerraduraKleenAFNMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonCerraduraKleenAFNMousePressed
+
+    private void FrameAFNCerraduraKleenWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameAFNCerraduraKleenWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameAFNCerraduraKleenWindowClosing
 
     /**
      * @param args the command line arguments
@@ -465,10 +718,17 @@ public class mainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonCerraduraKleenAFN;
+    private javax.swing.JButton ButtonCerraduraTransitivaAFN;
+    private javax.swing.JButton ButtonConcatenarAFN;
     private javax.swing.JButton ButtonCrearAFN;
+    private javax.swing.JComboBox<String> ComboBoxCerraduraKleen;
+    private javax.swing.JComboBox<String> ComboBoxCerraduraTransitiva;
     private javax.swing.JComboBox<String> ComboBoxConcatenar1;
     private javax.swing.JComboBox<String> ComboBoxConcatenar2;
     private javax.swing.JFrame FrameAFNBasico;
+    private javax.swing.JFrame FrameAFNCerraduraKleen;
+    private javax.swing.JFrame FrameAFNCerraduraTransitiva;
     private javax.swing.JFrame FrameAFNConcatenar;
     private javax.swing.JMenu MenuAFN;
     private javax.swing.JMenuItem MenuAFNBasico;
@@ -476,13 +736,15 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuAnalizadorLexico;
     private javax.swing.JMenuItem MenuAnalizarCadena;
     private javax.swing.JMenuBar MenuBar;
-    private javax.swing.JMenuItem MenuCerraduraEpsilon;
+    private javax.swing.JMenuItem MenuCerraduraKleen;
     private javax.swing.JMenuItem MenuCerraduraTransitivaAFN;
     private javax.swing.JMenuItem MenuConcatenarAFN;
     private javax.swing.JMenuItem MenuERaAFN;
     private javax.swing.JMenuItem MenuUnion;
     private javax.swing.JMenuItem MenuUnirAFNS;
     private javax.swing.JPanel PanelAFNBasico;
+    private javax.swing.JPanel PanelAFNCerraduraKleen;
+    private javax.swing.JPanel PanelAFNCerraduraTransitiva;
     private javax.swing.JPanel PanelAFNConcatenar;
     private javax.swing.JTextField TextCaracterInferior;
     private javax.swing.JTextField TextCaracterSuperior;
@@ -492,6 +754,8 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu3;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,4 +15,5 @@ public class CaracteresEspeciales {
     public static int ERROR = 20000;
     public static int OMITIR = 20001;
     public static int ARREGLO = 256;
+    public static int ARREGLOA = 255;
 }

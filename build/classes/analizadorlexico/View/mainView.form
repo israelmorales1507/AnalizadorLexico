@@ -659,7 +659,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="PanelAFNUnionLexico1" max="32767" attributes="0"/>
+                  <Component id="PanelConvertirAFNaAFD" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -668,14 +668,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="PanelAFNUnionLexico1" max="32767" attributes="0"/>
+                  <Component id="PanelConvertirAFNaAFD" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="PanelAFNUnionLexico1">
+        <Container class="javax.swing.JPanel" name="PanelConvertirAFNaAFD">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -683,7 +683,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ScrollPaneUnionLexico1" alignment="0" pref="460" max="32767" attributes="0"/>
+                          <Component id="ScrollPaneConvertirAFNaAFD" alignment="0" pref="460" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -741,18 +741,21 @@
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="ScrollPaneUnionLexico1" pref="270" max="32767" attributes="0"/>
+                      <Component id="ScrollPaneConvertirAFNaAFD" pref="270" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="ScrollPaneUnionLexico1">
+            <Container class="javax.swing.JScrollPane" name="ScrollPaneConvertirAFNaAFD">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="TableUnionLexico1">
+                <Component class="javax.swing.JTable" name="TableConvertirAFNaAFD">
                 </Component>
               </SubComponents>
             </Container>

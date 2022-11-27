@@ -294,27 +294,14 @@ public class AFN {
         return this;
     }
 
-    private int IndiceCaracter(char[] ArregloAlfabeto, char c) {
-        int j;
-        int tmp = ArregloAlfabeto.length;
-        for (j = 0; j < tmp; j++) {
-            if (ArregloAlfabeto[j] == c) {
-                return j;
-            }
-        }
-        return -1;
-    }
-
     public AFD ConvertirAFNaAFD() {
-        int NumEdoAFD;
-        int i, j, r;
-        char[] arregloAlfabeto;
+        int j;
         EstadoIj Ij, Ik;
         boolean existe;
 
-        ArrayList<Estado> ConjuntoAux = new ArrayList<Estado>();
-        ArrayList<EstadoIj> EstadosAFD = new ArrayList<EstadoIj>();
-        Stack<EstadoIj> SinAnalizar = new Stack<EstadoIj>();
+        ArrayList<Estado> ConjuntoAux = new ArrayList<>();
+        ArrayList<EstadoIj> EstadosAFD = new ArrayList<>();
+        Stack<EstadoIj> SinAnalizar = new Stack<>();
 
         EstadosAFD.clear();
         SinAnalizar.clear();
@@ -352,21 +339,80 @@ public class AFN {
                 }
             }
         }
-        NumEdoAFD = j;
-        for (EstadoIj ij : EstadosAFD) {
+        for (EstadoIj I : EstadosAFD) {
             ConjuntoAux.clear();
-            ConjuntoAux.addAll(ij.ConjuntoIj);
+            ConjuntoAux.addAll(I.ConjuntoIj);
             ConjuntoAux.retainAll(this.estadosAceptacion);
             if (!ConjuntoAux.isEmpty()) {
                 for (Estado aceptacion : ConjuntoAux) {
-                    ij.trascionesAFD[alfabeto.size()] = aceptacion.getToken();
+                    I.trascionesAFD[alfabeto.size() - 1] = aceptacion.getToken();
                     break;
                 }
             } else {
-                Ij.trascionesAFD[alfabeto.size()] = -1;
+                I.trascionesAFD[CaracteresEspeciales.ARREGLO] = -1;
             }
         }
-        
-        return new AFD(idAFN, tabular, estadosAceptacion, alfabeto);
+        return new AFD(idAFN, EstadosAFD, alfabeto);
+    }
+    
+    public AFD ConvertirAFNaAFD(int idafd) {
+        int j;
+        EstadoIj Ij, Ik;
+        boolean existe;
+
+        ArrayList<Estado> ConjuntoAux = new ArrayList<>();
+        ArrayList<EstadoIj> EstadosAFD = new ArrayList<>();
+        Stack<EstadoIj> SinAnalizar = new Stack<>();
+
+        EstadosAFD.clear();
+        SinAnalizar.clear();
+
+        j = 0;
+        Ij = new EstadoIj();
+        Ij.setConjuntoIj(CerraduraEpsilon(this.initEstado));
+        Ij.setIdj(j);
+        EstadosAFD.add(Ij);
+        SinAnalizar.add(Ij);
+        j++;
+
+        while (!SinAnalizar.empty()) {
+            Ij = SinAnalizar.pop();
+            for (char c : alfabeto) {
+                Ik = new EstadoIj();
+                Ik.setConjuntoIj(IrA(Ij.getConjuntoIj(), c));
+                if (Ik.ConjuntoIj.isEmpty()) {
+                    continue;
+                }
+                existe = false;
+                for (EstadoIj edoij : EstadosAFD) {
+                    if (edoij.ConjuntoIj.equals(Ik.ConjuntoIj)) {
+                        existe = true;
+                        Ij.trascionesAFD[c] = edoij.getIdj();
+                        break;
+                    }
+                }
+                if (!existe) {
+                    Ik.setIdj(j);
+                    Ij.trascionesAFD[c] = Ik.getIdj();
+                    EstadosAFD.add(Ik);
+                    SinAnalizar.push(Ik);
+                    j++;
+                }
+            }
+        }
+        for (EstadoIj I : EstadosAFD) {
+            ConjuntoAux.clear();
+            ConjuntoAux.addAll(I.ConjuntoIj);
+            ConjuntoAux.retainAll(this.estadosAceptacion);
+            if (!ConjuntoAux.isEmpty()) {
+                for (Estado aceptacion : ConjuntoAux) {
+                    I.trascionesAFD[alfabeto.size() - 1] = aceptacion.getToken();
+                    break;
+                }
+            } else {
+                I.trascionesAFD[CaracteresEspeciales.ARREGLO-1] = -1;
+            }
+        }
+        return new AFD(idafd, EstadosAFD, alfabeto);
     }
 }

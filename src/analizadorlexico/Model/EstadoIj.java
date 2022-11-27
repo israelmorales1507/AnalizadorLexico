@@ -15,7 +15,16 @@ public class EstadoIj {
     public int idj;
     public ArrayList<Estado> ConjuntoIj;
     public int[] trascionesAFD;
+    
 
+    public int[] getTrascionesAFD() {
+        return trascionesAFD;
+    }
+
+    public void setTrascionesAFD(int[] trascionesAFD) {
+        this.trascionesAFD = trascionesAFD;
+    }
+            
     public int[] gettrascionesAFD() {
         return trascionesAFD;
     }

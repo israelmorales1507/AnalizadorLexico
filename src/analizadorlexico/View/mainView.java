@@ -4,10 +4,10 @@
  */
 package analizadorlexico.View;
 
+import analizadorlexico.Model.AFD;
 import analizadorlexico.Model.AFN;
+import analizadorlexico.Model.CaracteresEspeciales;
 import analizadorlexico.Model.Estado;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -17,7 +17,6 @@ import java.util.Optional;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -95,9 +94,9 @@ public class mainView extends javax.swing.JFrame {
         ButtonUnionEspecial = new javax.swing.JButton();
         TextIdAFNUnionLexico = new javax.swing.JTextField();
         FrameConvertirAFNaAFD = new javax.swing.JFrame();
-        PanelAFNUnionLexico1 = new javax.swing.JPanel();
-        ScrollPaneUnionLexico1 = new javax.swing.JScrollPane();
-        TableUnionLexico1 = new javax.swing.JTable();
+        PanelConvertirAFNaAFD = new javax.swing.JPanel();
+        ScrollPaneConvertirAFNaAFD = new javax.swing.JScrollPane();
+        TableConvertirAFNaAFD = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         TextIdAFNaAFD = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -600,7 +599,8 @@ public class mainView extends javax.swing.JFrame {
             }
         });
 
-        ScrollPaneUnionLexico1.setViewportView(TableUnionLexico1);
+        ScrollPaneConvertirAFNaAFD.setToolTipText("");
+        ScrollPaneConvertirAFNaAFD.setViewportView(TableConvertirAFNaAFD);
 
         jLabel11.setText("Id AFD resultante:");
 
@@ -632,55 +632,55 @@ public class mainView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout PanelAFNUnionLexico1Layout = new javax.swing.GroupLayout(PanelAFNUnionLexico1);
-        PanelAFNUnionLexico1.setLayout(PanelAFNUnionLexico1Layout);
-        PanelAFNUnionLexico1Layout.setHorizontalGroup(
-            PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelConvertirAFNaAFDLayout = new javax.swing.GroupLayout(PanelConvertirAFNaAFD);
+        PanelConvertirAFNaAFD.setLayout(PanelConvertirAFNaAFDLayout);
+        PanelConvertirAFNaAFDLayout.setHorizontalGroup(
+            PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
-                .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScrollPaneUnionLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
-                        .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+                .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollPaneConvertirAFNaAFD, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                    .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
+                        .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNUnionLexico1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelConvertirAFNaAFDLayout.createSequentialGroup()
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)))
-                        .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TextIdAFNaAFD, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                             .addComponent(ComboBoxAFNaAFD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ButtonConvertirAFNaAFDGuardarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ButtonConvertirAFNaAFD))))
                 .addGap(57, 57, 57))
         );
-        PanelAFNUnionLexico1Layout.setVerticalGroup(
-            PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
-                .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+        PanelConvertirAFNaAFDLayout.setVerticalGroup(
+            PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
+                .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextIdAFNaAFD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNUnionLexico1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelConvertirAFNaAFDLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(ButtonConvertirAFNaAFD, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
-                        .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
+                        .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ComboBoxAFNaAFD))
                         .addGap(45, 45, 45))
-                    .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+                    .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
                         .addComponent(ButtonConvertirAFNaAFDGuardarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(ScrollPaneUnionLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addComponent(ScrollPaneConvertirAFNaAFD, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
 
@@ -690,14 +690,14 @@ public class mainView extends javax.swing.JFrame {
             FrameConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FrameConvertirAFNaAFDLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelAFNUnionLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelConvertirAFNaAFD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         FrameConvertirAFNaAFDLayout.setVerticalGroup(
             FrameConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FrameConvertirAFNaAFDLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelAFNUnionLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelConvertirAFNaAFD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1222,6 +1222,10 @@ public class mainView extends javax.swing.JFrame {
         HEIGHT = (int) (dimension.getHeight() * 0.50);
         x = (int) ((dimension.getWidth() - WIDTH) / 2);
         y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        DefaultTableModel modeltable1 = new DefaultTableModel();
+        TableConvertirAFNaAFD.setModel(modeltable1);
+        TextIdAFNaAFD.enable(true);
+        TextIdAFNaAFD.setText("");
         ButtonConvertirAFNaAFDGuardarTabla.setVisible(false);
         ButtonConvertirAFNaAFD.setVisible(true);
         ButtonConvertirAFNaAFDGuardarTabla.setVisible(false);
@@ -1232,17 +1236,59 @@ public class mainView extends javax.swing.JFrame {
 
     private void ButtonConvertirAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConvertirAFNaAFDMousePressed
         // TODO add your handling code here:
+//        ScrollPaneConvertirAFNaAFD.remove(TableConvertirAFNaAFD);
+        int idafd = Integer.parseInt(TextIdAFNaAFD.getText());
         String[] r = ComboBoxAFNaAFD.getSelectedItem().toString().split(" ");
         Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
-//        AFN.conjuntoAFN.remove(op.get());
+        AFN.conjuntoAFN.remove(op.get());
         AFN afn1 = op.get();
-        System.out.println("AFN 1 se aplica cerradura de kleen a: " + afn1.estadosAFN.toString());
-//        afn1.CerraduraKleen();
-//        AFN.conjuntoAFN.add(afn1);
-//        System.out.println("Se aplico cerradura kleen...");
-//        for (AFN item : AFN.conjuntoAFN) {
-//            System.out.println("Valor: " + "Id: " + item.getIdAFN() + "" + item.estadosAFN.toString());
-//        }
+        System.out.println("Convertira el AFN con Id a AFD" + afn1.idAFN +" : " + afn1.estadosAFN.toString());
+        AFD.conjutnoAFD.add(afn1.ConvertirAFNaAFD(idafd));
+        
+        Object[][] data;
+        Object[] columnNames = new Object[CaracteresEspeciales.ARREGLO];
+        
+        for (int i = 0; i < CaracteresEspeciales.ARREGLOA; i++) {
+            columnNames[i] = (char) i;
+        }
+        columnNames[CaracteresEspeciales.ARREGLO-1] = "Token";
+        int[][] tmp =  AFD.conjutnoAFD.get(0).getTabular();
+        ArrayList<ArrayList<Object>> objectList = new ArrayList<ArrayList<Object>>();
+        
+        int l = tmp.length;
+        data = new Object[l][CaracteresEspeciales.ARREGLO];
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < CaracteresEspeciales.ARREGLOA; j++) {
+                data[i][j] = tmp[i][j];
+            }
+            data[i][CaracteresEspeciales.ARREGLO-1] = tmp[i][CaracteresEspeciales.ARREGLO-1];
+        }
+//        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
+        DefaultTableModel modeltable1 = new DefaultTableModel();
+        TableConvertirAFNaAFD.setModel(modeltable1);
+        DefaultTableModel modeltable = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 1 || column == 2) {
+                    return true;
+                }
+                return false;
+            }
+
+//            @Override
+//            public Class<?> getColumnClass(int columnIndex) {
+//                return columnClass[columnIndex];
+//            }
+        };
+        
+        TextIdAFNaAFD.enable(false);
+        TableConvertirAFNaAFD.setModel(modeltable);
+        TableConvertirAFNaAFD.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        PanelConvertirAFNaAFD.validate();
+        PanelConvertirAFNaAFD.revalidate();
+        ScrollPaneUnionLexico.validate();
+        ScrollPaneUnionLexico.revalidate();
+        ScrollPaneUnionLexico.repaint();
         ButtonConvertirAFNaAFD.setVisible(false);
         ButtonConvertirAFNaAFDGuardarTabla.setVisible(true);
         
@@ -1331,11 +1377,11 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JPanel PanelAFNConcatenar;
     private javax.swing.JPanel PanelAFNUnion;
     private javax.swing.JPanel PanelAFNUnionLexico;
-    private javax.swing.JPanel PanelAFNUnionLexico1;
+    private javax.swing.JPanel PanelConvertirAFNaAFD;
+    private javax.swing.JScrollPane ScrollPaneConvertirAFNaAFD;
     private javax.swing.JScrollPane ScrollPaneUnionLexico;
-    private javax.swing.JScrollPane ScrollPaneUnionLexico1;
+    private javax.swing.JTable TableConvertirAFNaAFD;
     private javax.swing.JTable TableUnionLexico;
-    private javax.swing.JTable TableUnionLexico1;
     private javax.swing.JTextField TextCaracterInferior;
     private javax.swing.JTextField TextCaracterSuperior;
     private javax.swing.JTextField TextIDAFN;

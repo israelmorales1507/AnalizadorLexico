@@ -12,10 +12,13 @@ import java.util.ArrayList;
  */
 public class AFD {
 
+    public static ArrayList<AFD> conjutnoAFD = new ArrayList<AFD>();
+    
     private int IdAFD;
-    private ArrayList<Estado> estadosAceptacion = new ArrayList<Estado>();
     private ArrayList<Character> alfabeto = new ArrayList<Character>();
-    private int[][] tabular;
+    private ArrayList<EstadoIj> EstadosAFD = new ArrayList<>();
+    public int[][] tabular;
+    
 
     public int getIdAFD() {
         return IdAFD;
@@ -24,15 +27,7 @@ public class AFD {
     public void setIdAFD(int IdAFD) {
         this.IdAFD = IdAFD;
     }
-
-    public ArrayList<Estado> getEstadosAceptacion() {
-        return estadosAceptacion;
-    }
-
-    public void setEstadosAceptacion(ArrayList<Estado> estadosAceptacion) {
-        this.estadosAceptacion = estadosAceptacion;
-    }
-
+    
     public ArrayList<Character> getAlfabeto() {
         return alfabeto;
     }
@@ -49,14 +44,28 @@ public class AFD {
         this.tabular = tabular;
     }    
 
-    public AFD(int IdAFD, int[][] tabular, ArrayList<Estado> estadosAceptacion, ArrayList<Character> alfabeto) {
+    public AFD(int IdAFD, int[][] tabular, ArrayList<EstadoIj> EstadosAFD, ArrayList<Character> alfabeto) {
         this.IdAFD = IdAFD;
         this.tabular = tabular;
-        this.estadosAceptacion = estadosAceptacion;
+        this.EstadosAFD = EstadosAFD;
         this.alfabeto = alfabeto;
+    }
+    
+    public AFD(int IdAFD, ArrayList<EstadoIj> EstadosAFD, ArrayList<Character> alfabeto) {
+        this.IdAFD = IdAFD;
+        this.alfabeto = alfabeto;
+        this.EstadosAFD = EstadosAFD;
+        this.tabular = new int[EstadosAFD.size()][CaracteresEspeciales.ARREGLO];
+        construirTable();
     }
 
     public AFD() {
     }
     
+    private void construirTable(){
+        int l = EstadosAFD.size();
+        for (int i = 0; i < l; i++) {
+            tabular[i] = EstadosAFD.get(i).getTrascionesAFD();
+        }
+    }
 }

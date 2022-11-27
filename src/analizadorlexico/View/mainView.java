@@ -5,11 +5,20 @@
 package analizadorlexico.View;
 
 import analizadorlexico.Model.AFN;
+import analizadorlexico.Model.Estado;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,9 +30,11 @@ public class mainView extends javax.swing.JFrame {
      * Creates new form mainView
      */
     Dimension dimension;
+    String[] columnas;
 
     public mainView() {
         initComponents();
+        columnas = new String[]{"Id AFN", "Seleccionar AFN", "Token"};
         int x, y;
         int WIDTH, HEIGHT;
         dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -69,6 +80,30 @@ public class mainView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         ComboBoxCerraduraKleen = new javax.swing.JComboBox<>();
         ButtonCerraduraKleenAFN = new javax.swing.JButton();
+        FrameAFNUnion = new javax.swing.JFrame();
+        PanelAFNUnion = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        ComboBoxUnion1 = new javax.swing.JComboBox<>();
+        ComboBoxUnion2 = new javax.swing.JComboBox<>();
+        ButtonUnirAFN = new javax.swing.JButton();
+        FrameAFNUnionLexico = new javax.swing.JFrame();
+        PanelAFNUnionLexico = new javax.swing.JPanel();
+        ScrollPaneUnionLexico = new javax.swing.JScrollPane();
+        TableUnionLexico = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        ButtonUnionEspecial = new javax.swing.JButton();
+        TextIdAFNUnionLexico = new javax.swing.JTextField();
+        FrameConvertirAFNaAFD = new javax.swing.JFrame();
+        PanelAFNUnionLexico1 = new javax.swing.JPanel();
+        ScrollPaneUnionLexico1 = new javax.swing.JScrollPane();
+        TableUnionLexico1 = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
+        TextIdAFNaAFD = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        ComboBoxAFNaAFD = new javax.swing.JComboBox<>();
+        ButtonConvertirAFNaAFD = new javax.swing.JButton();
+        ButtonConvertirAFNaAFDGuardarTabla = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         MenuAFN = new javax.swing.JMenu();
         MenuAFNBasico = new javax.swing.JMenuItem();
@@ -77,7 +112,7 @@ public class mainView extends javax.swing.JFrame {
         MenuCerraduraTransitivaAFN = new javax.swing.JMenuItem();
         MenuCerraduraKleen = new javax.swing.JMenuItem();
         MenuERaAFN = new javax.swing.JMenuItem();
-        MenuUnion = new javax.swing.JMenuItem();
+        MenuUnionLexico = new javax.swing.JMenuItem();
         MenuAFNaAFD = new javax.swing.JMenuItem();
         MenuAnalizarCadena = new javax.swing.JMenuItem();
         MenuAnalizadorLexico = new javax.swing.JMenuItem();
@@ -403,6 +438,269 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        FrameAFNUnion.setTitle("Union de AFNS");
+        FrameAFNUnion.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameAFNUnionWindowClosing(evt);
+            }
+        });
+
+        jLabel8.setText("Unir AFN: ");
+        jLabel8.setInheritsPopupMenu(false);
+
+        jLabel9.setText("Con AFN:");
+
+        ComboBoxUnion1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxUnion1MousePressed(evt);
+            }
+        });
+
+        ComboBoxUnion2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxUnion2MousePressed(evt);
+            }
+        });
+
+        ButtonUnirAFN.setText("Union de  AFN'S");
+        ButtonUnirAFN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonUnirAFNMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelAFNUnionLayout = new javax.swing.GroupLayout(PanelAFNUnion);
+        PanelAFNUnion.setLayout(PanelAFNUnionLayout);
+        PanelAFNUnionLayout.setHorizontalGroup(
+            PanelAFNUnionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNUnionLayout.createSequentialGroup()
+                .addGroup(PanelAFNUnionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelAFNUnionLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButtonUnirAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelAFNUnionLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ComboBoxUnion1, 0, 80, Short.MAX_VALUE)
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ComboBoxUnion2, 0, 80, Short.MAX_VALUE)
+                .addGap(81, 81, 81))
+        );
+        PanelAFNUnionLayout.setVerticalGroup(
+            PanelAFNUnionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNUnionLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(PanelAFNUnionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboBoxUnion1)
+                    .addComponent(ComboBoxUnion2))
+                .addGap(52, 52, 52)
+                .addComponent(ButtonUnirAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83))
+        );
+
+        javax.swing.GroupLayout FrameAFNUnionLayout = new javax.swing.GroupLayout(FrameAFNUnion.getContentPane());
+        FrameAFNUnion.getContentPane().setLayout(FrameAFNUnionLayout);
+        FrameAFNUnionLayout.setHorizontalGroup(
+            FrameAFNUnionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNUnionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNUnion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameAFNUnionLayout.setVerticalGroup(
+            FrameAFNUnionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNUnionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNUnion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        FrameAFNUnionLexico.setTitle("Union Lexico de AFNS");
+        FrameAFNUnionLexico.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameAFNUnionLexicoWindowClosing(evt);
+            }
+        });
+
+        ScrollPaneUnionLexico.setViewportView(TableUnionLexico);
+
+        jLabel10.setText("Id AFN resultante:");
+
+        ButtonUnionEspecial.setText("Realizar Accion");
+        ButtonUnionEspecial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonUnionEspecialMousePressed(evt);
+            }
+        });
+
+        TextIdAFNUnionLexico.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextIdAFNUnionLexicoKeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelAFNUnionLexicoLayout = new javax.swing.GroupLayout(PanelAFNUnionLexico);
+        PanelAFNUnionLexico.setLayout(PanelAFNUnionLexicoLayout);
+        PanelAFNUnionLexicoLayout.setHorizontalGroup(
+            PanelAFNUnionLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNUnionLexicoLayout.createSequentialGroup()
+                .addGroup(PanelAFNUnionLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelAFNUnionLexicoLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(TextIdAFNUnionLexico, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButtonUnionEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelAFNUnionLexicoLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(ScrollPaneUnionLexico)))
+                .addGap(57, 57, 57))
+        );
+        PanelAFNUnionLexicoLayout.setVerticalGroup(
+            PanelAFNUnionLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNUnionLexicoLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(PanelAFNUnionLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelAFNUnionLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TextIdAFNUnionLexico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ButtonUnionEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(ScrollPaneUnionLexico, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                .addGap(32, 32, 32))
+        );
+
+        javax.swing.GroupLayout FrameAFNUnionLexicoLayout = new javax.swing.GroupLayout(FrameAFNUnionLexico.getContentPane());
+        FrameAFNUnionLexico.getContentPane().setLayout(FrameAFNUnionLexicoLayout);
+        FrameAFNUnionLexicoLayout.setHorizontalGroup(
+            FrameAFNUnionLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNUnionLexicoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNUnionLexico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameAFNUnionLexicoLayout.setVerticalGroup(
+            FrameAFNUnionLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNUnionLexicoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNUnionLexico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        FrameConvertirAFNaAFD.setTitle("Union Lexico de AFNS");
+        FrameConvertirAFNaAFD.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameConvertirAFNaAFDWindowClosing(evt);
+            }
+        });
+
+        ScrollPaneUnionLexico1.setViewportView(TableUnionLexico1);
+
+        jLabel11.setText("Id AFD resultante:");
+
+        TextIdAFNaAFD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextIdAFNaAFDKeyTyped(evt);
+            }
+        });
+
+        jLabel12.setText("AFN a convertir a AFD:");
+
+        ComboBoxAFNaAFD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxAFNaAFDMousePressed(evt);
+            }
+        });
+
+        ButtonConvertirAFNaAFD.setText("Realizar Conversion");
+        ButtonConvertirAFNaAFD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonConvertirAFNaAFDMousePressed(evt);
+            }
+        });
+
+        ButtonConvertirAFNaAFDGuardarTabla.setText("Guardar Tabla");
+        ButtonConvertirAFNaAFDGuardarTabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonConvertirAFNaAFDGuardarTablaMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelAFNUnionLexico1Layout = new javax.swing.GroupLayout(PanelAFNUnionLexico1);
+        PanelAFNUnionLexico1.setLayout(PanelAFNUnionLexico1Layout);
+        PanelAFNUnionLexico1Layout.setHorizontalGroup(
+            PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollPaneUnionLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                    .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+                        .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNUnionLexico1Layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)))
+                        .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TextIdAFNaAFD, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(ComboBoxAFNaAFD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ButtonConvertirAFNaAFDGuardarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonConvertirAFNaAFD))))
+                .addGap(57, 57, 57))
+        );
+        PanelAFNUnionLexico1Layout.setVerticalGroup(
+            PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+                .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextIdAFNaAFD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNUnionLexico1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ButtonConvertirAFNaAFD, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+                        .addGroup(PanelAFNUnionLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComboBoxAFNaAFD))
+                        .addGap(45, 45, 45))
+                    .addGroup(PanelAFNUnionLexico1Layout.createSequentialGroup()
+                        .addComponent(ButtonConvertirAFNaAFDGuardarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(ScrollPaneUnionLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addGap(32, 32, 32))
+        );
+
+        javax.swing.GroupLayout FrameConvertirAFNaAFDLayout = new javax.swing.GroupLayout(FrameConvertirAFNaAFD.getContentPane());
+        FrameConvertirAFNaAFD.getContentPane().setLayout(FrameConvertirAFNaAFDLayout);
+        FrameConvertirAFNaAFDLayout.setHorizontalGroup(
+            FrameConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameConvertirAFNaAFDLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNUnionLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameConvertirAFNaAFDLayout.setVerticalGroup(
+            FrameConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameConvertirAFNaAFDLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNUnionLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Compiladores");
         setLocation(new java.awt.Point(0, 0));
@@ -420,6 +718,11 @@ public class mainView extends javax.swing.JFrame {
         MenuAFN.add(MenuAFNBasico);
 
         MenuUnirAFNS.setText("Unir AFN'S");
+        MenuUnirAFNS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuUnirAFNSMousePressed(evt);
+            }
+        });
         MenuAFN.add(MenuUnirAFNS);
 
         MenuConcatenarAFN.setText("Concatenar AFN'S");
@@ -440,15 +743,30 @@ public class mainView extends javax.swing.JFrame {
 
         MenuCerraduraKleen.setText("Cerradura Kleen AFN'S");
         MenuCerraduraKleen.setToolTipText("");
+        MenuCerraduraKleen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuCerraduraKleenMousePressed(evt);
+            }
+        });
         MenuAFN.add(MenuCerraduraKleen);
 
         MenuERaAFN.setText("ER a AFN");
         MenuAFN.add(MenuERaAFN);
 
-        MenuUnion.setText("Union");
-        MenuAFN.add(MenuUnion);
+        MenuUnionLexico.setText("Union Lexico");
+        MenuUnionLexico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuUnionLexicoMousePressed(evt);
+            }
+        });
+        MenuAFN.add(MenuUnionLexico);
 
         MenuAFNaAFD.setText("Convertir AFN a AFD");
+        MenuAFNaAFD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuAFNaAFDMousePressed(evt);
+            }
+        });
         MenuAFN.add(MenuAFNaAFD);
 
         MenuAnalizarCadena.setText("Analizar una cadena");
@@ -574,8 +892,8 @@ public class mainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         String[] r = ComboBoxConcatenar1.getSelectedItem().toString().split(" ");
         String[] r2 = ComboBoxConcatenar2.getSelectedItem().toString().split(" ");
-        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[2])).findFirst();
-        Optional<AFN> op2 = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r2[2])).findFirst();
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
+        Optional<AFN> op2 = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r2[r.length-1])).findFirst();
         AFN.conjuntoAFN.remove(op.get());
         AFN.conjuntoAFN.remove(op2.get());
         AFN afn1 = op.get();
@@ -626,7 +944,7 @@ public class mainView extends javax.swing.JFrame {
     private void ButtonCerraduraTransitivaAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCerraduraTransitivaAFNMousePressed
         // TODO add your handling code here:
         String[] r = ComboBoxCerraduraTransitiva.getSelectedItem().toString().split(" ");
-        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[2])).findFirst();
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
         AFN.conjuntoAFN.remove(op.get());
         AFN afn1 = op.get();
         System.out.println("AFN 1 se aplica cerradura transitiva: " + afn1.estadosAFN.toString());
@@ -674,12 +992,267 @@ public class mainView extends javax.swing.JFrame {
 
     private void ButtonCerraduraKleenAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCerraduraKleenAFNMousePressed
         // TODO add your handling code here:
+        String[] r = ComboBoxCerraduraKleen.getSelectedItem().toString().split(" ");
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
+        AFN.conjuntoAFN.remove(op.get());
+        AFN afn1 = op.get();
+        System.out.println("AFN 1 se aplica cerradura de kleen a: " + afn1.estadosAFN.toString());
+        afn1.CerraduraKleen();
+        AFN.conjuntoAFN.add(afn1);
+        System.out.println("Se aplico cerradura kleen...");
+        for (AFN item : AFN.conjuntoAFN) {
+            System.out.println("Valor: " + "Id: " + item.getIdAFN() + "" + item.estadosAFN.toString());
+        }
+        FrameAFNCerraduraKleen.dispose();
+        this.setVisible(true);
     }//GEN-LAST:event_ButtonCerraduraKleenAFNMousePressed
 
     private void FrameAFNCerraduraKleenWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameAFNCerraduraKleenWindowClosing
         // TODO add your handling code here:
         this.setVisible(true);
     }//GEN-LAST:event_FrameAFNCerraduraKleenWindowClosing
+
+    private void MenuCerraduraKleenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCerraduraKleenMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxCerraduraKleen.setModel(model);
+        WIDTH = (int) (dimension.getWidth() * 0.50);
+        HEIGHT = (int) (dimension.getHeight() * 0.50);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        FrameAFNCerraduraKleen.setBounds(x, y, WIDTH, HEIGHT);
+        FrameAFNCerraduraKleen.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuCerraduraKleenMousePressed
+
+    private void ComboBoxUnion1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxUnion1MousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxUnion1.getModel();
+        model.removeAllElements();
+        for (AFN item : AFN.conjuntoAFN) {
+            model.addElement("Id AFN: " + item.getIdAFN());
+        }
+        ComboBoxUnion1.setModel(model);
+    }//GEN-LAST:event_ComboBoxUnion1MousePressed
+
+    private void ComboBoxUnion2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxUnion2MousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxUnion2.getModel();
+        model.removeAllElements();
+        for (AFN item : AFN.conjuntoAFN) {
+            model.addElement("Id AFN: " + item.getIdAFN());
+        }
+        ComboBoxUnion2.setModel(model);
+    }//GEN-LAST:event_ComboBoxUnion2MousePressed
+
+    private void ButtonUnirAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonUnirAFNMousePressed
+        // TODO add your handling code here:
+        String[] r = ComboBoxUnion1.getSelectedItem().toString().split(" ");
+        String[] r2 = ComboBoxUnion2.getSelectedItem().toString().split(" ");
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
+        Optional<AFN> op2 = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r2[r.length-1])).findFirst();
+        AFN.conjuntoAFN.remove(op.get());
+        AFN.conjuntoAFN.remove(op2.get());
+        AFN afn1 = op.get();
+        AFN afn2 = op2.get();
+        System.out.println("AFN 1 a unir: " + afn1.estadosAFN.toString());
+        System.out.println("AFN 2 a unir: " + afn2.estadosAFN.toString());
+        afn1.UnirAFNS(afn2);
+        AFN.conjuntoAFN.add(afn1);
+        System.out.println("Se unieron...  ");
+        for (AFN item : AFN.conjuntoAFN) {
+            System.out.println("Valor: " + "Id: " + item.getIdAFN() + "" + item.estadosAFN.toString());
+        }
+        FrameAFNUnion.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_ButtonUnirAFNMousePressed
+
+    private void FrameAFNUnionWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameAFNUnionWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameAFNUnionWindowClosing
+
+    private void MenuUnirAFNSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUnirAFNSMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxUnion1.setModel(model);
+        DefaultComboBoxModel mode2 = new DefaultComboBoxModel();
+        mode2.removeAllElements();
+        ComboBoxUnion2.setModel(mode2);
+        WIDTH = (int) (dimension.getWidth() * 0.50);
+        HEIGHT = (int) (dimension.getHeight() * 0.50);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        FrameAFNUnion.setBounds(x, y, WIDTH, HEIGHT);
+        FrameAFNUnion.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuUnirAFNSMousePressed
+
+    private void FrameAFNUnionLexicoWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameAFNUnionLexicoWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameAFNUnionLexicoWindowClosing
+
+    private void MenuUnionLexicoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUnionLexicoMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        Object[][] data;
+        Object[] columnNames = {"Id AFN", "Token", "Seleccionar AFN"};
+        int lafn = AFN.conjuntoAFN.size();
+        data = new Object[lafn][columnNames.length];
+        for (int i = 0; i < lafn; i++) {
+            Object[] tmp = {AFN.conjuntoAFN.get(i).idAFN, 0, false};
+            data[i] = tmp;
+        }
+
+        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
+        DefaultTableModel modeltable1 = new DefaultTableModel();
+        TableUnionLexico.setModel(modeltable1);
+        DefaultTableModel modeltable = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if (column == 1 || column == 2) {
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return columnClass[columnIndex];
+            }
+        };
+        TextIdAFNUnionLexico.setText("");
+        TableUnionLexico.setModel(modeltable);
+        WIDTH = (int) (dimension.getWidth() * 0.50);
+        HEIGHT = (int) (dimension.getHeight() * 0.50);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        FrameAFNUnionLexico.setBounds(x, y, WIDTH, HEIGHT);
+        FrameAFNUnionLexico.setVisible(true);
+        ScrollPaneUnionLexico.setAutoscrolls(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuUnionLexicoMousePressed
+
+    private void TextIdAFNUnionLexicoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextIdAFNUnionLexicoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!((c >= '0') && (c <= '9')
+                || (c == evt.VK_BACK_SPACE)
+                || (c == evt.VK_DELETE))) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextIdAFNUnionLexicoKeyTyped
+
+    private void ButtonUnionEspecialMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonUnionEspecialMousePressed
+        // TODO add your handling code here:
+        AFN afn = new AFN();
+        int idafn = Integer.parseInt(TextIdAFNUnionLexico.getText());
+        int l = TableUnionLexico.getModel().getRowCount();
+//        System.out.println("Tamano de la tabla:"+ TableUnionLexico.getModel().getRowCount());
+//        System.out.println("Id del AFD: "+ idafn);
+        
+        for (int i = 0; i < l; i++) {
+            int tokenafn = Integer.parseInt(TableUnionLexico.getModel().getValueAt(0,1).toString());
+//            System.out.println("Token del afn:"+ i+ " Token: " +tokenafn);
+            Object data = TableUnionLexico.getModel().getValueAt(i,2);
+//            System.out.println("Objeto valor boleano: "+data);
+            if (data.toString().equalsIgnoreCase("true")) {
+                Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(TableUnionLexico.getModel().getValueAt(0,0).toString())).findFirst();
+                AFN tmp = op.get();
+                for (Estado estadoacep : tmp.estadosAceptacion) {
+                    estadoacep.setToken(tokenafn);
+                }
+            }
+        }
+        afn.idAFN = idafn;
+        afn.unionLexicoAFNs();
+        AFN.conjuntoAFN.add(afn);
+        FrameAFNUnionLexico.dispose();
+//        for (AFN afn1 : AFN.conjuntoAFN) {
+//            System.out.println("NUEVO AFN UNION LEXICO: "+ "ID AFN UNION LEXICO: "+afn1.idAFN +" "+afn1.estadosAFN.toString() +"ESTADOS DE ACEPTACION: "+afn1.estadosAceptacion.toString());
+//        }
+        this.setVisible(true);
+    }//GEN-LAST:event_ButtonUnionEspecialMousePressed
+
+    private void TextIdAFNaAFDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextIdAFNaAFDKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!((c >= '0') && (c <= '9')
+                || (c == evt.VK_BACK_SPACE)
+                || (c == evt.VK_DELETE))) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextIdAFNaAFDKeyTyped
+
+    private void FrameConvertirAFNaAFDWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameConvertirAFNaAFDWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameConvertirAFNaAFDWindowClosing
+
+    private void ComboBoxAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxAFNaAFDMousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxAFNaAFD.getModel();
+        model.removeAllElements();
+        for (AFN item : AFN.conjuntoAFN) {
+            if (item.SeAgregoAFNUnionLexico) {
+                model.addElement("Id AFN a convertir a AFD: " + item.getIdAFN());
+            }
+        }
+        ComboBoxUnion2.setModel(model);
+    }//GEN-LAST:event_ComboBoxAFNaAFDMousePressed
+
+    private void MenuAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAFNaAFDMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxAFNaAFD.setModel(model);
+        WIDTH = (int) (dimension.getWidth() * 0.50);
+        HEIGHT = (int) (dimension.getHeight() * 0.50);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        ButtonConvertirAFNaAFDGuardarTabla.setVisible(false);
+        ButtonConvertirAFNaAFD.setVisible(true);
+        ButtonConvertirAFNaAFDGuardarTabla.setVisible(false);
+        FrameConvertirAFNaAFD.setBounds(x, y, WIDTH, HEIGHT);
+        FrameConvertirAFNaAFD.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuAFNaAFDMousePressed
+
+    private void ButtonConvertirAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConvertirAFNaAFDMousePressed
+        // TODO add your handling code here:
+        String[] r = ComboBoxAFNaAFD.getSelectedItem().toString().split(" ");
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
+//        AFN.conjuntoAFN.remove(op.get());
+        AFN afn1 = op.get();
+        System.out.println("AFN 1 se aplica cerradura de kleen a: " + afn1.estadosAFN.toString());
+//        afn1.CerraduraKleen();
+//        AFN.conjuntoAFN.add(afn1);
+//        System.out.println("Se aplico cerradura kleen...");
+//        for (AFN item : AFN.conjuntoAFN) {
+//            System.out.println("Valor: " + "Id: " + item.getIdAFN() + "" + item.estadosAFN.toString());
+//        }
+        ButtonConvertirAFNaAFD.setVisible(false);
+        ButtonConvertirAFNaAFDGuardarTabla.setVisible(true);
+        
+    }//GEN-LAST:event_ButtonConvertirAFNaAFDMousePressed
+
+    private void ButtonConvertirAFNaAFDGuardarTablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConvertirAFNaAFDGuardarTablaMousePressed
+        // TODO add your handling code here:
+        FrameConvertirAFNaAFD.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_ButtonConvertirAFNaAFDGuardarTablaMousePressed
 
     /**
      * @param args the command line arguments
@@ -721,15 +1294,25 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JButton ButtonCerraduraKleenAFN;
     private javax.swing.JButton ButtonCerraduraTransitivaAFN;
     private javax.swing.JButton ButtonConcatenarAFN;
+    private javax.swing.JButton ButtonConvertirAFNaAFD;
+    private javax.swing.JButton ButtonConvertirAFNaAFDGuardarTabla;
     private javax.swing.JButton ButtonCrearAFN;
+    private javax.swing.JButton ButtonUnionEspecial;
+    private javax.swing.JButton ButtonUnirAFN;
+    private javax.swing.JComboBox<String> ComboBoxAFNaAFD;
     private javax.swing.JComboBox<String> ComboBoxCerraduraKleen;
     private javax.swing.JComboBox<String> ComboBoxCerraduraTransitiva;
     private javax.swing.JComboBox<String> ComboBoxConcatenar1;
     private javax.swing.JComboBox<String> ComboBoxConcatenar2;
+    private javax.swing.JComboBox<String> ComboBoxUnion1;
+    private javax.swing.JComboBox<String> ComboBoxUnion2;
     private javax.swing.JFrame FrameAFNBasico;
     private javax.swing.JFrame FrameAFNCerraduraKleen;
     private javax.swing.JFrame FrameAFNCerraduraTransitiva;
     private javax.swing.JFrame FrameAFNConcatenar;
+    private javax.swing.JFrame FrameAFNUnion;
+    private javax.swing.JFrame FrameAFNUnionLexico;
+    private javax.swing.JFrame FrameConvertirAFNaAFD;
     private javax.swing.JMenu MenuAFN;
     private javax.swing.JMenuItem MenuAFNBasico;
     private javax.swing.JMenuItem MenuAFNaAFD;
@@ -740,22 +1323,36 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuCerraduraTransitivaAFN;
     private javax.swing.JMenuItem MenuConcatenarAFN;
     private javax.swing.JMenuItem MenuERaAFN;
-    private javax.swing.JMenuItem MenuUnion;
+    private javax.swing.JMenuItem MenuUnionLexico;
     private javax.swing.JMenuItem MenuUnirAFNS;
     private javax.swing.JPanel PanelAFNBasico;
     private javax.swing.JPanel PanelAFNCerraduraKleen;
     private javax.swing.JPanel PanelAFNCerraduraTransitiva;
     private javax.swing.JPanel PanelAFNConcatenar;
+    private javax.swing.JPanel PanelAFNUnion;
+    private javax.swing.JPanel PanelAFNUnionLexico;
+    private javax.swing.JPanel PanelAFNUnionLexico1;
+    private javax.swing.JScrollPane ScrollPaneUnionLexico;
+    private javax.swing.JScrollPane ScrollPaneUnionLexico1;
+    private javax.swing.JTable TableUnionLexico;
+    private javax.swing.JTable TableUnionLexico1;
     private javax.swing.JTextField TextCaracterInferior;
     private javax.swing.JTextField TextCaracterSuperior;
     private javax.swing.JTextField TextIDAFN;
+    private javax.swing.JTextField TextIdAFNUnionLexico;
+    private javax.swing.JTextField TextIdAFNaAFD;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu3;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,10 +4,6 @@
  */
 package analizadorlexico.Model;
 
-import analizadorlexico.Model.CaracteresEspeciales;
-import analizadorlexico.Model.Estado;
-import analizadorlexico.Model.EstadoIj;
-import analizadorlexico.Model.Transicion;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -21,10 +17,10 @@ public class AFN {
     public Estado initEstado;
     public ArrayList<Estado> estadosAFN = new ArrayList<Estado>();
     public ArrayList<Estado> estadosAceptacion = new ArrayList<Estado>();
-    public ArrayList<Character> alfabeto = new ArrayList<Character>();    
+    public ArrayList<Character> alfabeto = new ArrayList<Character>();
     public boolean SeAgregoAFNUnionLexico;
     public int idAFN;
-    
+
     public int getIdAFN() {
         return idAFN;
     }
@@ -32,7 +28,7 @@ public class AFN {
     public void setIdAFN(int idAFN) {
         this.idAFN = idAFN;
     }
-    
+
     public AFN() {
         idAFN = 0;
         initEstado = null;
@@ -281,6 +277,23 @@ public class AFN {
         this.alfabeto.addAll(f.alfabeto);
     }
 
+    public AFN unionLexicoAFNs() {
+        ArrayList<AFN> estadosAeliminar = new ArrayList<>();
+        Estado nuevoEstadoInicial = new Estado();
+        for (AFN afnUnidoAUnionLexico : conjuntoAFN) {
+            nuevoEstadoInicial.listTransicions.add(new Transicion(CaracteresEspeciales.Epsilon, afnUnidoAUnionLexico.initEstado));;
+            this.estadosAFN.addAll(afnUnidoAUnionLexico.estadosAFN);
+            this.estadosAceptacion.addAll(afnUnidoAUnionLexico.estadosAceptacion);
+            this.alfabeto.addAll(afnUnidoAUnionLexico.alfabeto);
+            estadosAeliminar.add(afnUnidoAUnionLexico);
+        }
+        this.conjuntoAFN.removeAll(estadosAeliminar);
+        this.estadosAFN.add(nuevoEstadoInicial);
+        this.initEstado = nuevoEstadoInicial;
+        this.SeAgregoAFNUnionLexico = true;
+        return this;
+    }
+
     private int IndiceCaracter(char[] ArregloAlfabeto, char c) {
         int j;
         int tmp = ArregloAlfabeto.length;
@@ -292,7 +305,7 @@ public class AFN {
         return -1;
     }
 
-    public AFN ConvertirAFNaAFD() {
+    public AFD ConvertirAFNaAFD() {
         int NumEdoAFD;
         int i, j, r;
         char[] arregloAlfabeto;
@@ -349,11 +362,11 @@ public class AFN {
                     ij.trascionesAFD[alfabeto.size()] = aceptacion.getToken();
                     break;
                 }
-            }else{
+            } else {
                 Ij.trascionesAFD[alfabeto.size()] = -1;
             }
         }
         
-        return null;
+        return new AFD(idAFN, tabular, estadosAceptacion, alfabeto);
     }
 }

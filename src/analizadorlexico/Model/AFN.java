@@ -354,7 +354,7 @@ public class AFN {
         }
         return new AFD(idAFN, EstadosAFD, alfabeto);
     }
-    
+
     public AFD ConvertirAFNaAFD(int idafd) {
         int j;
         EstadoIj Ij, Ik;
@@ -406,11 +406,11 @@ public class AFN {
             ConjuntoAux.retainAll(this.estadosAceptacion);
             if (!ConjuntoAux.isEmpty()) {
                 for (Estado aceptacion : ConjuntoAux) {
-                    I.trascionesAFD[alfabeto.size() - 1] = aceptacion.getToken();
+                    I.trascionesAFD[CaracteresEspeciales.ARREGLO - 1] = aceptacion.getToken();
                     break;
                 }
             } else {
-                I.trascionesAFD[CaracteresEspeciales.ARREGLO-1] = -1;
+                I.trascionesAFD[CaracteresEspeciales.ARREGLO - 1] = -1;
             }
         }
         return new AFD(idafd, EstadosAFD, alfabeto);

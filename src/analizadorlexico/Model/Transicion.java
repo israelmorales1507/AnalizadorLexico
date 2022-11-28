@@ -4,11 +4,13 @@
  */
 package analizadorlexico.Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Israel Morales
  */
-public class Transicion {
+public class Transicion implements Serializable{
 
     private char simbInf;
     private char simbSup;

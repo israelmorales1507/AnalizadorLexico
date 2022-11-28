@@ -4,13 +4,14 @@
  */
 package analizadorlexico.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Israel Morales
  */
-public class AFD {
+public class AFD implements Serializable{
 
     public static ArrayList<AFD> conjutnoAFD = new ArrayList<AFD>();
     

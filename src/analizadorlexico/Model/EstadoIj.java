@@ -4,13 +4,14 @@
  */
 package analizadorlexico.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Israel Morales
  */
-public class EstadoIj {
+public class EstadoIj implements Serializable{
 
     public int idj;
     public ArrayList<Estado> ConjuntoIj;

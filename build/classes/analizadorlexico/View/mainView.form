@@ -683,7 +683,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ScrollPaneConvertirAFNaAFD" alignment="0" pref="460" max="32767" attributes="0"/>
+                          <Component id="ScrollPaneConvertirAFNaAFD" alignment="0" pref="548" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -700,8 +700,10 @@
                                   <Component id="ComboBoxAFNaAFD" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="ButtonGuardarTablaArchivo" min="-2" pref="134" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ButtonConvertirAFNaAFDGuardarTabla" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="ButtonConvertirAFNaAFDSalir" min="-2" pref="134" max="-2" attributes="0"/>
                                   <Component id="ButtonConvertirAFNaAFD" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -737,7 +739,10 @@
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="ButtonConvertirAFNaAFDGuardarTabla" min="-2" pref="45" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="ButtonConvertirAFNaAFDSalir" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                                  <Component id="ButtonGuardarTablaArchivo" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -790,13 +795,83 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonConvertirAFNaAFDMousePressed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="ButtonConvertirAFNaAFDGuardarTabla">
+            <Component class="javax.swing.JButton" name="ButtonConvertirAFNaAFDSalir">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Guardar Tabla"/>
+                <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
               <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonConvertirAFNaAFDGuardarTablaMousePressed"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonConvertirAFNaAFDSalirMousePressed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="ButtonGuardarTablaArchivo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Guardar Tabla en Archivo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonGuardarTablaArchivoMousePressed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JFrame" name="FrameSaveTable">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Union Lexico de AFNS"/>
+      </Properties>
+      <Events>
+        <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="FrameSaveTableWindowClosing"/>
+      </Events>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="PanelSaveTable" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="PanelSaveTable" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="PanelSaveTable">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="FileChooserSaveTable" pref="655" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="FileChooserSaveTable" pref="427" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JFileChooser" name="FileChooserSaveTable">
+              <Properties>
+                <Property name="dialogType" type="int" value="1"/>
+                <Property name="focusCycleRoot" type="boolean" value="true"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -806,7 +881,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="MenuAFN">
           <Properties>
-            <Property name="text" type="java.lang.String" value="AFN"/>
+            <Property name="text" type="java.lang.String" value="Analizador Lexico"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MenuAFNBasico">
@@ -883,9 +958,9 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="MenuSintactico">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
+            <Property name="text" type="java.lang.String" value="Analizador Sintactico"/>
           </Properties>
         </Menu>
       </SubComponents>

@@ -4,13 +4,14 @@
  */
 package analizadorlexico.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Israel Morales
  */
-public class Estado {
+public class Estado implements Serializable{
 
     public static int ContadorEstados = 0;
     private int idEstado;

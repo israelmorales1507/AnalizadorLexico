@@ -4,17 +4,21 @@
  */
 package analizadorlexico.View;
 
+import analizadorlexico.Controller.SaveFile;
 import analizadorlexico.Model.AFD;
 import analizadorlexico.Model.AFN;
 import analizadorlexico.Model.CaracteresEspeciales;
 import analizadorlexico.Model.Estado;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -102,7 +106,11 @@ public class mainView extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         ComboBoxAFNaAFD = new javax.swing.JComboBox<>();
         ButtonConvertirAFNaAFD = new javax.swing.JButton();
-        ButtonConvertirAFNaAFDGuardarTabla = new javax.swing.JButton();
+        ButtonConvertirAFNaAFDSalir = new javax.swing.JButton();
+        ButtonGuardarTablaArchivo = new javax.swing.JButton();
+        FrameSaveTable = new javax.swing.JFrame();
+        PanelSaveTable = new javax.swing.JPanel();
+        FileChooserSaveTable = new javax.swing.JFileChooser();
         MenuBar = new javax.swing.JMenuBar();
         MenuAFN = new javax.swing.JMenu();
         MenuAFNBasico = new javax.swing.JMenuItem();
@@ -115,7 +123,7 @@ public class mainView extends javax.swing.JFrame {
         MenuAFNaAFD = new javax.swing.JMenuItem();
         MenuAnalizarCadena = new javax.swing.JMenuItem();
         MenuAnalizadorLexico = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        MenuSintactico = new javax.swing.JMenu();
 
         FrameAFNBasico.setTitle("Creacion de AFN Basico");
         FrameAFNBasico.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -625,10 +633,17 @@ public class mainView extends javax.swing.JFrame {
             }
         });
 
-        ButtonConvertirAFNaAFDGuardarTabla.setText("Guardar Tabla");
-        ButtonConvertirAFNaAFDGuardarTabla.addMouseListener(new java.awt.event.MouseAdapter() {
+        ButtonConvertirAFNaAFDSalir.setText("Salir");
+        ButtonConvertirAFNaAFDSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                ButtonConvertirAFNaAFDGuardarTablaMousePressed(evt);
+                ButtonConvertirAFNaAFDSalirMousePressed(evt);
+            }
+        });
+
+        ButtonGuardarTablaArchivo.setText("Guardar Tabla en Archivo");
+        ButtonGuardarTablaArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonGuardarTablaArchivoMousePressed(evt);
             }
         });
 
@@ -639,7 +654,7 @@ public class mainView extends javax.swing.JFrame {
             .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScrollPaneConvertirAFNaAFD, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                    .addComponent(ScrollPaneConvertirAFNaAFD, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
                     .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
                         .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
@@ -652,8 +667,10 @@ public class mainView extends javax.swing.JFrame {
                             .addComponent(TextIdAFNaAFD, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                             .addComponent(ComboBoxAFNaAFD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButtonGuardarTablaArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ButtonConvertirAFNaAFDGuardarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonConvertirAFNaAFDSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ButtonConvertirAFNaAFD))))
                 .addGap(57, 57, 57))
         );
@@ -678,7 +695,9 @@ public class mainView extends javax.swing.JFrame {
                             .addComponent(ComboBoxAFNaAFD))
                         .addGap(45, 45, 45))
                     .addGroup(PanelConvertirAFNaAFDLayout.createSequentialGroup()
-                        .addComponent(ButtonConvertirAFNaAFDGuardarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(PanelConvertirAFNaAFDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ButtonConvertirAFNaAFDSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonGuardarTablaArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(ScrollPaneConvertirAFNaAFD, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
@@ -701,13 +720,57 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        FrameSaveTable.setTitle("Union Lexico de AFNS");
+        FrameSaveTable.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameSaveTableWindowClosing(evt);
+            }
+        });
+
+        FileChooserSaveTable.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        FileChooserSaveTable.setFocusCycleRoot(true);
+
+        javax.swing.GroupLayout PanelSaveTableLayout = new javax.swing.GroupLayout(PanelSaveTable);
+        PanelSaveTable.setLayout(PanelSaveTableLayout);
+        PanelSaveTableLayout.setHorizontalGroup(
+            PanelSaveTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelSaveTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(FileChooserSaveTable, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        PanelSaveTableLayout.setVerticalGroup(
+            PanelSaveTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelSaveTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(FileChooserSaveTable, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout FrameSaveTableLayout = new javax.swing.GroupLayout(FrameSaveTable.getContentPane());
+        FrameSaveTable.getContentPane().setLayout(FrameSaveTableLayout);
+        FrameSaveTableLayout.setHorizontalGroup(
+            FrameSaveTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameSaveTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelSaveTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameSaveTableLayout.setVerticalGroup(
+            FrameSaveTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameSaveTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelSaveTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Compiladores");
         setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(200, 200));
         setName("mainViewFrame"); // NOI18N
 
-        MenuAFN.setText("AFN");
+        MenuAFN.setText("Analizador Lexico");
 
         MenuAFNBasico.setText("AFN Basico");
         MenuAFNBasico.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -777,8 +840,8 @@ public class mainView extends javax.swing.JFrame {
 
         MenuBar.add(MenuAFN);
 
-        jMenu3.setText("Edit");
-        MenuBar.add(jMenu3);
+        MenuSintactico.setText("Analizador Sintactico");
+        MenuBar.add(MenuSintactico);
 
         setJMenuBar(MenuBar);
 
@@ -1183,33 +1246,10 @@ public class mainView extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_ButtonUnionEspecialMousePressed
 
-    private void TextIdAFNaAFDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextIdAFNaAFDKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (!((c >= '0') && (c <= '9')
-                || (c == evt.VK_BACK_SPACE)
-                || (c == evt.VK_DELETE))) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_TextIdAFNaAFDKeyTyped
-
     private void FrameConvertirAFNaAFDWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameConvertirAFNaAFDWindowClosing
         // TODO add your handling code here:
         this.setVisible(true);
     }//GEN-LAST:event_FrameConvertirAFNaAFDWindowClosing
-
-    private void ComboBoxAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxAFNaAFDMousePressed
-        // TODO add your handling code here:
-        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxAFNaAFD.getModel();
-        model.removeAllElements();
-        for (AFN item : AFN.conjuntoAFN) {
-            if (item.SeAgregoAFNUnionLexico) {
-                model.addElement("Id AFN a convertir a AFD: " + item.getIdAFN());
-            }
-        }
-        ComboBoxUnion2.setModel(model);
-    }//GEN-LAST:event_ComboBoxAFNaAFDMousePressed
 
     private void MenuAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAFNaAFDMousePressed
         // TODO add your handling code here:
@@ -1225,18 +1265,26 @@ public class mainView extends javax.swing.JFrame {
         DefaultTableModel modeltable1 = new DefaultTableModel();
         TableConvertirAFNaAFD.setModel(modeltable1);
         TextIdAFNaAFD.enable(true);
+        ComboBoxAFNaAFD.enable(true);
         TextIdAFNaAFD.setText("");
-        ButtonConvertirAFNaAFDGuardarTabla.setVisible(false);
+        ButtonConvertirAFNaAFDSalir.setVisible(false);
+        ButtonGuardarTablaArchivo.setVisible(false);
         ButtonConvertirAFNaAFD.setVisible(true);
-        ButtonConvertirAFNaAFDGuardarTabla.setVisible(false);
+        ButtonConvertirAFNaAFDSalir.setVisible(false);
         FrameConvertirAFNaAFD.setBounds(x, y, WIDTH, HEIGHT);
         FrameConvertirAFNaAFD.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuAFNaAFDMousePressed
 
+    private void ButtonConvertirAFNaAFDSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConvertirAFNaAFDSalirMousePressed
+        // TODO add your handling code here:
+        FrameConvertirAFNaAFD.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_ButtonConvertirAFNaAFDSalirMousePressed
+
     private void ButtonConvertirAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConvertirAFNaAFDMousePressed
         // TODO add your handling code here:
-//        ScrollPaneConvertirAFNaAFD.remove(TableConvertirAFNaAFD);
+        //        ScrollPaneConvertirAFNaAFD.remove(TableConvertirAFNaAFD);
         int idafd = Integer.parseInt(TextIdAFNaAFD.getText());
         String[] r = ComboBoxAFNaAFD.getSelectedItem().toString().split(" ");
         Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
@@ -1244,17 +1292,17 @@ public class mainView extends javax.swing.JFrame {
         AFN afn1 = op.get();
         System.out.println("Convertira el AFN con Id a AFD" + afn1.idAFN +" : " + afn1.estadosAFN.toString());
         AFD.conjutnoAFD.add(afn1.ConvertirAFNaAFD(idafd));
-        
+
         Object[][] data;
         Object[] columnNames = new Object[CaracteresEspeciales.ARREGLO];
-        
+
         for (int i = 0; i < CaracteresEspeciales.ARREGLOA; i++) {
             columnNames[i] = (char) i;
         }
         columnNames[CaracteresEspeciales.ARREGLO-1] = "Token";
         int[][] tmp =  AFD.conjutnoAFD.get(0).getTabular();
         ArrayList<ArrayList<Object>> objectList = new ArrayList<ArrayList<Object>>();
-        
+
         int l = tmp.length;
         data = new Object[l][CaracteresEspeciales.ARREGLO];
         for (int i = 0; i < l; i++) {
@@ -1263,25 +1311,18 @@ public class mainView extends javax.swing.JFrame {
             }
             data[i][CaracteresEspeciales.ARREGLO-1] = tmp[i][CaracteresEspeciales.ARREGLO-1];
         }
-//        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
+        //        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
         DefaultTableModel modeltable1 = new DefaultTableModel();
         TableConvertirAFNaAFD.setModel(modeltable1);
         DefaultTableModel modeltable = new DefaultTableModel(data, columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                if (column == 1 || column == 2) {
-                    return true;
-                }
                 return false;
             }
-
-//            @Override
-//            public Class<?> getColumnClass(int columnIndex) {
-//                return columnClass[columnIndex];
-//            }
         };
-        
+
         TextIdAFNaAFD.enable(false);
+        ComboBoxAFNaAFD.enable(false);
         TableConvertirAFNaAFD.setModel(modeltable);
         TableConvertirAFNaAFD.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         PanelConvertirAFNaAFD.validate();
@@ -1290,15 +1331,62 @@ public class mainView extends javax.swing.JFrame {
         ScrollPaneUnionLexico.revalidate();
         ScrollPaneUnionLexico.repaint();
         ButtonConvertirAFNaAFD.setVisible(false);
-        ButtonConvertirAFNaAFDGuardarTabla.setVisible(true);
-        
+        ButtonConvertirAFNaAFDSalir.setVisible(true);
+        ButtonGuardarTablaArchivo.setVisible(true);
     }//GEN-LAST:event_ButtonConvertirAFNaAFDMousePressed
 
-    private void ButtonConvertirAFNaAFDGuardarTablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConvertirAFNaAFDGuardarTablaMousePressed
+    private void TextIdAFNaAFDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextIdAFNaAFDKeyTyped
         // TODO add your handling code here:
-        FrameConvertirAFNaAFD.dispose();
-        this.setVisible(true);
-    }//GEN-LAST:event_ButtonConvertirAFNaAFDGuardarTablaMousePressed
+        char c = evt.getKeyChar();
+        if (!((c >= '0') && (c <= '9')
+            || (c == evt.VK_BACK_SPACE)
+            || (c == evt.VK_DELETE))) {
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_TextIdAFNaAFDKeyTyped
+
+    private void ComboBoxAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxAFNaAFDMousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxAFNaAFD.getModel();
+        model.removeAllElements();
+        for (AFN item : AFN.conjuntoAFN) {
+            if (item.SeAgregoAFNUnionLexico) {
+                model.addElement("Id AFN a convertir a AFD: " + item.getIdAFN());
+            }
+        }
+        ComboBoxUnion2.setModel(model);
+    }//GEN-LAST:event_ComboBoxAFNaAFDMousePressed
+
+    private void ButtonGuardarTablaArchivoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonGuardarTablaArchivoMousePressed
+        // TODO add your handling code here:
+        FrameConvertirAFNaAFD.setVisible(false);
+        int a = FileChooserSaveTable.showSaveDialog(FrameConvertirAFNaAFD);
+        switch (a) {
+            case JFileChooser.APPROVE_OPTION:
+                System.out.println("guardar");
+                FrameConvertirAFNaAFD.setVisible(true);
+                SaveFile s = new SaveFile();
+                File fileToSave = FileChooserSaveTable.getSelectedFile();
+                s.GuardarArchivo( AFD.conjutnoAFD.get(0), fileToSave.getAbsolutePath());
+                break;
+            case JFileChooser.CANCEL_OPTION:
+                System.out.println("cancelar");
+                FrameConvertirAFNaAFD.setVisible(true);
+                break;
+            case JFileChooser.ERROR_OPTION:
+                System.out.println("Error");
+                FrameConvertirAFNaAFD.setVisible(true);
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }//GEN-LAST:event_ButtonGuardarTablaArchivoMousePressed
+
+    private void FrameSaveTableWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameSaveTableWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_FrameSaveTableWindowClosing
 
     /**
      * @param args the command line arguments
@@ -1341,8 +1429,9 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JButton ButtonCerraduraTransitivaAFN;
     private javax.swing.JButton ButtonConcatenarAFN;
     private javax.swing.JButton ButtonConvertirAFNaAFD;
-    private javax.swing.JButton ButtonConvertirAFNaAFDGuardarTabla;
+    private javax.swing.JButton ButtonConvertirAFNaAFDSalir;
     private javax.swing.JButton ButtonCrearAFN;
+    private javax.swing.JButton ButtonGuardarTablaArchivo;
     private javax.swing.JButton ButtonUnionEspecial;
     private javax.swing.JButton ButtonUnirAFN;
     private javax.swing.JComboBox<String> ComboBoxAFNaAFD;
@@ -1352,6 +1441,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBoxConcatenar2;
     private javax.swing.JComboBox<String> ComboBoxUnion1;
     private javax.swing.JComboBox<String> ComboBoxUnion2;
+    private javax.swing.JFileChooser FileChooserSaveTable;
     private javax.swing.JFrame FrameAFNBasico;
     private javax.swing.JFrame FrameAFNCerraduraKleen;
     private javax.swing.JFrame FrameAFNCerraduraTransitiva;
@@ -1359,6 +1449,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JFrame FrameAFNUnion;
     private javax.swing.JFrame FrameAFNUnionLexico;
     private javax.swing.JFrame FrameConvertirAFNaAFD;
+    private javax.swing.JFrame FrameSaveTable;
     private javax.swing.JMenu MenuAFN;
     private javax.swing.JMenuItem MenuAFNBasico;
     private javax.swing.JMenuItem MenuAFNaAFD;
@@ -1369,6 +1460,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuCerraduraTransitivaAFN;
     private javax.swing.JMenuItem MenuConcatenarAFN;
     private javax.swing.JMenuItem MenuERaAFN;
+    private javax.swing.JMenu MenuSintactico;
     private javax.swing.JMenuItem MenuUnionLexico;
     private javax.swing.JMenuItem MenuUnirAFNS;
     private javax.swing.JPanel PanelAFNBasico;
@@ -1378,6 +1470,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JPanel PanelAFNUnion;
     private javax.swing.JPanel PanelAFNUnionLexico;
     private javax.swing.JPanel PanelConvertirAFNaAFD;
+    private javax.swing.JPanel PanelSaveTable;
     private javax.swing.JScrollPane ScrollPaneConvertirAFNaAFD;
     private javax.swing.JScrollPane ScrollPaneUnionLexico;
     private javax.swing.JTable TableConvertirAFNaAFD;
@@ -1399,6 +1492,5 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu3;
     // End of variables declaration//GEN-END:variables
 }

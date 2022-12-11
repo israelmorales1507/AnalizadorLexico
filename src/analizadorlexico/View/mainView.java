@@ -1657,7 +1657,6 @@ public class mainView extends javax.swing.JFrame {
         }
         columnNames[CaracteresEspeciales.ARREGLO - 1] = "Token";
         int[][] tmp = AFD.conjutnoAFD.get(0).getTabular();
-        ArrayList<ArrayList<Object>> objectList = new ArrayList<ArrayList<Object>>();
         
         int l = tmp.length;
         data = new Object[l][CaracteresEspeciales.ARREGLO];
@@ -1720,6 +1719,7 @@ public class mainView extends javax.swing.JFrame {
         ComboBoxProbadorLexicoMemoria.enable(false);
         TextAreaProbadorLexico.setVisible(true);
         ButtonProbadorLexicoAnalizar.setVisible(true);
+        ButtonProbadorLexicoSelecionar.setVisible(false);
     }//GEN-LAST:event_ButtonProbadorLexicoSelecionarMousePressed
 
     private void ButtonProbadorLexicoSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoSalirMousePressed
@@ -1764,14 +1764,17 @@ public class mainView extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
         ComboBoxProbadorLexicoMemoria.setModel(model);
-        WIDTH = (int) (dimension.getWidth() * 0.70);
-        HEIGHT = (int) (dimension.getHeight() * 0.70);
+        WIDTH = (int) (dimension.getWidth() * 0.60);
+        HEIGHT = (int) (dimension.getHeight() * 0.60);
         x = (int) ((dimension.getWidth() - WIDTH) / 2);
         y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        DefaultTableModel modeltable1 = new DefaultTableModel();
+        TableProbadorLexico.setModel(modeltable1);
         ButtonProbadorLexicoSelecionar.setVisible(false);
         ButtonProbadorLexicoAnalizar.setVisible(false);
         ButtonProbadorLexicoAbrirArchivo.setVisible(true);
         TextAreaProbadorLexico.setVisible(false);
+        TextAreaProbadorLexico.enable(true);
         TableProbadorLexico.setVisible(false);
         ComboBoxProbadorLexicoMemoria.enable(true);
         TextAreaProbadorLexico.setText("");
@@ -1794,6 +1797,28 @@ public class mainView extends javax.swing.JFrame {
         AnalizadorLexico lexico = new AnalizadorLexico(sigma,op.get());
         ArrayList<String> tmp = lexico.analizarcadena();
         System.out.println("TABLA: "+tmp.toString());
+        
+        Object[][] data;
+        Object[] columnNames = {"Token","Lexema"};
+        
+        int l = tmp.size()-1;
+        int columnl = columnNames.length;
+        data = new Object[l][columnl];
+        for (int i = 0; i < l; i++) {
+            data[i] = tmp.get(i).split(",");
+        }
+        //        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
+        DefaultTableModel modeltable = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        TableProbadorLexico.setModel(modeltable);
+        ButtonProbadorLexicoAnalizar.setVisible(false);
+        TextAreaProbadorLexico.enable(false);
+        TableProbadorLexico.setVisible(true);   
     }//GEN-LAST:event_ButtonProbadorLexicoAnalizarMousePressed
 
     /**

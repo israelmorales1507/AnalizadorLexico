@@ -5,12 +5,8 @@
         <group>
             <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Controller/AnalizadorLexico.java</file>
             <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/AFD.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/CaracteresEspeciales.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/Estado.java</file>
+            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/View/Lexico.java</file>
             <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/View/mainView.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/AFN.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/EstadoIj.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/Transicion.java</file>
         </group>
     </open-files>
 </project-private>

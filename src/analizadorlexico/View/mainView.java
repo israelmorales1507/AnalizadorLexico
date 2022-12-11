@@ -1787,10 +1787,13 @@ public class mainView extends javax.swing.JFrame {
 
     private void ButtonProbadorLexicoAnalizarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoAnalizarMousePressed
         // TODO add your handling code here:
-        AnalizadorLexico lexico = new AnalizadorLexico();
-        String cadena = TextAreaProbadorLexico.getText();
-        System.out.println("Cadena a analizar: "+cadena);
-        
+        String[] r = ComboBoxProbadorLexicoMemoria.getSelectedItem().toString().split(" ");
+        Optional<AFD> op = AFD.conjutnoAFD.stream().filter(x -> x.IdAFD == Integer.parseInt(r[r.length - 1])).findFirst();
+        String sigma = TextAreaProbadorLexico.getText();
+        System.out.println("Cadena a analizar: "+sigma);
+        AnalizadorLexico lexico = new AnalizadorLexico(sigma,op.get());
+        ArrayList<String> tmp = lexico.analizarcadena();
+        System.out.println("TABLA: "+tmp.toString());
     }//GEN-LAST:event_ButtonProbadorLexicoAnalizarMousePressed
 
     /**

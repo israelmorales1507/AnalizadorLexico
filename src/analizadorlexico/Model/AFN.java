@@ -276,12 +276,12 @@ public class AFN {
         this.estadosAFN.addAll(f.estadosAFN);
         this.alfabeto.addAll(f.alfabeto);
     }
-
+    
     public AFN unionLexicoAFNs() {
         ArrayList<AFN> estadosAeliminar = new ArrayList<>();
         Estado nuevoEstadoInicial = new Estado();
         for (AFN afnUnidoAUnionLexico : conjuntoAFN) {
-            nuevoEstadoInicial.listTransicions.add(new Transicion(CaracteresEspeciales.Epsilon, afnUnidoAUnionLexico.initEstado));;
+            nuevoEstadoInicial.listTransicions.add(new Transicion(CaracteresEspeciales.Epsilon, afnUnidoAUnionLexico.initEstado));
             this.estadosAFN.addAll(afnUnidoAUnionLexico.estadosAFN);
             this.estadosAceptacion.addAll(afnUnidoAUnionLexico.estadosAceptacion);
             this.alfabeto.addAll(afnUnidoAUnionLexico.alfabeto);

@@ -4,18 +4,16 @@
  */
 package analizadorlexico.View;
 
-import analizadorlexico.Controller.SaveFile;
+import analizadorlexico.Controller.AnalizadorLexico;
+import analizadorlexico.Controller.UtilFile;
 import analizadorlexico.Model.AFD;
 import analizadorlexico.Model.AFN;
 import analizadorlexico.Model.CaracteresEspeciales;
 import analizadorlexico.Model.Estado;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
@@ -34,7 +32,7 @@ public class mainView extends javax.swing.JFrame {
      */
     Dimension dimension;
     String[] columnas;
-
+    
     public mainView() {
         initComponents();
         columnas = new String[]{"Id AFN", "Seleccionar AFN", "Token"};
@@ -111,6 +109,26 @@ public class mainView extends javax.swing.JFrame {
         FrameSaveTable = new javax.swing.JFrame();
         PanelSaveTable = new javax.swing.JPanel();
         FileChooserSaveTable = new javax.swing.JFileChooser();
+        FrameAFNOpcional = new javax.swing.JFrame();
+        PanelAFNOpcional = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        ComboBoxOpcional = new javax.swing.JComboBox<>();
+        ButtonOpcional = new javax.swing.JButton();
+        FrameProbadorLexico = new javax.swing.JFrame();
+        PanelProbadorLexico = new javax.swing.JPanel();
+        ScrollPaneProbadorLexicoTabla = new javax.swing.JScrollPane();
+        TableProbadorLexico = new javax.swing.JTable();
+        jLabel17 = new javax.swing.JLabel();
+        ComboBoxProbadorLexicoMemoria = new javax.swing.JComboBox<>();
+        ButtonProbadorLexicoSelecionar = new javax.swing.JButton();
+        ButtonProbadorLexicoSalir = new javax.swing.JButton();
+        ButtonProbadorLexicoAbrirArchivo = new javax.swing.JButton();
+        ScrollPaneProbadorLexicoText = new javax.swing.JScrollPane();
+        TextAreaProbadorLexico = new javax.swing.JTextArea();
+        ButtonProbadorLexicoAnalizar = new javax.swing.JButton();
+        FrameOpenTable = new javax.swing.JFrame();
+        PanelOpenTable = new javax.swing.JPanel();
+        FileChooserOpenTable = new javax.swing.JFileChooser();
         MenuBar = new javax.swing.JMenuBar();
         MenuAFN = new javax.swing.JMenu();
         MenuAFNBasico = new javax.swing.JMenuItem();
@@ -118,11 +136,12 @@ public class mainView extends javax.swing.JFrame {
         MenuConcatenarAFN = new javax.swing.JMenuItem();
         MenuCerraduraTransitivaAFN = new javax.swing.JMenuItem();
         MenuCerraduraKleen = new javax.swing.JMenuItem();
+        MenuOperacionOptional = new javax.swing.JMenuItem();
         MenuERaAFN = new javax.swing.JMenuItem();
         MenuUnionLexico = new javax.swing.JMenuItem();
         MenuAFNaAFD = new javax.swing.JMenuItem();
         MenuAnalizarCadena = new javax.swing.JMenuItem();
-        MenuAnalizadorLexico = new javax.swing.JMenuItem();
+        MenuProbadorAnalizadorLexico = new javax.swing.JMenuItem();
         MenuSintactico = new javax.swing.JMenu();
 
         FrameAFNBasico.setTitle("Creacion de AFN Basico");
@@ -600,7 +619,7 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        FrameConvertirAFNaAFD.setTitle("Union Lexico de AFNS");
+        FrameConvertirAFNaAFD.setTitle("Convertir AFNs a AFDs");
         FrameConvertirAFNaAFD.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 FrameConvertirAFNaAFDWindowClosing(evt);
@@ -764,6 +783,235 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        FrameAFNOpcional.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        FrameAFNOpcional.setTitle("Cerradura de Optional");
+        FrameAFNOpcional.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameAFNOpcionalWindowClosing(evt);
+            }
+        });
+
+        jLabel13.setText("Aplicar opcional a: ");
+        jLabel13.setInheritsPopupMenu(false);
+
+        ComboBoxOpcional.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxOpcionalMousePressed(evt);
+            }
+        });
+
+        ButtonOpcional.setText("Realizar Operacion ?");
+        ButtonOpcional.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonOpcionalMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelAFNOpcionalLayout = new javax.swing.GroupLayout(PanelAFNOpcional);
+        PanelAFNOpcional.setLayout(PanelAFNOpcionalLayout);
+        PanelAFNOpcionalLayout.setHorizontalGroup(
+            PanelAFNOpcionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNOpcionalLayout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(jLabel13)
+                .addGap(27, 27, 27)
+                .addComponent(ComboBoxOpcional, 0, 136, Short.MAX_VALUE)
+                .addGap(154, 154, 154))
+            .addGroup(PanelAFNOpcionalLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(ButtonOpcional, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PanelAFNOpcionalLayout.setVerticalGroup(
+            PanelAFNOpcionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNOpcionalLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(PanelAFNOpcionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboBoxOpcional))
+                .addGap(43, 43, 43)
+                .addComponent(ButtonOpcional, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
+        );
+
+        javax.swing.GroupLayout FrameAFNOpcionalLayout = new javax.swing.GroupLayout(FrameAFNOpcional.getContentPane());
+        FrameAFNOpcional.getContentPane().setLayout(FrameAFNOpcionalLayout);
+        FrameAFNOpcionalLayout.setHorizontalGroup(
+            FrameAFNOpcionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNOpcionalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNOpcional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameAFNOpcionalLayout.setVerticalGroup(
+            FrameAFNOpcionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNOpcionalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNOpcional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        FrameProbadorLexico.setTitle("Probar Analizador Lexico");
+        FrameProbadorLexico.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameProbadorLexicoWindowClosing(evt);
+            }
+        });
+
+        ScrollPaneProbadorLexicoTabla.setToolTipText("");
+        ScrollPaneProbadorLexicoTabla.setViewportView(TableProbadorLexico);
+
+        jLabel17.setText("AFD en memoria:");
+
+        ComboBoxProbadorLexicoMemoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxProbadorLexicoMemoriaMousePressed(evt);
+            }
+        });
+
+        ButtonProbadorLexicoSelecionar.setText("Utilizar AFD seleccionado");
+        ButtonProbadorLexicoSelecionar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonProbadorLexicoSelecionarMousePressed(evt);
+            }
+        });
+
+        ButtonProbadorLexicoSalir.setText("Salir");
+        ButtonProbadorLexicoSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonProbadorLexicoSalirMousePressed(evt);
+            }
+        });
+
+        ButtonProbadorLexicoAbrirArchivo.setText("Abri archivo AFD");
+        ButtonProbadorLexicoAbrirArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonProbadorLexicoAbrirArchivoMousePressed(evt);
+            }
+        });
+
+        ScrollPaneProbadorLexicoText.setToolTipText("");
+
+        TextAreaProbadorLexico.setColumns(20);
+        TextAreaProbadorLexico.setRows(5);
+        ScrollPaneProbadorLexicoText.setViewportView(TextAreaProbadorLexico);
+
+        ButtonProbadorLexicoAnalizar.setText("Analizar Cadena");
+        ButtonProbadorLexicoAnalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonProbadorLexicoAnalizarMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelProbadorLexicoLayout = new javax.swing.GroupLayout(PanelProbadorLexico);
+        PanelProbadorLexico.setLayout(PanelProbadorLexicoLayout);
+        PanelProbadorLexicoLayout.setHorizontalGroup(
+            PanelProbadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelProbadorLexicoLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(PanelProbadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelProbadorLexicoLayout.createSequentialGroup()
+                        .addGroup(PanelProbadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelProbadorLexicoLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addGap(18, 18, 18)
+                                .addComponent(ComboBoxProbadorLexicoMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ButtonProbadorLexicoSelecionar))
+                            .addGroup(PanelProbadorLexicoLayout.createSequentialGroup()
+                                .addComponent(ButtonProbadorLexicoAbrirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ButtonProbadorLexicoAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ButtonProbadorLexicoSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(80, 80, 80))
+                    .addGroup(PanelProbadorLexicoLayout.createSequentialGroup()
+                        .addGroup(PanelProbadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ScrollPaneProbadorLexicoText, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ScrollPaneProbadorLexicoTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))
+                        .addGap(57, 57, 57))))
+        );
+        PanelProbadorLexicoLayout.setVerticalGroup(
+            PanelProbadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelProbadorLexicoLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(PanelProbadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonProbadorLexicoSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelProbadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ComboBoxProbadorLexicoMemoria)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelProbadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonProbadorLexicoSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonProbadorLexicoAbrirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonProbadorLexicoAnalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ScrollPaneProbadorLexicoText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(ScrollPaneProbadorLexicoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+        );
+
+        javax.swing.GroupLayout FrameProbadorLexicoLayout = new javax.swing.GroupLayout(FrameProbadorLexico.getContentPane());
+        FrameProbadorLexico.getContentPane().setLayout(FrameProbadorLexicoLayout);
+        FrameProbadorLexicoLayout.setHorizontalGroup(
+            FrameProbadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameProbadorLexicoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelProbadorLexico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameProbadorLexicoLayout.setVerticalGroup(
+            FrameProbadorLexicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameProbadorLexicoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelProbadorLexico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        FrameOpenTable.setTitle("Open Table Analizador Lexico");
+        FrameOpenTable.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameOpenTableWindowClosing(evt);
+            }
+        });
+
+        FileChooserOpenTable.setFocusCycleRoot(true);
+
+        javax.swing.GroupLayout PanelOpenTableLayout = new javax.swing.GroupLayout(PanelOpenTable);
+        PanelOpenTable.setLayout(PanelOpenTableLayout);
+        PanelOpenTableLayout.setHorizontalGroup(
+            PanelOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelOpenTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(FileChooserOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        PanelOpenTableLayout.setVerticalGroup(
+            PanelOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelOpenTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(FileChooserOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout FrameOpenTableLayout = new javax.swing.GroupLayout(FrameOpenTable.getContentPane());
+        FrameOpenTable.getContentPane().setLayout(FrameOpenTableLayout);
+        FrameOpenTableLayout.setHorizontalGroup(
+            FrameOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameOpenTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameOpenTableLayout.setVerticalGroup(
+            FrameOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameOpenTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Compiladores");
         setLocation(new java.awt.Point(0, 0));
@@ -813,6 +1061,15 @@ public class mainView extends javax.swing.JFrame {
         });
         MenuAFN.add(MenuCerraduraKleen);
 
+        MenuOperacionOptional.setText("Operacion Opcional");
+        MenuOperacionOptional.setToolTipText("");
+        MenuOperacionOptional.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuOperacionOptionalMousePressed(evt);
+            }
+        });
+        MenuAFN.add(MenuOperacionOptional);
+
         MenuERaAFN.setText("ER a AFN");
         MenuAFN.add(MenuERaAFN);
 
@@ -835,8 +1092,13 @@ public class mainView extends javax.swing.JFrame {
         MenuAnalizarCadena.setText("Analizar una cadena");
         MenuAFN.add(MenuAnalizarCadena);
 
-        MenuAnalizadorLexico.setText("Analizador Lexico");
-        MenuAFN.add(MenuAnalizadorLexico);
+        MenuProbadorAnalizadorLexico.setText("Probar Analizador Lexico");
+        MenuProbadorAnalizadorLexico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuProbadorAnalizadorLexicoMousePressed(evt);
+            }
+        });
+        MenuAFN.add(MenuProbadorAnalizadorLexico);
 
         MenuBar.add(MenuAFN);
 
@@ -955,8 +1217,8 @@ public class mainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         String[] r = ComboBoxConcatenar1.getSelectedItem().toString().split(" ");
         String[] r2 = ComboBoxConcatenar2.getSelectedItem().toString().split(" ");
-        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
-        Optional<AFN> op2 = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r2[r.length-1])).findFirst();
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length - 1])).findFirst();
+        Optional<AFN> op2 = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r2[r.length - 1])).findFirst();
         AFN.conjuntoAFN.remove(op.get());
         AFN.conjuntoAFN.remove(op2.get());
         AFN afn1 = op.get();
@@ -1007,7 +1269,7 @@ public class mainView extends javax.swing.JFrame {
     private void ButtonCerraduraTransitivaAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCerraduraTransitivaAFNMousePressed
         // TODO add your handling code here:
         String[] r = ComboBoxCerraduraTransitiva.getSelectedItem().toString().split(" ");
-        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length - 1])).findFirst();
         AFN.conjuntoAFN.remove(op.get());
         AFN afn1 = op.get();
         System.out.println("AFN 1 se aplica cerradura transitiva: " + afn1.estadosAFN.toString());
@@ -1056,7 +1318,7 @@ public class mainView extends javax.swing.JFrame {
     private void ButtonCerraduraKleenAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCerraduraKleenAFNMousePressed
         // TODO add your handling code here:
         String[] r = ComboBoxCerraduraKleen.getSelectedItem().toString().split(" ");
-        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length - 1])).findFirst();
         AFN.conjuntoAFN.remove(op.get());
         AFN afn1 = op.get();
         System.out.println("AFN 1 se aplica cerradura de kleen a: " + afn1.estadosAFN.toString());
@@ -1115,8 +1377,8 @@ public class mainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         String[] r = ComboBoxUnion1.getSelectedItem().toString().split(" ");
         String[] r2 = ComboBoxUnion2.getSelectedItem().toString().split(" ");
-        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
-        Optional<AFN> op2 = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r2[r.length-1])).findFirst();
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length - 1])).findFirst();
+        Optional<AFN> op2 = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r2[r.length - 1])).findFirst();
         AFN.conjuntoAFN.remove(op.get());
         AFN.conjuntoAFN.remove(op2.get());
         AFN afn1 = op.get();
@@ -1174,7 +1436,7 @@ public class mainView extends javax.swing.JFrame {
             Object[] tmp = {AFN.conjuntoAFN.get(i).idAFN, 0, false};
             data[i] = tmp;
         }
-
+        
         final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
         DefaultTableModel modeltable1 = new DefaultTableModel();
         TableUnionLexico.setModel(modeltable1);
@@ -1186,7 +1448,7 @@ public class mainView extends javax.swing.JFrame {
                 }
                 return false;
             }
-
+            
             @Override
             public Class<?> getColumnClass(int columnIndex) {
                 return columnClass[columnIndex];
@@ -1218,31 +1480,35 @@ public class mainView extends javax.swing.JFrame {
     private void ButtonUnionEspecialMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonUnionEspecialMousePressed
         // TODO add your handling code here:
         AFN afn = new AFN();
+        ArrayList<AFN> conjuntoaux = (ArrayList<AFN>) AFN.conjuntoAFN.clone();
         int idafn = Integer.parseInt(TextIdAFNUnionLexico.getText());
         int l = TableUnionLexico.getModel().getRowCount();
-//        System.out.println("Tamano de la tabla:"+ TableUnionLexico.getModel().getRowCount());
-//        System.out.println("Id del AFD: "+ idafn);
         
         for (int i = 0; i < l; i++) {
-            int tokenafn = Integer.parseInt(TableUnionLexico.getModel().getValueAt(0,1).toString());
-//            System.out.println("Token del afn:"+ i+ " Token: " +tokenafn);
-            Object data = TableUnionLexico.getModel().getValueAt(i,2);
-//            System.out.println("Objeto valor boleano: "+data);
+            int tokenafn = Integer.parseInt(TableUnionLexico.getModel().getValueAt(i, 1).toString());
+            Object data = TableUnionLexico.getModel().getValueAt(i, 2);
+            System.out.println("Objeto tabla: " + data.toString());
             if (data.toString().equalsIgnoreCase("true")) {
-                Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(TableUnionLexico.getModel().getValueAt(0,0).toString())).findFirst();
+                String aux = TableUnionLexico.getModel().getValueAt(i, 0).toString();
+                Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(aux)).findFirst();
                 AFN tmp = op.get();
+//                AFN.conjuntoAFN.remove(tmp);
                 for (Estado estadoacep : tmp.estadosAceptacion) {
                     estadoacep.setToken(tokenafn);
                 }
+//                AFN.conjuntoAFN.add(tmp);
+                conjuntoaux.remove(tmp);
             }
         }
+        AFN.conjuntoAFN.remove(conjuntoaux);
         afn.idAFN = idafn;
         afn.unionLexicoAFNs();
         AFN.conjuntoAFN.add(afn);
+        AFN.conjuntoAFN.addAll(conjuntoaux);
         FrameAFNUnionLexico.dispose();
-//        for (AFN afn1 : AFN.conjuntoAFN) {
-//            System.out.println("NUEVO AFN UNION LEXICO: "+ "ID AFN UNION LEXICO: "+afn1.idAFN +" "+afn1.estadosAFN.toString() +"ESTADOS DE ACEPTACION: "+afn1.estadosAceptacion.toString());
-//        }
+        for (AFN afn1 : AFN.conjuntoAFN) {
+            System.out.println("NUEVO AFN UNION LEXICO: " + "ID AFN UNION LEXICO: " + afn1.idAFN + " " + afn1.estadosAFN.toString() + "ESTADOS DE ACEPTACION: " + afn1.estadosAceptacion.toString());
+        }
         this.setVisible(true);
     }//GEN-LAST:event_ButtonUnionEspecialMousePressed
 
@@ -1276,76 +1542,6 @@ public class mainView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_MenuAFNaAFDMousePressed
 
-    private void ButtonConvertirAFNaAFDSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConvertirAFNaAFDSalirMousePressed
-        // TODO add your handling code here:
-        FrameConvertirAFNaAFD.dispose();
-        this.setVisible(true);
-    }//GEN-LAST:event_ButtonConvertirAFNaAFDSalirMousePressed
-
-    private void ButtonConvertirAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConvertirAFNaAFDMousePressed
-        // TODO add your handling code here:
-        //        ScrollPaneConvertirAFNaAFD.remove(TableConvertirAFNaAFD);
-        int idafd = Integer.parseInt(TextIdAFNaAFD.getText());
-        String[] r = ComboBoxAFNaAFD.getSelectedItem().toString().split(" ");
-        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
-        AFN.conjuntoAFN.remove(op.get());
-        AFN afn1 = op.get();
-        System.out.println("Convertira el AFN con Id a AFD" + afn1.idAFN +" : " + afn1.estadosAFN.toString());
-        AFD.conjutnoAFD.add(afn1.ConvertirAFNaAFD(idafd));
-
-        Object[][] data;
-        Object[] columnNames = new Object[CaracteresEspeciales.ARREGLO];
-
-        for (int i = 0; i < CaracteresEspeciales.ARREGLOA; i++) {
-            columnNames[i] = (char) i;
-        }
-        columnNames[CaracteresEspeciales.ARREGLO-1] = "Token";
-        int[][] tmp =  AFD.conjutnoAFD.get(0).getTabular();
-        ArrayList<ArrayList<Object>> objectList = new ArrayList<ArrayList<Object>>();
-
-        int l = tmp.length;
-        data = new Object[l][CaracteresEspeciales.ARREGLO];
-        for (int i = 0; i < l; i++) {
-            for (int j = 0; j < CaracteresEspeciales.ARREGLOA; j++) {
-                data[i][j] = tmp[i][j];
-            }
-            data[i][CaracteresEspeciales.ARREGLO-1] = tmp[i][CaracteresEspeciales.ARREGLO-1];
-        }
-        //        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
-        DefaultTableModel modeltable1 = new DefaultTableModel();
-        TableConvertirAFNaAFD.setModel(modeltable1);
-        DefaultTableModel modeltable = new DefaultTableModel(data, columnNames) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-
-        TextIdAFNaAFD.enable(false);
-        ComboBoxAFNaAFD.enable(false);
-        TableConvertirAFNaAFD.setModel(modeltable);
-        TableConvertirAFNaAFD.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        PanelConvertirAFNaAFD.validate();
-        PanelConvertirAFNaAFD.revalidate();
-        ScrollPaneUnionLexico.validate();
-        ScrollPaneUnionLexico.revalidate();
-        ScrollPaneUnionLexico.repaint();
-        ButtonConvertirAFNaAFD.setVisible(false);
-        ButtonConvertirAFNaAFDSalir.setVisible(true);
-        ButtonGuardarTablaArchivo.setVisible(true);
-    }//GEN-LAST:event_ButtonConvertirAFNaAFDMousePressed
-
-    private void TextIdAFNaAFDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextIdAFNaAFDKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (!((c >= '0') && (c <= '9')
-            || (c == evt.VK_BACK_SPACE)
-            || (c == evt.VK_DELETE))) {
-        getToolkit().beep();
-        evt.consume();
-        }
-    }//GEN-LAST:event_TextIdAFNaAFDKeyTyped
-
     private void ComboBoxAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxAFNaAFDMousePressed
         // TODO add your handling code here:
         DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxAFNaAFD.getModel();
@@ -1366,9 +1562,9 @@ public class mainView extends javax.swing.JFrame {
             case JFileChooser.APPROVE_OPTION:
                 System.out.println("guardar");
                 FrameConvertirAFNaAFD.setVisible(true);
-                SaveFile s = new SaveFile();
+                UtilFile s = new UtilFile();
                 File fileToSave = FileChooserSaveTable.getSelectedFile();
-                s.GuardarArchivo( AFD.conjutnoAFD.get(0), fileToSave.getAbsolutePath());
+                s.GuardarArchivo(AFD.conjutnoAFD, fileToSave.getAbsolutePath());
                 break;
             case JFileChooser.CANCEL_OPTION:
                 System.out.println("cancelar");
@@ -1387,6 +1583,218 @@ public class mainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_FrameSaveTableWindowClosing
+
+    private void ComboBoxOpcionalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxOpcionalMousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxOpcional.getModel();
+        model.removeAllElements();
+        for (AFN item : AFN.conjuntoAFN) {
+            model.addElement("Id AFN: " + item.getIdAFN());
+        }
+        ComboBoxCerraduraKleen.setModel(model);
+    }//GEN-LAST:event_ComboBoxOpcionalMousePressed
+
+    private void ButtonOpcionalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonOpcionalMousePressed
+        // TODO add your handling code here:
+        String[] r = ComboBoxOpcional.getSelectedItem().toString().split(" ");
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length - 1])).findFirst();
+        AFN.conjuntoAFN.remove(op.get());
+        AFN afn1 = op.get();
+        System.out.println("AFN se aplica operacion optional a: " + afn1.estadosAFN.toString());
+        afn1.Opcional();
+        AFN.conjuntoAFN.add(afn1);
+        System.out.println("Se aplico operacion optional...");
+        for (AFN item : AFN.conjuntoAFN) {
+            System.out.println("Valor: " + "Id: " + item.getIdAFN() + "" + item.estadosAFN.toString());
+        }
+        FrameAFNOpcional.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_ButtonOpcionalMousePressed
+
+    private void FrameAFNOpcionalWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameAFNOpcionalWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameAFNOpcionalWindowClosing
+
+    private void MenuOperacionOptionalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuOperacionOptionalMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxOpcional.setModel(model);
+        WIDTH = (int) (dimension.getWidth() * 0.50);
+        HEIGHT = (int) (dimension.getHeight() * 0.50);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        FrameAFNOpcional.setBounds(x, y, WIDTH, HEIGHT);
+        FrameAFNOpcional.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuOperacionOptionalMousePressed
+
+    private void ButtonConvertirAFNaAFDSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConvertirAFNaAFDSalirMousePressed
+        // TODO add your handling code here:
+        FrameConvertirAFNaAFD.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_ButtonConvertirAFNaAFDSalirMousePressed
+
+    private void ButtonConvertirAFNaAFDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonConvertirAFNaAFDMousePressed
+        // TODO add your handling code here:
+        //        ScrollPaneConvertirAFNaAFD.remove(TableConvertirAFNaAFD);
+        int idafd = Integer.parseInt(TextIdAFNaAFD.getText());
+        String[] r = ComboBoxAFNaAFD.getSelectedItem().toString().split(" ");
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length - 1])).findFirst();
+        AFN.conjuntoAFN.remove(op.get());
+        AFN afn1 = op.get();
+        System.out.println("Convertira el AFN con Id a AFD" + afn1.idAFN + " : " + afn1.estadosAFN.toString());
+        AFD.conjutnoAFD.add(afn1.ConvertirAFNaAFD(idafd));
+        
+        Object[][] data;
+        Object[] columnNames = new Object[CaracteresEspeciales.ARREGLO];
+        
+        for (int i = 0; i < CaracteresEspeciales.ARREGLOA; i++) {
+            columnNames[i] = (char) i;
+        }
+        columnNames[CaracteresEspeciales.ARREGLO - 1] = "Token";
+        int[][] tmp = AFD.conjutnoAFD.get(0).getTabular();
+        ArrayList<ArrayList<Object>> objectList = new ArrayList<ArrayList<Object>>();
+        
+        int l = tmp.length;
+        data = new Object[l][CaracteresEspeciales.ARREGLO];
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < CaracteresEspeciales.ARREGLOA; j++) {
+                data[i][j] = tmp[i][j];
+            }
+            data[i][CaracteresEspeciales.ARREGLO - 1] = tmp[i][CaracteresEspeciales.ARREGLO - 1];
+        }
+        //        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
+        DefaultTableModel modeltable1 = new DefaultTableModel();
+        TableConvertirAFNaAFD.setModel(modeltable1);
+        DefaultTableModel modeltable = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        TextIdAFNaAFD.enable(false);
+        ComboBoxAFNaAFD.enable(false);
+        TableConvertirAFNaAFD.setModel(modeltable);
+        TableConvertirAFNaAFD.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        PanelConvertirAFNaAFD.validate();
+        PanelConvertirAFNaAFD.revalidate();
+        ScrollPaneUnionLexico.validate();
+        ScrollPaneUnionLexico.revalidate();
+        ScrollPaneUnionLexico.repaint();
+        ButtonConvertirAFNaAFD.setVisible(false);
+        ButtonConvertirAFNaAFDSalir.setVisible(true);
+        ButtonGuardarTablaArchivo.setVisible(true);
+    }//GEN-LAST:event_ButtonConvertirAFNaAFDMousePressed
+
+    private void TextIdAFNaAFDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextIdAFNaAFDKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!((c >= '0') && (c <= '9')
+                || (c == evt.VK_BACK_SPACE)
+                || (c == evt.VK_DELETE))) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextIdAFNaAFDKeyTyped
+
+    private void ComboBoxProbadorLexicoMemoriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxProbadorLexicoMemoriaMousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxProbadorLexicoMemoria.getModel();
+        model.removeAllElements();
+        if (!AFD.conjutnoAFD.isEmpty()) {
+            for (AFD item : AFD.conjutnoAFD) {
+                model.addElement("Id AFD: " + item.getIdAFD());
+            }
+            ButtonProbadorLexicoSelecionar.setVisible(true);
+        }
+    }//GEN-LAST:event_ComboBoxProbadorLexicoMemoriaMousePressed
+
+    private void ButtonProbadorLexicoSelecionarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoSelecionarMousePressed
+        // TODO add your handling code here:
+        System.out.println("Mostrar tex area");
+        ComboBoxProbadorLexicoMemoria.enable(false);
+        TextAreaProbadorLexico.setVisible(true);
+        ButtonProbadorLexicoAnalizar.setVisible(true);
+    }//GEN-LAST:event_ButtonProbadorLexicoSelecionarMousePressed
+
+    private void ButtonProbadorLexicoSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoSalirMousePressed
+        // TODO add your handling code here:
+        FrameProbadorLexico.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_ButtonProbadorLexicoSalirMousePressed
+
+    private void FrameProbadorLexicoWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameProbadorLexicoWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameProbadorLexicoWindowClosing
+
+    private void ButtonProbadorLexicoAbrirArchivoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoAbrirArchivoMousePressed
+        // TODO add your handling code here:
+        FrameProbadorLexico.setVisible(false);
+        int a = FileChooserOpenTable.showOpenDialog(FrameProbadorLexico);
+        switch (a) {
+            case JFileChooser.APPROVE_OPTION:
+                System.out.println("abrir archivo");
+                FrameProbadorLexico.setVisible(true);
+                File selectedFile = FileChooserOpenTable.getSelectedFile();
+                UtilFile s = new UtilFile();
+                JOptionPane.showMessageDialog(this, s.AbirArchivoAFD(selectedFile), "", JOptionPane.YES_OPTION);
+                ButtonProbadorLexicoAbrirArchivo.setVisible(false);
+                break;
+            case JFileChooser.CANCEL_OPTION:
+                FrameProbadorLexico.setVisible(true);
+                break;
+            case JFileChooser.ERROR_OPTION:
+                FrameProbadorLexico.setVisible(true);
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }//GEN-LAST:event_ButtonProbadorLexicoAbrirArchivoMousePressed
+
+    private void MenuProbadorAnalizadorLexicoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuProbadorAnalizadorLexicoMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxProbadorLexicoMemoria.setModel(model);
+        WIDTH = (int) (dimension.getWidth() * 0.70);
+        HEIGHT = (int) (dimension.getHeight() * 0.70);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        ButtonProbadorLexicoSelecionar.setVisible(false);
+        ButtonProbadorLexicoAnalizar.setVisible(false);
+        ButtonProbadorLexicoAbrirArchivo.setVisible(true);
+        TextAreaProbadorLexico.setVisible(false);
+        TableProbadorLexico.setVisible(false);
+        ComboBoxProbadorLexicoMemoria.enable(true);
+        TextAreaProbadorLexico.setText("");
+        FrameProbadorLexico.setBounds(x, y, WIDTH, HEIGHT);
+        FrameProbadorLexico.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuProbadorAnalizadorLexicoMousePressed
+
+    private void FrameOpenTableWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameOpenTableWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_FrameOpenTableWindowClosing
+
+    private void ButtonProbadorLexicoAnalizarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoAnalizarMousePressed
+        // TODO add your handling code here:
+        String[] r = ComboBoxProbadorLexicoMemoria.getSelectedItem().toString().split(" ");
+        Optional<AFD> op = AFD.conjutnoAFD.stream().filter(x -> x.IdAFD == Integer.parseInt(r[r.length - 1])).findFirst();
+        String sigma = TextAreaProbadorLexico.getText();
+        System.out.println("Cadena a analizar: "+sigma);
+        AnalizadorLexico lexico = new AnalizadorLexico(sigma,op.get());
+        ArrayList<String> tmp = lexico.analizarcadena();
+        System.out.println("TABLA: "+tmp.toString());
+    }//GEN-LAST:event_ButtonProbadorLexicoAnalizarMousePressed
 
     /**
      * @param args the command line arguments
@@ -1432,6 +1840,11 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JButton ButtonConvertirAFNaAFDSalir;
     private javax.swing.JButton ButtonCrearAFN;
     private javax.swing.JButton ButtonGuardarTablaArchivo;
+    private javax.swing.JButton ButtonOpcional;
+    private javax.swing.JButton ButtonProbadorLexicoAbrirArchivo;
+    private javax.swing.JButton ButtonProbadorLexicoAnalizar;
+    private javax.swing.JButton ButtonProbadorLexicoSalir;
+    private javax.swing.JButton ButtonProbadorLexicoSelecionar;
     private javax.swing.JButton ButtonUnionEspecial;
     private javax.swing.JButton ButtonUnirAFN;
     private javax.swing.JComboBox<String> ComboBoxAFNaAFD;
@@ -1439,27 +1852,34 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBoxCerraduraTransitiva;
     private javax.swing.JComboBox<String> ComboBoxConcatenar1;
     private javax.swing.JComboBox<String> ComboBoxConcatenar2;
+    private javax.swing.JComboBox<String> ComboBoxOpcional;
+    private javax.swing.JComboBox<String> ComboBoxProbadorLexicoMemoria;
     private javax.swing.JComboBox<String> ComboBoxUnion1;
     private javax.swing.JComboBox<String> ComboBoxUnion2;
+    private javax.swing.JFileChooser FileChooserOpenTable;
     private javax.swing.JFileChooser FileChooserSaveTable;
     private javax.swing.JFrame FrameAFNBasico;
     private javax.swing.JFrame FrameAFNCerraduraKleen;
     private javax.swing.JFrame FrameAFNCerraduraTransitiva;
     private javax.swing.JFrame FrameAFNConcatenar;
+    private javax.swing.JFrame FrameAFNOpcional;
     private javax.swing.JFrame FrameAFNUnion;
     private javax.swing.JFrame FrameAFNUnionLexico;
     private javax.swing.JFrame FrameConvertirAFNaAFD;
+    private javax.swing.JFrame FrameOpenTable;
+    private javax.swing.JFrame FrameProbadorLexico;
     private javax.swing.JFrame FrameSaveTable;
     private javax.swing.JMenu MenuAFN;
     private javax.swing.JMenuItem MenuAFNBasico;
     private javax.swing.JMenuItem MenuAFNaAFD;
-    private javax.swing.JMenuItem MenuAnalizadorLexico;
     private javax.swing.JMenuItem MenuAnalizarCadena;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JMenuItem MenuCerraduraKleen;
     private javax.swing.JMenuItem MenuCerraduraTransitivaAFN;
     private javax.swing.JMenuItem MenuConcatenarAFN;
     private javax.swing.JMenuItem MenuERaAFN;
+    private javax.swing.JMenuItem MenuOperacionOptional;
+    private javax.swing.JMenuItem MenuProbadorAnalizadorLexico;
     private javax.swing.JMenu MenuSintactico;
     private javax.swing.JMenuItem MenuUnionLexico;
     private javax.swing.JMenuItem MenuUnirAFNS;
@@ -1467,14 +1887,21 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JPanel PanelAFNCerraduraKleen;
     private javax.swing.JPanel PanelAFNCerraduraTransitiva;
     private javax.swing.JPanel PanelAFNConcatenar;
+    private javax.swing.JPanel PanelAFNOpcional;
     private javax.swing.JPanel PanelAFNUnion;
     private javax.swing.JPanel PanelAFNUnionLexico;
     private javax.swing.JPanel PanelConvertirAFNaAFD;
+    private javax.swing.JPanel PanelOpenTable;
+    private javax.swing.JPanel PanelProbadorLexico;
     private javax.swing.JPanel PanelSaveTable;
     private javax.swing.JScrollPane ScrollPaneConvertirAFNaAFD;
+    private javax.swing.JScrollPane ScrollPaneProbadorLexicoTabla;
+    private javax.swing.JScrollPane ScrollPaneProbadorLexicoText;
     private javax.swing.JScrollPane ScrollPaneUnionLexico;
     private javax.swing.JTable TableConvertirAFNaAFD;
+    private javax.swing.JTable TableProbadorLexico;
     private javax.swing.JTable TableUnionLexico;
+    private javax.swing.JTextArea TextAreaProbadorLexico;
     private javax.swing.JTextField TextCaracterInferior;
     private javax.swing.JTextField TextCaracterSuperior;
     private javax.swing.JTextField TextIDAFN;
@@ -1484,6 +1911,8 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

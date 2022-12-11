@@ -5,8 +5,11 @@
 package analizadorlexico.Controller;
 
 import analizadorlexico.Model.AFD;
+import analizadorlexico.Model.AFN;
 import analizadorlexico.Model.CaracteresEspeciales;
 import analizadorlexico.Model.EstadoAnalizadorLexico;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Stack;
 
 /**
@@ -22,20 +25,10 @@ public class AnalizadorLexico {
     int InitLexema, FinLexama, IndiceCaracterActual;
     char CaracterActual;
     Stack<Integer> stack = new Stack<Integer>();
-    AFD automataFd;
-
-    public AnalizadorLexico() {
-        CadenaSigma = "";
-        PasoPorEdoAcept = false;
-        InitLexema = FinLexama - 1;
-        IndiceCaracterActual = -1;
-        token = -1;
-        stack.clear();
-        automataFd = null;
-    }
-
-    public AnalizadorLexico(String sigma, String FileAFD, int IdAFD) {
-        automataFd = new AFD();
+    AFD automatAFd;
+    ArrayList<String> tablaLexico = new ArrayList<String>();
+    
+    public AnalizadorLexico(String sigma, AFD automaAFD) {
         CadenaSigma = sigma;
         PasoPorEdoAcept = false;
         InitLexema = 0;
@@ -43,45 +36,9 @@ public class AnalizadorLexico {
         IndiceCaracterActual = 0;
         token = -1;
         stack.clear();
-//        automataFd.LeerAFDArchivo(IdAFD); 
+        this.automatAFd = automaAFD;
     }
-
-    public AnalizadorLexico(String sigma, String FileAFD) {
-        automataFd = new AFD();
-        CadenaSigma = sigma;
-        PasoPorEdoAcept = false;
-        InitLexema = 0;
-        FinLexama = -1;
-        IndiceCaracterActual = 0;
-        token = -1;
-        stack.clear();
-//        automataFd.LeerAFDArchivo(-1); 
-    }
-
-    public AnalizadorLexico(String FileAFD, int IdAFD) {
-        automataFd = new AFD();
-        CadenaSigma = "";
-        PasoPorEdoAcept = false;
-        InitLexema = 0;
-        FinLexama = -1;
-        IndiceCaracterActual = 0;
-        token = -1;
-        stack.clear();
-//        automataFd.LeerAFDArchivo(IdAFD); 
-    }
-
-    public AnalizadorLexico(String sigma, AFD autoFD) {
-        automataFd = new AFD();
-        CadenaSigma = sigma;
-        PasoPorEdoAcept = false;
-        InitLexema = 0;
-        FinLexama = -1;
-        IndiceCaracterActual = 0;
-        token = -1;
-        stack.clear();
-//        automataFd = autoFD; 
-    }
-
+    
     public EstadoAnalizadorLexico getEdoAnalizadorLexico() {
         EstadoAnalizadorLexico edoActual = new EstadoAnalizadorLexico();
         edoActual.setCaracterActual(CaracterActual);
@@ -139,11 +96,11 @@ public class AnalizadorLexico {
 
             while (IndiceCaracterActual < CadenaSigma.length()) {
                 CaracterActual = CadenaSigma.charAt(IndiceCaracterActual);
-                EdoTransicion = automataFd.tabular[EdoActual][CaracterActual];
+                EdoTransicion = automatAFd.tabular[EdoActual][CaracterActual];
                 if (EdoTransicion != -1) {
-                    if (automataFd.tabular[EdoTransicion][CaracteresEspeciales.ARREGLO] != -1) {
+                    if (automatAFd.tabular[EdoTransicion][CaracteresEspeciales.ARREGLO - 1] != -1) {
                         PasoPorEdoAcept = true;
-                        token = automataFd.tabular[EdoTransicion][CaracteresEspeciales.ARREGLO];
+                        token = automatAFd.tabular[EdoTransicion][CaracteresEspeciales.ARREGLO - 1];
                         FinLexama = IndiceCaracterActual;
                     }
                     IndiceCaracterActual++;
@@ -160,7 +117,7 @@ public class AnalizadorLexico {
                 return token;
             }
 
-            Lexema = CadenaSigma.substring(InitLexema, FinLexama - InitLexema + 1);
+            Lexema = CadenaSigma.substring(InitLexema, FinLexama + 1);
             IndiceCaracterActual = FinLexama + 1;
             if (token == CaracteresEspeciales.OMITIR) {
                 continue;
@@ -176,5 +133,15 @@ public class AnalizadorLexico {
         }
         IndiceCaracterActual = stack.pop();
         return true;
+    }
+
+    public ArrayList<String> analizarcadena() {
+        int first = this.yylex();
+        tablaLexico.add("" + first + "," + this.Lexema);
+        while (first != CaracteresEspeciales.FIN) {
+            first = this.yylex();
+            tablaLexico.add("" + first + "," + this.Lexema);
+        }
+        return tablaLexico;
     }
 }

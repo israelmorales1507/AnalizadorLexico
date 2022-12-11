@@ -15,7 +15,7 @@ public class AFD implements Serializable{
 
     public static ArrayList<AFD> conjutnoAFD = new ArrayList<AFD>();
     
-    private int IdAFD;
+    public int IdAFD;
     private ArrayList<Character> alfabeto = new ArrayList<Character>();
     private ArrayList<EstadoIj> EstadosAFD = new ArrayList<>();
     public int[][] tabular;

@@ -111,6 +111,11 @@ public class mainView extends javax.swing.JFrame {
         FrameSaveTable = new javax.swing.JFrame();
         PanelSaveTable = new javax.swing.JPanel();
         FileChooserSaveTable = new javax.swing.JFileChooser();
+        FrameAFNOpcional = new javax.swing.JFrame();
+        PanelAFNOpcional = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        ComboBoxOpcional = new javax.swing.JComboBox<>();
+        ButtonOpcional = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         MenuAFN = new javax.swing.JMenu();
         MenuAFNBasico = new javax.swing.JMenuItem();
@@ -118,6 +123,7 @@ public class mainView extends javax.swing.JFrame {
         MenuConcatenarAFN = new javax.swing.JMenuItem();
         MenuCerraduraTransitivaAFN = new javax.swing.JMenuItem();
         MenuCerraduraKleen = new javax.swing.JMenuItem();
+        MenuOperacionOptional = new javax.swing.JMenuItem();
         MenuERaAFN = new javax.swing.JMenuItem();
         MenuUnionLexico = new javax.swing.JMenuItem();
         MenuAFNaAFD = new javax.swing.JMenuItem();
@@ -600,7 +606,7 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        FrameConvertirAFNaAFD.setTitle("Union Lexico de AFNS");
+        FrameConvertirAFNaAFD.setTitle("Convertir AFNs a AFDs");
         FrameConvertirAFNaAFD.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 FrameConvertirAFNaAFDWindowClosing(evt);
@@ -764,6 +770,74 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        FrameAFNOpcional.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        FrameAFNOpcional.setTitle("Cerradura de Optional");
+        FrameAFNOpcional.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameAFNOpcionalWindowClosing(evt);
+            }
+        });
+
+        jLabel13.setText("Aplicar opcional a: ");
+        jLabel13.setInheritsPopupMenu(false);
+
+        ComboBoxOpcional.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxOpcionalMousePressed(evt);
+            }
+        });
+
+        ButtonOpcional.setText("Realizar Operacion ?");
+        ButtonOpcional.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonOpcionalMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelAFNOpcionalLayout = new javax.swing.GroupLayout(PanelAFNOpcional);
+        PanelAFNOpcional.setLayout(PanelAFNOpcionalLayout);
+        PanelAFNOpcionalLayout.setHorizontalGroup(
+            PanelAFNOpcionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAFNOpcionalLayout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(jLabel13)
+                .addGap(27, 27, 27)
+                .addComponent(ComboBoxOpcional, 0, 136, Short.MAX_VALUE)
+                .addGap(154, 154, 154))
+            .addGroup(PanelAFNOpcionalLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(ButtonOpcional, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PanelAFNOpcionalLayout.setVerticalGroup(
+            PanelAFNOpcionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAFNOpcionalLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addGroup(PanelAFNOpcionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboBoxOpcional))
+                .addGap(43, 43, 43)
+                .addComponent(ButtonOpcional, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
+        );
+
+        javax.swing.GroupLayout FrameAFNOpcionalLayout = new javax.swing.GroupLayout(FrameAFNOpcional.getContentPane());
+        FrameAFNOpcional.getContentPane().setLayout(FrameAFNOpcionalLayout);
+        FrameAFNOpcionalLayout.setHorizontalGroup(
+            FrameAFNOpcionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNOpcionalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNOpcional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameAFNOpcionalLayout.setVerticalGroup(
+            FrameAFNOpcionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAFNOpcionalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAFNOpcional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Compiladores");
         setLocation(new java.awt.Point(0, 0));
@@ -813,6 +887,15 @@ public class mainView extends javax.swing.JFrame {
         });
         MenuAFN.add(MenuCerraduraKleen);
 
+        MenuOperacionOptional.setText("Operacion Opcional");
+        MenuOperacionOptional.setToolTipText("");
+        MenuOperacionOptional.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuOperacionOptionalMousePressed(evt);
+            }
+        });
+        MenuAFN.add(MenuOperacionOptional);
+
         MenuERaAFN.setText("ER a AFN");
         MenuAFN.add(MenuERaAFN);
 
@@ -835,7 +918,7 @@ public class mainView extends javax.swing.JFrame {
         MenuAnalizarCadena.setText("Analizar una cadena");
         MenuAFN.add(MenuAnalizarCadena);
 
-        MenuAnalizadorLexico.setText("Analizador Lexico");
+        MenuAnalizadorLexico.setText("Probar Analizador Lexico");
         MenuAFN.add(MenuAnalizadorLexico);
 
         MenuBar.add(MenuAFN);
@@ -1218,31 +1301,35 @@ public class mainView extends javax.swing.JFrame {
     private void ButtonUnionEspecialMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonUnionEspecialMousePressed
         // TODO add your handling code here:
         AFN afn = new AFN();
+        ArrayList<AFN> conjuntoaux = (ArrayList<AFN>)AFN.conjuntoAFN.clone();
         int idafn = Integer.parseInt(TextIdAFNUnionLexico.getText());
         int l = TableUnionLexico.getModel().getRowCount();
-//        System.out.println("Tamano de la tabla:"+ TableUnionLexico.getModel().getRowCount());
-//        System.out.println("Id del AFD: "+ idafn);
         
         for (int i = 0; i < l; i++) {
-            int tokenafn = Integer.parseInt(TableUnionLexico.getModel().getValueAt(0,1).toString());
-//            System.out.println("Token del afn:"+ i+ " Token: " +tokenafn);
+            int tokenafn = Integer.parseInt(TableUnionLexico.getModel().getValueAt(i,1).toString());
             Object data = TableUnionLexico.getModel().getValueAt(i,2);
-//            System.out.println("Objeto valor boleano: "+data);
+            System.out.println("Objeto tabla: "+data.toString());
             if (data.toString().equalsIgnoreCase("true")) {
-                Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(TableUnionLexico.getModel().getValueAt(0,0).toString())).findFirst();
+                String aux = TableUnionLexico.getModel().getValueAt(i,0).toString();
+                Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(aux)).findFirst();
                 AFN tmp = op.get();
+//                AFN.conjuntoAFN.remove(tmp);
                 for (Estado estadoacep : tmp.estadosAceptacion) {
                     estadoacep.setToken(tokenafn);
                 }
+//                AFN.conjuntoAFN.add(tmp);
+                conjuntoaux.remove(tmp);
             }
         }
+        AFN.conjuntoAFN.remove(conjuntoaux);
         afn.idAFN = idafn;
         afn.unionLexicoAFNs();
         AFN.conjuntoAFN.add(afn);
+        AFN.conjuntoAFN.addAll(conjuntoaux);
         FrameAFNUnionLexico.dispose();
-//        for (AFN afn1 : AFN.conjuntoAFN) {
-//            System.out.println("NUEVO AFN UNION LEXICO: "+ "ID AFN UNION LEXICO: "+afn1.idAFN +" "+afn1.estadosAFN.toString() +"ESTADOS DE ACEPTACION: "+afn1.estadosAceptacion.toString());
-//        }
+        for (AFN afn1 : AFN.conjuntoAFN) {
+            System.out.println("NUEVO AFN UNION LEXICO: "+ "ID AFN UNION LEXICO: "+afn1.idAFN +" "+afn1.estadosAFN.toString() +"ESTADOS DE ACEPTACION: "+afn1.estadosAceptacion.toString());
+        }
         this.setVisible(true);
     }//GEN-LAST:event_ButtonUnionEspecialMousePressed
 
@@ -1388,6 +1475,54 @@ public class mainView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_FrameSaveTableWindowClosing
 
+    private void ComboBoxOpcionalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxOpcionalMousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxOpcional.getModel();
+        model.removeAllElements();
+        for (AFN item : AFN.conjuntoAFN) {
+            model.addElement("Id AFN: " + item.getIdAFN());
+        }
+        ComboBoxCerraduraKleen.setModel(model);
+    }//GEN-LAST:event_ComboBoxOpcionalMousePressed
+
+    private void ButtonOpcionalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonOpcionalMousePressed
+        // TODO add your handling code here:
+        String[] r = ComboBoxOpcional.getSelectedItem().toString().split(" ");
+        Optional<AFN> op = AFN.conjuntoAFN.stream().filter(tmp -> tmp.idAFN == Integer.parseInt(r[r.length-1])).findFirst();
+        AFN.conjuntoAFN.remove(op.get());
+        AFN afn1 = op.get();
+        System.out.println("AFN se aplica operacion optional a: " + afn1.estadosAFN.toString());
+        afn1.Opcional();
+        AFN.conjuntoAFN.add(afn1);
+        System.out.println("Se aplico operacion optional...");
+        for (AFN item : AFN.conjuntoAFN) {
+            System.out.println("Valor: " + "Id: " + item.getIdAFN() + "" + item.estadosAFN.toString());
+        }
+        FrameAFNOpcional.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_ButtonOpcionalMousePressed
+
+    private void FrameAFNOpcionalWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameAFNOpcionalWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameAFNOpcionalWindowClosing
+
+    private void MenuOperacionOptionalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuOperacionOptionalMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxOpcional.setModel(model);
+        WIDTH = (int) (dimension.getWidth() * 0.50);
+        HEIGHT = (int) (dimension.getHeight() * 0.50);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        FrameAFNOpcional.setBounds(x, y, WIDTH, HEIGHT);
+        FrameAFNOpcional.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuOperacionOptionalMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -1432,6 +1567,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JButton ButtonConvertirAFNaAFDSalir;
     private javax.swing.JButton ButtonCrearAFN;
     private javax.swing.JButton ButtonGuardarTablaArchivo;
+    private javax.swing.JButton ButtonOpcional;
     private javax.swing.JButton ButtonUnionEspecial;
     private javax.swing.JButton ButtonUnirAFN;
     private javax.swing.JComboBox<String> ComboBoxAFNaAFD;
@@ -1439,6 +1575,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBoxCerraduraTransitiva;
     private javax.swing.JComboBox<String> ComboBoxConcatenar1;
     private javax.swing.JComboBox<String> ComboBoxConcatenar2;
+    private javax.swing.JComboBox<String> ComboBoxOpcional;
     private javax.swing.JComboBox<String> ComboBoxUnion1;
     private javax.swing.JComboBox<String> ComboBoxUnion2;
     private javax.swing.JFileChooser FileChooserSaveTable;
@@ -1446,6 +1583,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JFrame FrameAFNCerraduraKleen;
     private javax.swing.JFrame FrameAFNCerraduraTransitiva;
     private javax.swing.JFrame FrameAFNConcatenar;
+    private javax.swing.JFrame FrameAFNOpcional;
     private javax.swing.JFrame FrameAFNUnion;
     private javax.swing.JFrame FrameAFNUnionLexico;
     private javax.swing.JFrame FrameConvertirAFNaAFD;
@@ -1460,6 +1598,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuCerraduraTransitivaAFN;
     private javax.swing.JMenuItem MenuConcatenarAFN;
     private javax.swing.JMenuItem MenuERaAFN;
+    private javax.swing.JMenuItem MenuOperacionOptional;
     private javax.swing.JMenu MenuSintactico;
     private javax.swing.JMenuItem MenuUnionLexico;
     private javax.swing.JMenuItem MenuUnirAFNS;
@@ -1467,6 +1606,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JPanel PanelAFNCerraduraKleen;
     private javax.swing.JPanel PanelAFNCerraduraTransitiva;
     private javax.swing.JPanel PanelAFNConcatenar;
+    private javax.swing.JPanel PanelAFNOpcional;
     private javax.swing.JPanel PanelAFNUnion;
     private javax.swing.JPanel PanelAFNUnionLexico;
     private javax.swing.JPanel PanelConvertirAFNaAFD;
@@ -1484,6 +1624,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

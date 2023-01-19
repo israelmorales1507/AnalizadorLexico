@@ -61,6 +61,7 @@ public class AFD implements Serializable{
     }
 
     public AFD() {
+        
     }
     
     private void construirTable(){

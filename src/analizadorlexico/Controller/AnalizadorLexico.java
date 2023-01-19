@@ -19,8 +19,8 @@ import java.util.Stack;
 public class AnalizadorLexico {
 
     int token, EdoActual, EdoTransicion;
-    String CadenaSigma;
-    String Lexema; //yytext
+    public String CadenaSigma;
+    public String Lexema; //yytext
     boolean PasoPorEdoAcept;
     int InitLexema, FinLexama, IndiceCaracterActual;
     char CaracterActual;

@@ -114,6 +114,9 @@ public class mainView extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         ComboBoxOpcional = new javax.swing.JComboBox<>();
         ButtonOpcional = new javax.swing.JButton();
+        FrameOpenTable = new javax.swing.JFrame();
+        PanelOpenTable = new javax.swing.JPanel();
+        FileChooserOpenTable = new javax.swing.JFileChooser();
         FrameProbadorLexico = new javax.swing.JFrame();
         PanelProbadorLexico = new javax.swing.JPanel();
         ScrollPaneProbadorLexicoTabla = new javax.swing.JScrollPane();
@@ -126,9 +129,20 @@ public class mainView extends javax.swing.JFrame {
         ScrollPaneProbadorLexicoText = new javax.swing.JScrollPane();
         TextAreaProbadorLexico = new javax.swing.JTextArea();
         ButtonProbadorLexicoAnalizar = new javax.swing.JButton();
-        FrameOpenTable = new javax.swing.JFrame();
-        PanelOpenTable = new javax.swing.JPanel();
-        FileChooserOpenTable = new javax.swing.JFileChooser();
+        FrameEvaluadorExpresiones = new javax.swing.JFrame();
+        PanelProbadorLexico1 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        ComboBoxProbadorLexicoMemoria1 = new javax.swing.JComboBox<>();
+        ButtonProbadorLexicoSelecionar1 = new javax.swing.JButton();
+        ButtonProbadorLexicoSalir1 = new javax.swing.JButton();
+        ButtonProbadorLexicoAbrirArchivo1 = new javax.swing.JButton();
+        ScrollPaneProbadorLexicoText1 = new javax.swing.JScrollPane();
+        TextAreaProbadorLexico1 = new javax.swing.JTextArea();
+        ButtonProbadorLexicoAnalizar1 = new javax.swing.JButton();
+        ScrollPaneProbadorLexicoText2 = new javax.swing.JScrollPane();
+        TextAreaProbadorLexico3 = new javax.swing.JTextArea();
+        ScrollPaneProbadorLexicoText3 = new javax.swing.JScrollPane();
+        TextAreaProbadorLexico2 = new javax.swing.JTextArea();
         MenuBar = new javax.swing.JMenuBar();
         MenuAFN = new javax.swing.JMenu();
         MenuAFNBasico = new javax.swing.JMenuItem();
@@ -143,6 +157,10 @@ public class mainView extends javax.swing.JFrame {
         MenuAnalizarCadena = new javax.swing.JMenuItem();
         MenuProbadorAnalizadorLexico = new javax.swing.JMenuItem();
         MenuSintactico = new javax.swing.JMenu();
+        jMenuDescensoRecursivo = new javax.swing.JMenu();
+        MenuItemCalculadora = new javax.swing.JMenuItem();
+        MenuDescRecGramaticaGramatica = new javax.swing.JMenuItem();
+        MenuAnalisisLL1 = new javax.swing.JMenuItem();
 
         FrameAFNBasico.setTitle("Creacion de AFN Basico");
         FrameAFNBasico.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -851,6 +869,49 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        FrameOpenTable.setTitle("Open Table Analizador Lexico");
+        FrameOpenTable.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameOpenTableWindowClosing(evt);
+            }
+        });
+
+        FileChooserOpenTable.setFocusCycleRoot(true);
+
+        javax.swing.GroupLayout PanelOpenTableLayout = new javax.swing.GroupLayout(PanelOpenTable);
+        PanelOpenTable.setLayout(PanelOpenTableLayout);
+        PanelOpenTableLayout.setHorizontalGroup(
+            PanelOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelOpenTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(FileChooserOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        PanelOpenTableLayout.setVerticalGroup(
+            PanelOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelOpenTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(FileChooserOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout FrameOpenTableLayout = new javax.swing.GroupLayout(FrameOpenTable.getContentPane());
+        FrameOpenTable.getContentPane().setLayout(FrameOpenTableLayout);
+        FrameOpenTableLayout.setHorizontalGroup(
+            FrameOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameOpenTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameOpenTableLayout.setVerticalGroup(
+            FrameOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameOpenTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         FrameProbadorLexico.setTitle("Probar Analizador Lexico");
         FrameProbadorLexico.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -969,47 +1030,128 @@ public class mainView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        FrameOpenTable.setTitle("Open Table Analizador Lexico");
-        FrameOpenTable.addWindowListener(new java.awt.event.WindowAdapter() {
+        FrameEvaluadorExpresiones.setTitle("Evaluador de expresiones");
+        FrameEvaluadorExpresiones.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
-                FrameOpenTableWindowClosing(evt);
+                FrameEvaluadorExpresionesWindowClosing(evt);
             }
         });
 
-        FileChooserOpenTable.setFocusCycleRoot(true);
+        jLabel18.setText("AFD en memoria:");
 
-        javax.swing.GroupLayout PanelOpenTableLayout = new javax.swing.GroupLayout(PanelOpenTable);
-        PanelOpenTable.setLayout(PanelOpenTableLayout);
-        PanelOpenTableLayout.setHorizontalGroup(
-            PanelOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelOpenTableLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(FileChooserOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
-                .addContainerGap())
+        ComboBoxProbadorLexicoMemoria1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxProbadorLexicoMemoria1MousePressed(evt);
+            }
+        });
+
+        ButtonProbadorLexicoSelecionar1.setText("Utilizar AFD seleccionado");
+        ButtonProbadorLexicoSelecionar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonProbadorLexicoSelecionar1MousePressed(evt);
+            }
+        });
+
+        ButtonProbadorLexicoSalir1.setText("Salir");
+        ButtonProbadorLexicoSalir1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonProbadorLexicoSalir1MousePressed(evt);
+            }
+        });
+
+        ButtonProbadorLexicoAbrirArchivo1.setText("Abri archivo AFD");
+        ButtonProbadorLexicoAbrirArchivo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonProbadorLexicoAbrirArchivo1MousePressed(evt);
+            }
+        });
+
+        ScrollPaneProbadorLexicoText1.setToolTipText("");
+
+        TextAreaProbadorLexico1.setColumns(20);
+        TextAreaProbadorLexico1.setRows(5);
+        ScrollPaneProbadorLexicoText1.setViewportView(TextAreaProbadorLexico1);
+
+        ButtonProbadorLexicoAnalizar1.setText("Analizar Cadena");
+        ButtonProbadorLexicoAnalizar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonProbadorLexicoAnalizar1MousePressed(evt);
+            }
+        });
+
+        ScrollPaneProbadorLexicoText2.setToolTipText("");
+
+        TextAreaProbadorLexico3.setColumns(20);
+        TextAreaProbadorLexico3.setRows(5);
+        ScrollPaneProbadorLexicoText2.setViewportView(TextAreaProbadorLexico3);
+
+        ScrollPaneProbadorLexicoText3.setToolTipText("");
+
+        TextAreaProbadorLexico2.setColumns(20);
+        TextAreaProbadorLexico2.setRows(5);
+        ScrollPaneProbadorLexicoText3.setViewportView(TextAreaProbadorLexico2);
+
+        javax.swing.GroupLayout PanelProbadorLexico1Layout = new javax.swing.GroupLayout(PanelProbadorLexico1);
+        PanelProbadorLexico1.setLayout(PanelProbadorLexico1Layout);
+        PanelProbadorLexico1Layout.setHorizontalGroup(
+            PanelProbadorLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelProbadorLexico1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(PanelProbadorLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ScrollPaneProbadorLexicoText1)
+                    .addComponent(ScrollPaneProbadorLexicoText2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelProbadorLexico1Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(18, 18, 18)
+                        .addComponent(ComboBoxProbadorLexicoMemoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButtonProbadorLexicoSelecionar1))
+                    .addGroup(PanelProbadorLexico1Layout.createSequentialGroup()
+                        .addComponent(ButtonProbadorLexicoAbrirArchivo1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                        .addComponent(ButtonProbadorLexicoAnalizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ButtonProbadorLexicoSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ScrollPaneProbadorLexicoText3))
+                .addGap(80, 80, 80))
         );
-        PanelOpenTableLayout.setVerticalGroup(
-            PanelOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelOpenTableLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(FileChooserOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-                .addContainerGap())
+        PanelProbadorLexico1Layout.setVerticalGroup(
+            PanelProbadorLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelProbadorLexico1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(PanelProbadorLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonProbadorLexicoSelecionar1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelProbadorLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ComboBoxProbadorLexicoMemoria1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelProbadorLexico1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonProbadorLexicoSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonProbadorLexicoAbrirArchivo1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonProbadorLexicoAnalizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(ScrollPaneProbadorLexicoText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ScrollPaneProbadorLexicoText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ScrollPaneProbadorLexicoText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
 
-        javax.swing.GroupLayout FrameOpenTableLayout = new javax.swing.GroupLayout(FrameOpenTable.getContentPane());
-        FrameOpenTable.getContentPane().setLayout(FrameOpenTableLayout);
-        FrameOpenTableLayout.setHorizontalGroup(
-            FrameOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrameOpenTableLayout.createSequentialGroup()
+        javax.swing.GroupLayout FrameEvaluadorExpresionesLayout = new javax.swing.GroupLayout(FrameEvaluadorExpresiones.getContentPane());
+        FrameEvaluadorExpresiones.getContentPane().setLayout(FrameEvaluadorExpresionesLayout);
+        FrameEvaluadorExpresionesLayout.setHorizontalGroup(
+            FrameEvaluadorExpresionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameEvaluadorExpresionesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelProbadorLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        FrameOpenTableLayout.setVerticalGroup(
-            FrameOpenTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrameOpenTableLayout.createSequentialGroup()
+        FrameEvaluadorExpresionesLayout.setVerticalGroup(
+            FrameEvaluadorExpresionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameEvaluadorExpresionesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(PanelProbadorLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1103,6 +1245,25 @@ public class mainView extends javax.swing.JFrame {
         MenuBar.add(MenuAFN);
 
         MenuSintactico.setText("Analizador Sintactico");
+
+        jMenuDescensoRecursivo.setText("Descenso Recursivo");
+
+        MenuItemCalculadora.setText("Calculadora");
+        MenuItemCalculadora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuItemCalculadoraMousePressed(evt);
+            }
+        });
+        jMenuDescensoRecursivo.add(MenuItemCalculadora);
+
+        MenuSintactico.add(jMenuDescensoRecursivo);
+
+        MenuDescRecGramaticaGramatica.setText("Descenso Recursivo Gramatica de Gramaticas");
+        MenuSintactico.add(MenuDescRecGramaticaGramatica);
+
+        MenuAnalisisLL1.setText("Analisis LL(1)");
+        MenuSintactico.add(MenuAnalisisLL1);
+
         MenuBar.add(MenuSintactico);
 
         setJMenuBar(MenuBar);
@@ -1657,7 +1818,6 @@ public class mainView extends javax.swing.JFrame {
         }
         columnNames[CaracteresEspeciales.ARREGLO - 1] = "Token";
         int[][] tmp = AFD.conjutnoAFD.get(0).getTabular();
-        ArrayList<ArrayList<Object>> objectList = new ArrayList<ArrayList<Object>>();
         
         int l = tmp.length;
         data = new Object[l][CaracteresEspeciales.ARREGLO];
@@ -1720,6 +1880,7 @@ public class mainView extends javax.swing.JFrame {
         ComboBoxProbadorLexicoMemoria.enable(false);
         TextAreaProbadorLexico.setVisible(true);
         ButtonProbadorLexicoAnalizar.setVisible(true);
+        ButtonProbadorLexicoSelecionar.setVisible(false);
     }//GEN-LAST:event_ButtonProbadorLexicoSelecionarMousePressed
 
     private void ButtonProbadorLexicoSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoSalirMousePressed
@@ -1764,14 +1925,17 @@ public class mainView extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
         ComboBoxProbadorLexicoMemoria.setModel(model);
-        WIDTH = (int) (dimension.getWidth() * 0.70);
-        HEIGHT = (int) (dimension.getHeight() * 0.70);
+        WIDTH = (int) (dimension.getWidth() * 0.60);
+        HEIGHT = (int) (dimension.getHeight() * 0.60);
         x = (int) ((dimension.getWidth() - WIDTH) / 2);
         y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        DefaultTableModel modeltable1 = new DefaultTableModel();
+        TableProbadorLexico.setModel(modeltable1);
         ButtonProbadorLexicoSelecionar.setVisible(false);
         ButtonProbadorLexicoAnalizar.setVisible(false);
         ButtonProbadorLexicoAbrirArchivo.setVisible(true);
         TextAreaProbadorLexico.setVisible(false);
+        TextAreaProbadorLexico.enable(true);
         TableProbadorLexico.setVisible(false);
         ComboBoxProbadorLexicoMemoria.enable(true);
         TextAreaProbadorLexico.setText("");
@@ -1794,7 +1958,81 @@ public class mainView extends javax.swing.JFrame {
         AnalizadorLexico lexico = new AnalizadorLexico(sigma,op.get());
         ArrayList<String> tmp = lexico.analizarcadena();
         System.out.println("TABLA: "+tmp.toString());
+        
+        Object[][] data;
+        Object[] columnNames = {"Token","Lexema"};
+        
+        int l = tmp.size()-1;
+        int columnl = columnNames.length;
+        data = new Object[l][columnl];
+        for (int i = 0; i < l; i++) {
+            data[i] = tmp.get(i).split(",");
+        }
+        //        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
+        DefaultTableModel modeltable = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        TableProbadorLexico.setModel(modeltable);
+        ButtonProbadorLexicoAnalizar.setVisible(false);
+        TextAreaProbadorLexico.enable(false);
+        TableProbadorLexico.setVisible(true);   
     }//GEN-LAST:event_ButtonProbadorLexicoAnalizarMousePressed
+
+    private void ComboBoxProbadorLexicoMemoria1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxProbadorLexicoMemoria1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxProbadorLexicoMemoria1MousePressed
+
+    private void ButtonProbadorLexicoSelecionar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoSelecionar1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonProbadorLexicoSelecionar1MousePressed
+
+    private void ButtonProbadorLexicoSalir1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoSalir1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonProbadorLexicoSalir1MousePressed
+
+    private void ButtonProbadorLexicoAbrirArchivo1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoAbrirArchivo1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonProbadorLexicoAbrirArchivo1MousePressed
+
+    private void ButtonProbadorLexicoAnalizar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbadorLexicoAnalizar1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonProbadorLexicoAnalizar1MousePressed
+
+    private void FrameEvaluadorExpresionesWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameEvaluadorExpresionesWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameEvaluadorExpresionesWindowClosing
+
+    private void MenuItemCalculadoraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuItemCalculadoraMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxProbadorLexicoMemoria.setModel(model);
+        WIDTH = (int) (dimension.getWidth() * 0.60);
+        HEIGHT = (int) (dimension.getHeight() * 0.60);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        DefaultTableModel modeltable1 = new DefaultTableModel();
+        TableProbadorLexico.setModel(modeltable1);
+        ButtonProbadorLexicoSelecionar.setVisible(false);
+        ButtonProbadorLexicoAnalizar.setVisible(false);
+        ButtonProbadorLexicoAbrirArchivo.setVisible(true);
+        TextAreaProbadorLexico.setVisible(false);
+        TextAreaProbadorLexico.enable(true);
+        TableProbadorLexico.setVisible(false);
+        ComboBoxProbadorLexicoMemoria.enable(true);
+        TextAreaProbadorLexico.setText("");
+        FrameEvaluadorExpresiones.setBounds(x, y, WIDTH, HEIGHT);
+        FrameEvaluadorExpresiones.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_MenuItemCalculadoraMousePressed
 
     /**
      * @param args the command line arguments
@@ -1842,9 +2080,13 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JButton ButtonGuardarTablaArchivo;
     private javax.swing.JButton ButtonOpcional;
     private javax.swing.JButton ButtonProbadorLexicoAbrirArchivo;
+    private javax.swing.JButton ButtonProbadorLexicoAbrirArchivo1;
     private javax.swing.JButton ButtonProbadorLexicoAnalizar;
+    private javax.swing.JButton ButtonProbadorLexicoAnalizar1;
     private javax.swing.JButton ButtonProbadorLexicoSalir;
+    private javax.swing.JButton ButtonProbadorLexicoSalir1;
     private javax.swing.JButton ButtonProbadorLexicoSelecionar;
+    private javax.swing.JButton ButtonProbadorLexicoSelecionar1;
     private javax.swing.JButton ButtonUnionEspecial;
     private javax.swing.JButton ButtonUnirAFN;
     private javax.swing.JComboBox<String> ComboBoxAFNaAFD;
@@ -1854,6 +2096,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBoxConcatenar2;
     private javax.swing.JComboBox<String> ComboBoxOpcional;
     private javax.swing.JComboBox<String> ComboBoxProbadorLexicoMemoria;
+    private javax.swing.JComboBox<String> ComboBoxProbadorLexicoMemoria1;
     private javax.swing.JComboBox<String> ComboBoxUnion1;
     private javax.swing.JComboBox<String> ComboBoxUnion2;
     private javax.swing.JFileChooser FileChooserOpenTable;
@@ -1866,18 +2109,22 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JFrame FrameAFNUnion;
     private javax.swing.JFrame FrameAFNUnionLexico;
     private javax.swing.JFrame FrameConvertirAFNaAFD;
+    private javax.swing.JFrame FrameEvaluadorExpresiones;
     private javax.swing.JFrame FrameOpenTable;
     private javax.swing.JFrame FrameProbadorLexico;
     private javax.swing.JFrame FrameSaveTable;
     private javax.swing.JMenu MenuAFN;
     private javax.swing.JMenuItem MenuAFNBasico;
     private javax.swing.JMenuItem MenuAFNaAFD;
+    private javax.swing.JMenuItem MenuAnalisisLL1;
     private javax.swing.JMenuItem MenuAnalizarCadena;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JMenuItem MenuCerraduraKleen;
     private javax.swing.JMenuItem MenuCerraduraTransitivaAFN;
     private javax.swing.JMenuItem MenuConcatenarAFN;
+    private javax.swing.JMenuItem MenuDescRecGramaticaGramatica;
     private javax.swing.JMenuItem MenuERaAFN;
+    private javax.swing.JMenuItem MenuItemCalculadora;
     private javax.swing.JMenuItem MenuOperacionOptional;
     private javax.swing.JMenuItem MenuProbadorAnalizadorLexico;
     private javax.swing.JMenu MenuSintactico;
@@ -1893,15 +2140,22 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JPanel PanelConvertirAFNaAFD;
     private javax.swing.JPanel PanelOpenTable;
     private javax.swing.JPanel PanelProbadorLexico;
+    private javax.swing.JPanel PanelProbadorLexico1;
     private javax.swing.JPanel PanelSaveTable;
     private javax.swing.JScrollPane ScrollPaneConvertirAFNaAFD;
     private javax.swing.JScrollPane ScrollPaneProbadorLexicoTabla;
     private javax.swing.JScrollPane ScrollPaneProbadorLexicoText;
+    private javax.swing.JScrollPane ScrollPaneProbadorLexicoText1;
+    private javax.swing.JScrollPane ScrollPaneProbadorLexicoText2;
+    private javax.swing.JScrollPane ScrollPaneProbadorLexicoText3;
     private javax.swing.JScrollPane ScrollPaneUnionLexico;
     private javax.swing.JTable TableConvertirAFNaAFD;
     private javax.swing.JTable TableProbadorLexico;
     private javax.swing.JTable TableUnionLexico;
     private javax.swing.JTextArea TextAreaProbadorLexico;
+    private javax.swing.JTextArea TextAreaProbadorLexico1;
+    private javax.swing.JTextArea TextAreaProbadorLexico2;
+    private javax.swing.JTextArea TextAreaProbadorLexico3;
     private javax.swing.JTextField TextCaracterInferior;
     private javax.swing.JTextField TextCaracterSuperior;
     private javax.swing.JTextField TextIDAFN;
@@ -1913,6 +2167,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1921,5 +2176,6 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenuDescensoRecursivo;
     // End of variables declaration//GEN-END:variables
 }

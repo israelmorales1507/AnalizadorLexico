@@ -5,6 +5,8 @@
 package analizadorlexico.Model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -72,6 +74,43 @@ public class AFN {
         estadosAceptacion.add(e2);
         return this;
     }
+    
+    public AFN CrearAFNBasico(char simboloInferior, char simboloSuperior, List<Character> excepciones) {
+        if(simboloInferior>simboloSuperior)
+            return null;
+        Estado estadoInicial = new Estado();
+        Estado estadoAceptacion = new Estado();
+        estadoAceptacion.setEdoAceptacion(true);
+        for (char simboloActual = simboloInferior; simboloActual <= simboloSuperior; simboloActual++)
+            if (!excepciones.contains(simboloActual)) {
+                alfabeto.add(simboloActual);
+                Transicion transicionEstadoInicialToAceptacion = new Transicion(simboloActual, estadoAceptacion);
+                estadoInicial.getListTransicions().add(transicionEstadoInicialToAceptacion);
+            }
+        this.initEstado = estadoInicial;
+        estadosAFN.add(estadoInicial);
+        estadosAFN.add(estadoAceptacion);
+        estadosAceptacion.add(estadoAceptacion);
+        return this;
+    }
+    
+    public AFN CrearAFNBasico(List<Character> listaSimbolos) {
+        if(listaSimbolos.isEmpty())
+            return null;
+        Estado estadoInicial = new Estado();
+        Estado estadoAceptacion = new Estado();
+        for(Character simbolo : listaSimbolos){
+            Transicion transicionEstadoInicialToAceptacion = new Transicion(simbolo, estadoAceptacion);
+            estadoInicial.getListTransicions().add(transicionEstadoInicialToAceptacion);
+            alfabeto.add(simbolo);
+        }
+        estadoAceptacion.setEdoAceptacion(true);
+        this.initEstado = estadoInicial;
+        estadosAFN.add(estadoInicial);
+        estadosAFN.add(estadoAceptacion);
+        estadosAceptacion.add(estadoAceptacion);
+        return this;
+    }
 
     public AFN UnirAFNS(AFN f2) {
         Estado e1 = new Estado();
@@ -107,6 +146,10 @@ public class AFN {
         this.alfabeto.addAll(f2.alfabeto);
         return this;
 
+    }
+    
+    public void cambiarToken(int token){
+        this.estadosAceptacion.stream().forEach(estadoAceptacion->estadoAceptacion.setToken(token));
     }
 
     public AFN ConcatenacionAFN(AFN f2) {
@@ -414,5 +457,74 @@ public class AFN {
             }
         }
         return new AFD(idafd, EstadosAFD, alfabeto);
+    }
+    
+    public AFN crearAFNaER(){
+        List<Character> excepciones = new ArrayList<>(Arrays.asList('|','&','+','*','?','(',')','[',']','-','\\'));
+        AFN or = new AFN();
+        AFN concatenar = new AFN();
+        AFN cerraduraPositiva = new AFN();
+        AFN cerraduraKleen = new AFN();
+        AFN opcional = new AFN();
+        AFN parentesisIzquierdo = new AFN();
+        AFN parentesisDerecho = new AFN();
+        AFN corcheteIzquierdo = new AFN();
+        AFN corcheteDerecho = new AFN();
+        AFN guion = new AFN();
+        AFN simbolo = new AFN();
+        or.CrearAFNBasico('|');
+        concatenar.CrearAFNBasico('&');
+        cerraduraPositiva.CrearAFNBasico('+');
+        cerraduraKleen.CrearAFNBasico('*');
+        opcional.CrearAFNBasico('?');
+        parentesisDerecho.CrearAFNBasico(')');
+        parentesisIzquierdo.CrearAFNBasico('(');
+        corcheteDerecho.CrearAFNBasico(']');
+        corcheteIzquierdo.CrearAFNBasico('[');
+        guion.CrearAFNBasico('-');
+        simbolo.CrearAFNBasico((char)0,(char)255,excepciones);
+        AFN secuenciaEscape = new AFN(), simbolosEscape = new AFN();
+        secuenciaEscape.CrearAFNBasico('\\');
+        simbolosEscape.CrearAFNBasico(excepciones);
+        secuenciaEscape.ConcatenacionAFN(simbolosEscape);
+        simbolo.UnirAFNS(secuenciaEscape);
+        or.cambiarToken(ERtoAFNTokens.OR.getToken());
+        concatenar.cambiarToken(ERtoAFNTokens.CONCATENAR.getToken());
+        cerraduraPositiva.cambiarToken(ERtoAFNTokens.CERRADURA_POSITIVA.getToken());
+        cerraduraKleen.cambiarToken(ERtoAFNTokens.CERRADURA_KLEEN.getToken());
+        opcional.cambiarToken(ERtoAFNTokens.OPCIONAL.getToken());
+        parentesisDerecho.cambiarToken(ERtoAFNTokens.PARENTESIS_DERECHO.getToken());
+        parentesisIzquierdo.cambiarToken(ERtoAFNTokens.PARENTESIS_IZQUIERDO.getToken());
+        corcheteDerecho.cambiarToken(ERtoAFNTokens.CORCHETE_DERECHO.getToken());
+        corcheteIzquierdo.cambiarToken(ERtoAFNTokens.CORCHETE_IZQUIERDO.getToken());
+        guion.cambiarToken(ERtoAFNTokens.GUION.getToken());
+        simbolo.cambiarToken(ERtoAFNTokens.SIMBOLO.getToken());
+        conjuntoAFN.add(or);
+        conjuntoAFN.add(concatenar);
+        conjuntoAFN.add(cerraduraPositiva);
+        conjuntoAFN.add(cerraduraKleen);
+        conjuntoAFN.add(opcional);
+        conjuntoAFN.add(parentesisDerecho);
+        conjuntoAFN.add(parentesisIzquierdo);
+        conjuntoAFN.add(corcheteDerecho);
+        conjuntoAFN.add(corcheteIzquierdo);
+        conjuntoAFN.add(guion);
+        conjuntoAFN.add(simbolo);
+        return this.unionLexicoAFNs();
+    }
+    public AFN crearAFNGramaticaDeGramaticas(){
+        AFN afNaER = new AFN();
+        afNaER.crearAFNaER();
+        AFD afdAER = afNaER.ConvertirAFNaAFD();
+        for(GramaticaDeGramaticasTokens token : GramaticaDeGramaticasTokens.values()){
+            if(token == GramaticaDeGramaticasTokens.FIN_CADENA)
+                break;
+            ERAFN ERtoAFN = new ERAFN(token.getExpresionRegular(),afdAER);
+            ERtoAFN.InitConversion();
+            ERtoAFN.getResult().cambiarToken(token.getToken());
+            conjuntoAFN.add(ERtoAFN.getResult());
+        }
+        this.unionLexicoAFNs();
+        return this;
     }
 }

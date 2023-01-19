@@ -968,6 +968,67 @@
         </Container>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JFrame" name="FrameOpenTable">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Open Table Analizador Lexico"/>
+      </Properties>
+      <Events>
+        <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="FrameOpenTableWindowClosing"/>
+      </Events>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="PanelOpenTable" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="PanelOpenTable" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="PanelOpenTable">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="FileChooserOpenTable" pref="655" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="FileChooserOpenTable" pref="427" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JFileChooser" name="FileChooserOpenTable">
+              <Properties>
+                <Property name="focusCycleRoot" type="boolean" value="true"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
     <Container class="javax.swing.JFrame" name="FrameProbadorLexico">
       <Properties>
         <Property name="title" type="java.lang.String" value="Probar Analizador Lexico"/>
@@ -1137,12 +1198,12 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JFrame" name="FrameOpenTable">
+    <Container class="javax.swing.JFrame" name="FrameEvaluadorExpresiones">
       <Properties>
-        <Property name="title" type="java.lang.String" value="Open Table Analizador Lexico"/>
+        <Property name="title" type="java.lang.String" value="Evaluador de expresiones"/>
       </Properties>
       <Events>
-        <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="FrameOpenTableWindowClosing"/>
+        <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="FrameEvaluadorExpresionesWindowClosing"/>
       </Events>
 
       <Layout>
@@ -1150,7 +1211,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="PanelOpenTable" max="32767" attributes="0"/>
+                  <Component id="PanelProbadorLexico1" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -1159,41 +1220,161 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="PanelOpenTable" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="PanelProbadorLexico1" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="PanelOpenTable">
+        <Container class="javax.swing.JPanel" name="PanelProbadorLexico1">
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="FileChooserOpenTable" pref="655" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="ScrollPaneProbadorLexicoText1" max="32767" attributes="0"/>
+                          <Component id="ScrollPaneProbadorLexicoText2" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="ComboBoxProbadorLexicoMemoria1" min="-2" pref="125" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="ButtonProbadorLexicoSelecionar1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="ButtonProbadorLexicoAbrirArchivo1" min="-2" pref="134" max="-2" attributes="0"/>
+                              <EmptySpace pref="104" max="32767" attributes="0"/>
+                              <Component id="ButtonProbadorLexicoAnalizar1" min="-2" pref="134" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="ButtonProbadorLexicoSalir1" min="-2" pref="134" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="ScrollPaneProbadorLexicoText3" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ButtonProbadorLexicoSelecionar1" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jLabel18" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="ComboBoxProbadorLexicoMemoria1" alignment="3" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="FileChooserOpenTable" pref="427" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ButtonProbadorLexicoSalir1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="ButtonProbadorLexicoAbrirArchivo1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="ButtonProbadorLexicoAnalizar1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="ScrollPaneProbadorLexicoText1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="ScrollPaneProbadorLexicoText2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="ScrollPaneProbadorLexicoText3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JFileChooser" name="FileChooserOpenTable">
+            <Component class="javax.swing.JLabel" name="jLabel18">
               <Properties>
-                <Property name="focusCycleRoot" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="AFD en memoria:"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JComboBox" name="ComboBoxProbadorLexicoMemoria1">
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ComboBoxProbadorLexicoMemoria1MousePressed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="ButtonProbadorLexicoSelecionar1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Utilizar AFD seleccionado"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonProbadorLexicoSelecionar1MousePressed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="ButtonProbadorLexicoSalir1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Salir"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonProbadorLexicoSalir1MousePressed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="ButtonProbadorLexicoAbrirArchivo1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Abri archivo AFD"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonProbadorLexicoAbrirArchivo1MousePressed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="ScrollPaneProbadorLexicoText1">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="TextAreaProbadorLexico1">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="ButtonProbadorLexicoAnalizar1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Analizar Cadena"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonProbadorLexicoAnalizar1MousePressed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="ScrollPaneProbadorLexicoText2">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="TextAreaProbadorLexico3">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JScrollPane" name="ScrollPaneProbadorLexicoText3">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="TextAreaProbadorLexico2">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>
@@ -1295,6 +1476,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Analizador Sintactico"/>
           </Properties>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="jMenuDescensoRecursivo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Descenso Recursivo"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="MenuItemCalculadora">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Calculadora"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MenuItemCalculadoraMousePressed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuDescRecGramaticaGramatica">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Descenso Recursivo Gramatica de Gramaticas"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuAnalisisLL1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Analisis LL(1)"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>

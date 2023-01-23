@@ -4,9 +4,16 @@
  */
 package analizadorlexico.Model;
 
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -49,6 +56,9 @@ public class AFN {
         e1.listTransicions.add(t);
         e2.setEdoAceptacion(true);
         alfabeto.add(simb);
+        Set miconjunto  = new HashSet<>(this.alfabeto);
+                this.alfabeto.clear();
+                this.alfabeto.addAll(miconjunto);
         initEstado = e1;
         estadosAFN.add(e1);
         estadosAFN.add(e2);
@@ -68,42 +78,54 @@ public class AFN {
         for (char i = simbInf; i <= simbSup; i++) {
             alfabeto.add(i);
         }
+        Set miconjunto  = new HashSet<>(this.alfabeto);
+                this.alfabeto.clear();
+                this.alfabeto.addAll(miconjunto);
         initEstado = e1;
         estadosAFN.add(e1);
         estadosAFN.add(e2);
         estadosAceptacion.add(e2);
         return this;
     }
-    
+
     public AFN CrearAFNBasico(char simboloInferior, char simboloSuperior, List<Character> excepciones) {
-        if(simboloInferior>simboloSuperior)
+        if (simboloInferior > simboloSuperior) {
             return null;
+        }
         Estado estadoInicial = new Estado();
         Estado estadoAceptacion = new Estado();
         estadoAceptacion.setEdoAceptacion(true);
-        for (char simboloActual = simboloInferior; simboloActual <= simboloSuperior; simboloActual++)
+        for (char simboloActual = simboloInferior; simboloActual <= simboloSuperior; simboloActual++) {
             if (!excepciones.contains(simboloActual)) {
                 alfabeto.add(simboloActual);
                 Transicion transicionEstadoInicialToAceptacion = new Transicion(simboloActual, estadoAceptacion);
                 estadoInicial.getListTransicions().add(transicionEstadoInicialToAceptacion);
             }
+        }
+        Set miconjunto  = new HashSet<>(this.alfabeto);
+        this.alfabeto.clear();
+        this.alfabeto.addAll(miconjunto);
         this.initEstado = estadoInicial;
         estadosAFN.add(estadoInicial);
         estadosAFN.add(estadoAceptacion);
         estadosAceptacion.add(estadoAceptacion);
         return this;
     }
-    
+
     public AFN CrearAFNBasico(List<Character> listaSimbolos) {
-        if(listaSimbolos.isEmpty())
+        if (listaSimbolos.isEmpty()) {
             return null;
+        }
         Estado estadoInicial = new Estado();
         Estado estadoAceptacion = new Estado();
-        for(Character simbolo : listaSimbolos){
+        for (Character simbolo : listaSimbolos) {
             Transicion transicionEstadoInicialToAceptacion = new Transicion(simbolo, estadoAceptacion);
             estadoInicial.getListTransicions().add(transicionEstadoInicialToAceptacion);
             alfabeto.add(simbolo);
         }
+        Set miconjunto  = new HashSet<>(this.alfabeto);
+                this.alfabeto.clear();
+                this.alfabeto.addAll(miconjunto);
         estadoAceptacion.setEdoAceptacion(true);
         this.initEstado = estadoInicial;
         estadosAFN.add(estadoInicial);
@@ -144,12 +166,15 @@ public class AFN {
         this.estadosAFN.add(e1);
         this.estadosAFN.add(e2);
         this.alfabeto.addAll(f2.alfabeto);
+        Set miconjunto  = new HashSet<>(this.alfabeto);
+        this.alfabeto.clear();
+        this.alfabeto.addAll(miconjunto);
         return this;
 
     }
-    
-    public void cambiarToken(int token){
-        this.estadosAceptacion.stream().forEach(estadoAceptacion->estadoAceptacion.setToken(token));
+
+    public void cambiarToken(int token) {
+        this.estadosAceptacion.stream().forEach(estadoAceptacion -> estadoAceptacion.setToken(token));
     }
 
     public AFN ConcatenacionAFN(AFN f2) {
@@ -164,6 +189,9 @@ public class AFN {
         this.estadosAceptacion = f2.estadosAceptacion;
         this.estadosAFN.addAll(f2.estadosAFN);
         this.alfabeto.addAll(f2.alfabeto);
+        Set miconjunto  = new HashSet<>(this.alfabeto);
+        this.alfabeto.clear();
+        this.alfabeto.addAll(miconjunto);
         return this;
     }
 
@@ -318,8 +346,11 @@ public class AFN {
         this.estadosAceptacion.addAll(f.estadosAceptacion);
         this.estadosAFN.addAll(f.estadosAFN);
         this.alfabeto.addAll(f.alfabeto);
+        Set miconjunto  = new HashSet<>(this.alfabeto);
+        this.alfabeto.clear();
+        this.alfabeto.addAll(miconjunto);
     }
-    
+
     public AFN unionLexicoAFNs() {
         ArrayList<AFN> estadosAeliminar = new ArrayList<>();
         Estado nuevoEstadoInicial = new Estado();
@@ -328,12 +359,16 @@ public class AFN {
             this.estadosAFN.addAll(afnUnidoAUnionLexico.estadosAFN);
             this.estadosAceptacion.addAll(afnUnidoAUnionLexico.estadosAceptacion);
             this.alfabeto.addAll(afnUnidoAUnionLexico.alfabeto);
+            Set miconjunto  = new HashSet<>(this.alfabeto);
+                this.alfabeto.clear();
+                this.alfabeto.addAll(miconjunto);
             estadosAeliminar.add(afnUnidoAUnionLexico);
         }
         this.conjuntoAFN.removeAll(estadosAeliminar);
         this.estadosAFN.add(nuevoEstadoInicial);
         this.initEstado = nuevoEstadoInicial;
         this.SeAgregoAFNUnionLexico = true;
+        
         return this;
     }
 
@@ -382,6 +417,7 @@ public class AFN {
                 }
             }
         }
+        
         for (EstadoIj I : EstadosAFD) {
             ConjuntoAux.clear();
             ConjuntoAux.addAll(I.ConjuntoIj);
@@ -392,7 +428,7 @@ public class AFN {
                     break;
                 }
             } else {
-                I.trascionesAFD[CaracteresEspeciales.ARREGLO] = -1;
+                I.trascionesAFD[CaracteresEspeciales.ARREGLOA] = -1;
             }
         }
         return new AFD(idAFN, EstadosAFD, alfabeto);
@@ -458,9 +494,9 @@ public class AFN {
         }
         return new AFD(idafd, EstadosAFD, alfabeto);
     }
-    
-    public AFN crearAFNaER(){
-        List<Character> excepciones = new ArrayList<>(Arrays.asList('|','&','+','*','?','(',')','[',']','-','\\'));
+
+    public AFN crearAFNaER() {
+        List<Character> excepciones = new ArrayList<>(Arrays.asList('|', '&', '+', '*', '?', '(', ')', '[', ']', '-', '\\'));
         AFN or = new AFN();
         AFN concatenar = new AFN();
         AFN cerraduraPositiva = new AFN();
@@ -482,7 +518,7 @@ public class AFN {
         corcheteDerecho.CrearAFNBasico(']');
         corcheteIzquierdo.CrearAFNBasico('[');
         guion.CrearAFNBasico('-');
-        simbolo.CrearAFNBasico((char)0,(char)255,excepciones);
+        simbolo.CrearAFNBasico((char) 0, (char) 255, excepciones);
         AFN secuenciaEscape = new AFN(), simbolosEscape = new AFN();
         secuenciaEscape.CrearAFNBasico('\\');
         simbolosEscape.CrearAFNBasico(excepciones);
@@ -512,17 +548,21 @@ public class AFN {
         conjuntoAFN.add(simbolo);
         return this.unionLexicoAFNs();
     }
-    public AFN crearAFNGramaticaDeGramaticas(){
+
+    public AFN crearAFNGramaticaDeGramaticas() {
         AFN afNaER = new AFN();
         afNaER.crearAFNaER();
         AFD afdAER = afNaER.ConvertirAFNaAFD();
-        for(GramaticaDeGramaticasTokens token : GramaticaDeGramaticasTokens.values()){
-            if(token == GramaticaDeGramaticasTokens.FIN_CADENA)
+        for (GramaticaDeGramaticasTokens token : GramaticaDeGramaticasTokens.values()) {
+            if (token == GramaticaDeGramaticasTokens.FIN_CADENA) {
                 break;
-            ERAFN ERtoAFN = new ERAFN(token.getExpresionRegular(),afdAER);
-            ERtoAFN.InitConversion();
-            ERtoAFN.getResult().cambiarToken(token.getToken());
-            conjuntoAFN.add(ERtoAFN.getResult());
+            }
+            
+            ExpresionRegularToAFN ERtoAFN = new ExpresionRegularToAFN(token.getExpresionRegular(), afdAER);
+            ERtoAFN.iniciarConversionExpresionRegularToAFN();
+            
+            ERtoAFN.getAfnResultante().cambiarToken(token.getToken());
+            conjuntoAFN.add(ERtoAFN.getAfnResultante());
         }
         this.unionLexicoAFNs();
         return this;

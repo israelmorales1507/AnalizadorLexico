@@ -14,7 +14,7 @@ import java.util.List;
  * @author Israel Morales
  */
 public class Gramatica {
-
+    
     private String cadenaGramatica;
     private ClaseNodo simboloGramaticaInicial;
     private HashSet<ClaseNodo> simbolosTerminales;
@@ -24,14 +24,86 @@ public class Gramatica {
     private AFD afdGramatica;
     public static ClaseNodo epsilon = new ClaseNodo("epsilon");
     public static ClaseNodo $ = new ClaseNodo("$");
+    
+    public String getCadenaGramatica() {
+        return cadenaGramatica;
+    }
 
-    public boolean crearGramatica(String cadenaGramatica) {
+    public void setCadenaGramatica(String cadenaGramatica) {
+        this.cadenaGramatica = cadenaGramatica;
+    }
+
+    public ClaseNodo getSimboloGramaticaInicial() {
+        return simboloGramaticaInicial;
+    }
+
+    public void setSimboloGramaticaInicial(ClaseNodo simboloGramaticaInicial) {
+        this.simboloGramaticaInicial = simboloGramaticaInicial;
+    }
+
+    public HashSet<ClaseNodo> getSimbolosTerminales() {
+        return simbolosTerminales;
+    }
+
+    public void setSimbolosTerminales(HashSet<ClaseNodo> simbolosTerminales) {
+        this.simbolosTerminales = simbolosTerminales;
+    }
+
+    public HashSet<ClaseNodo> getSimbolosNoTerminales() {
+        return simbolosNoTerminales;
+    }
+
+    public void setSimbolosNoTerminales(HashSet<ClaseNodo> simbolosNoTerminales) {
+        this.simbolosNoTerminales = simbolosNoTerminales;
+    }
+
+    public ArrayList<List<ClaseNodo>> getArregloReglas() {
+        return arregloReglas;
+    }
+
+    public void setArregloReglas(ArrayList<List<ClaseNodo>> arregloReglas) {
+        this.arregloReglas = arregloReglas;
+    }
+
+    public HashMap<String, ClaseNodo> getConjuntoSimbolos() {
+        return conjuntoSimbolos;
+    }
+
+    public void setConjuntoSimbolos(HashMap<String, ClaseNodo> conjuntoSimbolos) {
+        this.conjuntoSimbolos = conjuntoSimbolos;
+    }
+
+    public AFD getAfdGramatica() {
+        return afdGramatica;
+    }
+
+    public void setAfdGramatica(AFD afdGramatica) {
+        this.afdGramatica = afdGramatica;
+    }
+
+    public static ClaseNodo getEpsilon() {
+        return epsilon;
+    }
+
+    public static void setEpsilon(ClaseNodo epsilon) {
+        Gramatica.epsilon = epsilon;
+    }
+
+    public static ClaseNodo get$() {
+        return $;
+    }
+
+    public static void set$(ClaseNodo $) {
+        Gramatica.$ = $;
+    }
+
+    public boolean crearGramatica(String cadenaGramatica, AFD afd) {
         this.cadenaGramatica = cadenaGramatica;
         simbolosTerminales = new HashSet<>();
         simbolosNoTerminales = new HashSet<>();
         // Crear el analizador lexico de gramáticas        
         AFN afnGramatica = new AFN();
-        AFD afdGramatica = afnGramatica.crearAFNGramaticaDeGramaticas().toAFD();
+        AFD afdGramatica = afnGramatica.crearAFNGramaticaDeGramaticas().ConvertirAFNaAFD();
         DesRecGram_Gram descensoRecursivoGramatica = new DesRecGram_Gram(cadenaGramatica, afdGramatica);
         if (descensoRecursivoGramatica.analizarGramatica()) {
             arregloReglas = descensoRecursivoGramatica.getArregloReglas();
@@ -82,31 +154,25 @@ public class Gramatica {
 
     public HashSet<ClaseNodo> Follow(ClaseNodo simboloGramaticaFollow) {
         HashSet<ClaseNodo> conjuntoSimbolosFollow = new HashSet<>();
-        HashSet<Simbolo> conjuntoAuxiliarFirst = new HashSet<>();
+        HashSet<ClaseNodo> conjuntoAuxiliarFirst = new HashSet<>();
         int indiceSimboloFollow; // TODO borrar este comentario        
         if (simboloGramaticaFollow.equals(simboloGramaticaInicial)) {
             conjuntoSimbolosFollow.add($);
         }
-        // Buscar simboloFollow en los lados derechos        
         for (List<ClaseNodo> regla : arregloReglas) {
-            // Ver si el simboloFollow existe en esa regla y obtener su índice            
-            int indiceSimboloFollow = regla.indexOf(simboloGramaticaFollow);
-            // Si el simboloFollow no aparece en el lado derecho de la regla, revisar la siguiente            
+            indiceSimboloFollow = regla.indexOf(simboloGramaticaFollow);
             if (indiceSimboloFollow == -1 || indiceSimboloFollow == 0) {
                 continue;
             }
             ClaseNodo ladoIzquierdo = regla.get(0);
-            // Calcular Follow del lado izquierdo si simboloFollow está en la última posición            
             if (indiceSimboloFollow + 1 == regla.size()) {
-                // Verificar que simboloFollow no sea igual al lado izquierdo para evitar quedar ciclado                
                 if (simboloGramaticaFollow == ladoIzquierdo) {
                     continue;
                 }
                 conjuntoSimbolosFollow.addAll(this.Follow(ladoIzquierdo));
                 continue;
             }
-            // Calcular el First de lo que sucede a simboloFollow            
-            HashSet<ClaseNodo> conjuntoAuxiliarFirst = this.First(regla.subList(indiceSimboloFollow + 1, regla.size()));
+            conjuntoAuxiliarFirst = this.First(regla.subList(indiceSimboloFollow + 1, regla.size()));
             // Calcular Follow del lado izquierdo si el First tiene epsilon            
             if (conjuntoAuxiliarFirst.contains(epsilon)) {
                 conjuntoAuxiliarFirst.remove(epsilon);

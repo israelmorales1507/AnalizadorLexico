@@ -4,6 +4,9 @@
  */
 package analizadorlexico.View;
 
+import analizadorlexico.Model.AFD;
+import analizadorlexico.Model.AFN;
+
 /**
  *
  * @author Israel Morales

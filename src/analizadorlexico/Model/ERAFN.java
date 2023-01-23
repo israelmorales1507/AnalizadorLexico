@@ -41,8 +41,8 @@ public class ERAFN {
     }
 
     public ERAFN(String sigma, AFD AutFD) {
-        ExprRetular = sigma;
-        L = new AnalizadorLexico(sigma, AutFD);
+        System.out.println("Ya detro 2: "+ ExprRetular);
+        L = new AnalizadorLexico(sigma, AutFD );
     }
     
     public void SetExpresion(String sigma){
@@ -167,12 +167,12 @@ public class ERAFN {
             case 80:
                 token = L.yylex();
                 if (token == 110) {
-                    simbolo = L.Lexema.substring(0, 0).toCharArray()[0] == '\\' ? L.Lexema.substring(1, 1).toCharArray()[0] : L.Lexema.substring(0, 0).toCharArray()[0];
+                    simbolo = L.Lexema.charAt(0) == '\\' ? L.Lexema.charAt(1) : L.Lexema.charAt(0);
                     token = L.yylex();
                     if (token == 100) {
                         token = L.yylex();
                         if (token == 110) {
-                            simbolo2 = L.Lexema.substring(0, 0).toCharArray()[0] == '\\' ? L.Lexema.substring(1, 1).toCharArray()[0] : L.Lexema.substring(0, 0).toCharArray()[0];
+                            simbolo2 = L.Lexema.charAt(0) == '\\' ? L.Lexema.charAt(1) : L.Lexema.charAt(0);
                             token = L.yylex();
                             if (token == 90) {
                                 parametro.afn.CrearAFNBasico(simbolo, simbolo2);
@@ -183,7 +183,8 @@ public class ERAFN {
                 }
                 return false;
             case 110:
-                simbolo = L.Lexema.substring(0, 0).toCharArray()[0] == '\\' ? L.Lexema.substring(1, 1).toCharArray()[0] : L.Lexema.substring(0, 0).toCharArray()[0];
+                System.out.println("Lexama: "+L.Lexema);
+                simbolo = (L.Lexema.charAt(0) == '\\') ? L.Lexema.charAt(1) : L.Lexema.charAt(0);
                 parametro.afn.CrearAFNBasico(simbolo);
                 return true;
             default:

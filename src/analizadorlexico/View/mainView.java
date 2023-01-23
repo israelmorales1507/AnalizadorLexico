@@ -9,11 +9,17 @@ import analizadorlexico.Controller.UtilFile;
 import analizadorlexico.Model.AFD;
 import analizadorlexico.Model.AFN;
 import analizadorlexico.Model.CaracteresEspeciales;
+import analizadorlexico.Model.ClaseNodo;
+import analizadorlexico.Model.ERAFN;
 import analizadorlexico.Model.Estado;
+import analizadorlexico.Model.ExpresionRegularToAFN;
+import analizadorlexico.Model.Gramatica;
+import analizadorlexico.Model.LL1;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Optional;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
@@ -143,6 +149,42 @@ public class mainView extends javax.swing.JFrame {
         TextAreaProbadorLexico3 = new javax.swing.JTextArea();
         ScrollPaneProbadorLexicoText3 = new javax.swing.JScrollPane();
         TextAreaProbadorLexico2 = new javax.swing.JTextArea();
+        FrameProbadorLL1 = new javax.swing.JFrame();
+        PanelProbadorLL1 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TextAreaGramaticaLL1 = new javax.swing.JTextArea();
+        jLabel19 = new javax.swing.JLabel();
+        ComboBoxProbadorLL1Memoria = new javax.swing.JComboBox<>();
+        ScrollPaneTableLexicoLL1 = new javax.swing.JScrollPane();
+        TableLexicoLL1 = new javax.swing.JTable();
+        ButtonProbarLexicoEnLL1 = new javax.swing.JButton();
+        ScrollPaneRegistroLL1 = new javax.swing.JScrollPane();
+        TableRegistroLL1 = new javax.swing.JTable();
+        ScrollPaneTableLexicoLLNoterminales = new javax.swing.JScrollPane();
+        TableLexicoLLNoterminales = new javax.swing.JTable();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        ScrollPaneTableLexicoLLterminales = new javax.swing.JScrollPane();
+        TableLexicoLLterminales = new javax.swing.JTable();
+        jLabel23 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TextAreaAsigmaLL1 = new javax.swing.JTextArea();
+        jLabel24 = new javax.swing.JLabel();
+        ScrollPaneProbadorLexicoLL1 = new javax.swing.JScrollPane();
+        TableProbadorLexicoLL1 = new javax.swing.JTable();
+        ButtonCrearTablaLL1 = new javax.swing.JButton();
+        ButtonCrearTablaLL2 = new javax.swing.JButton();
+        FrameEFAFN = new javax.swing.JFrame();
+        PanelERAFN = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        TextIdERAFN = new javax.swing.JTextField();
+        ButtonCrearERAFN = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        ComboBoxERAFN = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextAreaErAFN = new javax.swing.JTextArea();
         MenuBar = new javax.swing.JMenuBar();
         MenuAFN = new javax.swing.JMenu();
         MenuAFNBasico = new javax.swing.JMenuItem();
@@ -1154,6 +1196,285 @@ public class mainView extends javax.swing.JFrame {
                 .addComponent(PanelProbadorLexico1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        FrameProbadorLL1.setTitle("Probar Analizador LL1");
+        FrameProbadorLL1.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameProbadorLL1WindowClosing(evt);
+            }
+        });
+
+        jLabel14.setText("Gramatica:");
+
+        TextAreaGramaticaLL1.setColumns(20);
+        TextAreaGramaticaLL1.setRows(5);
+        jScrollPane2.setViewportView(TextAreaGramaticaLL1);
+
+        jLabel19.setText("AFD en memoria:");
+
+        ComboBoxProbadorLL1Memoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxProbadorLL1MemoriaMousePressed(evt);
+            }
+        });
+
+        ScrollPaneTableLexicoLL1.setToolTipText("");
+        ScrollPaneTableLexicoLL1.setViewportView(TableLexicoLL1);
+
+        ButtonProbarLexicoEnLL1.setText("Probador Lexico");
+
+        ScrollPaneRegistroLL1.setToolTipText("");
+        ScrollPaneRegistroLL1.setViewportView(TableRegistroLL1);
+
+        ScrollPaneTableLexicoLLNoterminales.setToolTipText("");
+        ScrollPaneTableLexicoLLNoterminales.setViewportView(TableLexicoLLNoterminales);
+
+        jLabel15.setText("No terminales");
+
+        jLabel21.setText("Terminales");
+
+        ScrollPaneTableLexicoLLterminales.setToolTipText("");
+        ScrollPaneTableLexicoLLterminales.setViewportView(TableLexicoLLterminales);
+
+        jLabel23.setText("Tabla LL1");
+
+        TextAreaAsigmaLL1.setColumns(20);
+        TextAreaAsigmaLL1.setRows(5);
+        jScrollPane3.setViewportView(TextAreaAsigmaLL1);
+
+        jLabel24.setText("Sigma");
+
+        ScrollPaneProbadorLexicoLL1.setToolTipText("");
+        ScrollPaneProbadorLexicoLL1.setViewportView(TableProbadorLexicoLL1);
+
+        ButtonCrearTablaLL1.setText("Analizar Cadena");
+        ButtonCrearTablaLL1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonCrearTablaLL1MousePressed(evt);
+            }
+        });
+
+        ButtonCrearTablaLL2.setText("Crear Tabla LL(1)");
+        ButtonCrearTablaLL2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonCrearTablaLL2MousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelProbadorLL1Layout = new javax.swing.GroupLayout(PanelProbadorLL1);
+        PanelProbadorLL1.setLayout(PanelProbadorLL1Layout);
+        PanelProbadorLL1Layout.setHorizontalGroup(
+            PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(303, 303, 303)
+                        .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(182, 182, 182))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelProbadorLL1Layout.createSequentialGroup()
+                        .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                                .addComponent(ButtonCrearTablaLL2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ButtonCrearTablaLL1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(37, 37, 37)))
+                .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ComboBoxProbadorLL1Memoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(26, 26, 26))
+                    .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                        .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addComponent(ButtonProbarLexicoEnLL1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(ScrollPaneTableLexicoLL1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(21, 21, 21))))
+            .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(197, 197, 197)
+                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(214, 214, 214)
+                .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(307, 307, 307))
+            .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                        .addComponent(ScrollPaneRegistroLL1)
+                        .addContainerGap())
+                    .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                        .addComponent(ScrollPaneTableLexicoLLNoterminales, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(42, 42, 42)
+                        .addComponent(ScrollPaneTableLexicoLLterminales, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(44, 44, 44)
+                        .addComponent(ScrollPaneProbadorLexicoLL1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(215, 215, 215))))
+        );
+        PanelProbadorLL1Layout.setVerticalGroup(
+            PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ComboBoxProbadorLL1Memoria)))
+                    .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollPaneTableLexicoLL1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonProbarLexicoEnLL1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonCrearTablaLL1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonCrearTablaLL2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PanelProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(ScrollPaneTableLexicoLLNoterminales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(ScrollPaneTableLexicoLLterminales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(PanelProbadorLL1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ScrollPaneProbadorLexicoLL1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(ScrollPaneRegistroLL1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout FrameProbadorLL1Layout = new javax.swing.GroupLayout(FrameProbadorLL1.getContentPane());
+        FrameProbadorLL1.getContentPane().setLayout(FrameProbadorLL1Layout);
+        FrameProbadorLL1Layout.setHorizontalGroup(
+            FrameProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameProbadorLL1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelProbadorLL1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameProbadorLL1Layout.setVerticalGroup(
+            FrameProbadorLL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameProbadorLL1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelProbadorLL1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        FrameEFAFN.setTitle("ER a AFN");
+        FrameEFAFN.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                FrameEFAFNWindowClosing(evt);
+            }
+        });
+
+        jLabel16.setText("Id nuev AFN:");
+        jLabel16.setInheritsPopupMenu(false);
+
+        jLabel20.setText("Expresion regular:");
+
+        TextIdERAFN.setColumns(1);
+        TextIdERAFN.setToolTipText("");
+        TextIdERAFN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextIdERAFNKeyTyped(evt);
+            }
+        });
+
+        ButtonCrearERAFN.setText("Crear AFN");
+        ButtonCrearERAFN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ButtonCrearERAFNMousePressed(evt);
+            }
+        });
+
+        jLabel22.setText("Seleccionar AFD:");
+
+        ComboBoxERAFN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ComboBoxERAFNMousePressed(evt);
+            }
+        });
+
+        TextAreaErAFN.setColumns(20);
+        TextAreaErAFN.setRows(5);
+        jScrollPane1.setViewportView(TextAreaErAFN);
+
+        javax.swing.GroupLayout PanelERAFNLayout = new javax.swing.GroupLayout(PanelERAFN);
+        PanelERAFN.setLayout(PanelERAFNLayout);
+        PanelERAFNLayout.setHorizontalGroup(
+            PanelERAFNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelERAFNLayout.createSequentialGroup()
+                .addGroup(PanelERAFNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelERAFNLayout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addGroup(PanelERAFNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelERAFNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextIdERAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComboBoxERAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(PanelERAFNLayout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(ButtonCrearERAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+        PanelERAFNLayout.setVerticalGroup(
+            PanelERAFNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelERAFNLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(PanelERAFNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(TextIdERAFN))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelERAFNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelERAFNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboBoxERAFN))
+                .addGap(50, 50, 50)
+                .addComponent(ButtonCrearERAFN, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
+        );
+
+        javax.swing.GroupLayout FrameEFAFNLayout = new javax.swing.GroupLayout(FrameEFAFN.getContentPane());
+        FrameEFAFN.getContentPane().setLayout(FrameEFAFNLayout);
+        FrameEFAFNLayout.setHorizontalGroup(
+            FrameEFAFNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameEFAFNLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelERAFN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        FrameEFAFNLayout.setVerticalGroup(
+            FrameEFAFNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameEFAFNLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelERAFN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Compiladores");
         setLocation(new java.awt.Point(0, 0));
@@ -1213,6 +1534,11 @@ public class mainView extends javax.swing.JFrame {
         MenuAFN.add(MenuOperacionOptional);
 
         MenuERaAFN.setText("ER a AFN");
+        MenuERaAFN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuERaAFNMousePressed(evt);
+            }
+        });
         MenuAFN.add(MenuERaAFN);
 
         MenuUnionLexico.setText("Union Lexico");
@@ -1262,6 +1588,11 @@ public class mainView extends javax.swing.JFrame {
         MenuSintactico.add(MenuDescRecGramaticaGramatica);
 
         MenuAnalisisLL1.setText("Analisis LL(1)");
+        MenuAnalisisLL1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MenuAnalisisLL1MousePressed(evt);
+            }
+        });
         MenuSintactico.add(MenuAnalisisLL1);
 
         MenuBar.add(MenuSintactico);
@@ -2004,7 +2335,7 @@ public class mainView extends javax.swing.JFrame {
 
     private void FrameEvaluadorExpresionesWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameEvaluadorExpresionesWindowClosing
         // TODO add your handling code here:
-        this.setVisible(true);
+        
     }//GEN-LAST:event_FrameEvaluadorExpresionesWindowClosing
 
     private void MenuItemCalculadoraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuItemCalculadoraMousePressed
@@ -2033,6 +2364,176 @@ public class mainView extends javax.swing.JFrame {
         this.setVisible(false);
         
     }//GEN-LAST:event_MenuItemCalculadoraMousePressed
+
+    private void FrameProbadorLL1WindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameProbadorLL1WindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameProbadorLL1WindowClosing
+
+    private void MenuAnalisisLL1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAnalisisLL1MousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxProbadorLexicoMemoria.setModel(model);
+        WIDTH = (int) (dimension.getWidth() * 0.9);
+        HEIGHT = (int) (dimension.getHeight() * 0.9);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        DefaultTableModel modeltable1 = new DefaultTableModel();
+        TableLexicoLL1.setModel(modeltable1);
+        TableLexicoLL1.setVisible(false);
+        TableLexicoLLNoterminales.setModel(modeltable1);
+        TableLexicoLLNoterminales.setVisible(false);
+        TableLexicoLLterminales.setModel(modeltable1);
+        TableLexicoLLterminales.setVisible(false);
+        TableProbadorLexicoLL1.setModel(modeltable1);
+        TableProbadorLexicoLL1.setVisible(false);
+        TableRegistroLL1.setModel(modeltable1);
+        TableRegistroLL1.setVisible(false);
+        ComboBoxProbadorLexicoMemoria.enable(true);
+        TextAreaAsigmaLL1.setText("");
+        TextAreaGramaticaLL1.setText("");
+        FrameProbadorLL1.setBounds(x, y, WIDTH, HEIGHT);
+        FrameProbadorLL1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuAnalisisLL1MousePressed
+
+    private void ButtonCrearERAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCrearERAFNMousePressed
+        // TODO add your handling code here:
+        int idafn = Integer.parseInt(TextIdERAFN.getText());
+        String er = TextAreaErAFN.getText();
+        System.out.println("Expresion regular a AFN" + String.format("%b", er));
+        
+        String[] r = ComboBoxERAFN.getSelectedItem().toString().split(" ");
+        Optional<AFD> op = AFD.conjutnoAFD.stream().filter(x -> x.IdAFD == Integer.parseInt(r[r.length - 1])).findFirst();
+        
+        ExpresionRegularToAFN ertoafn = new ExpresionRegularToAFN(er, op.get());
+        ertoafn.iniciarConversionExpresionRegularToAFN();
+        AFN result = ertoafn.getAfnResultante();
+        result.setIdAFN(idafn);
+        AFN.conjuntoAFN.add(result);
+    }//GEN-LAST:event_ButtonCrearERAFNMousePressed
+
+    private void FrameEFAFNWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameEFAFNWindowClosing
+        // TODO add your handling code here:
+        this.setVisible(true);
+    }//GEN-LAST:event_FrameEFAFNWindowClosing
+
+    private void ComboBoxERAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxERAFNMousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxERAFN.getModel();
+        model.removeAllElements();
+        if (!AFD.conjutnoAFD.isEmpty()) {
+            for (AFD item : AFD.conjutnoAFD) {
+                model.addElement("Id AFD: " + item.getIdAFD());
+            }
+        }
+    }//GEN-LAST:event_ComboBoxERAFNMousePressed
+
+    private void TextIdERAFNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextIdERAFNKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!((c >= '0') && (c <= '9')
+                || (c == evt.VK_BACK_SPACE)
+                || (c == evt.VK_DELETE))) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextIdERAFNKeyTyped
+
+    private void MenuERaAFNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuERaAFNMousePressed
+        // TODO add your handling code here:
+        int x, y;
+        int WIDTH, HEIGHT;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        ComboBoxERAFN.setModel(model);
+        WIDTH = (int) (dimension.getWidth() * 0.6);
+        HEIGHT = (int) (dimension.getHeight() * 0.6);
+        x = (int) ((dimension.getWidth() - WIDTH) / 2);
+        y = (int) ((dimension.getHeight() - HEIGHT) / 2);
+        ComboBoxERAFN.enable(true);
+        TextAreaErAFN.setText("");
+        TextIdERAFN.setText("");
+        FrameEFAFN.setBounds(x, y, WIDTH, HEIGHT);
+        FrameEFAFN.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MenuERaAFNMousePressed
+
+    private void ButtonCrearTablaLL1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCrearTablaLL1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonCrearTablaLL1MousePressed
+
+    private void ComboBoxProbadorLL1MemoriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxProbadorLL1MemoriaMousePressed
+        // TODO add your handling code here:
+        DefaultComboBoxModel model = (DefaultComboBoxModel) ComboBoxProbadorLL1Memoria.getModel();
+        model.removeAllElements();
+        if (!AFD.conjutnoAFD.isEmpty()) {
+            for (AFD item : AFD.conjutnoAFD) {
+                model.addElement("Id AFD: " + item.getIdAFD());
+            }
+        }
+    }//GEN-LAST:event_ComboBoxProbadorLL1MemoriaMousePressed
+
+    private void ButtonCrearTablaLL2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCrearTablaLL2MousePressed
+        // TODO add your handling code here:
+        String[] r = ComboBoxProbadorLL1Memoria.getSelectedItem().toString().split(" ");
+        Optional<AFD> op = AFD.conjutnoAFD.stream().filter(x -> x.IdAFD == Integer.parseInt(r[r.length - 1])).findFirst();
+        
+        System.out.println("Se inicia la tabla LL1");
+        String cadenagramatica = TextAreaGramaticaLL1.getText();
+        String sigma = TextAreaAsigmaLL1.getText();
+        Gramatica gramaticall1 = new Gramatica();
+        gramaticall1.crearGramatica(cadenagramatica, op.get());
+        ArrayList<ClaseNodo> noterminales = new ArrayList<>(gramaticall1.getSimbolosNoTerminales());
+        ArrayList<ClaseNodo> terminales = new ArrayList<>(gramaticall1.getSimbolosNoTerminales());
+
+        Object[][] data;
+        Object[] columnNames = {"Simbolo No terminal"};
+
+        int l = noterminales.size();
+        int columnl = columnNames.length;
+        data = new Object[l][columnl];
+        for (int i = 0; i < l; i++) {
+            data[i][0] = noterminales.get(i).simbolo;
+        }
+        //        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
+        DefaultTableModel modeltable = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        TableLexicoLLNoterminales.setModel(modeltable);
+        TableLexicoLLNoterminales.setVisible(true);
+
+        Object[][] data2;
+        Object[] columnNames2 = {"Simbolo terminal"};
+
+        int l2 = terminales.size();
+        int columnl2 = columnNames2.length;
+        data2 = new Object[l2][columnl2];
+        for (int i = 0; i < l2; i++) {
+            data[i][0] = terminales.get(i).simbolo;
+        }
+        //        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
+        DefaultTableModel modeltable2 = new DefaultTableModel(data2, columnNames2) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        TableLexicoLLterminales.setModel(modeltable);
+        TableLexicoLLterminales.setVisible(true);
+
+        LL1 resultll1 = new LL1(gramaticall1);
+        resultll1.generarTablaLL1();
+
+        resultll1.imprimirTablaLL1();
+        resultll1.analizarCadena(sigma);
+    }//GEN-LAST:event_ButtonCrearTablaLL2MousePressed
 
     /**
      * @param args the command line arguments
@@ -2077,6 +2578,9 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JButton ButtonConvertirAFNaAFD;
     private javax.swing.JButton ButtonConvertirAFNaAFDSalir;
     private javax.swing.JButton ButtonCrearAFN;
+    private javax.swing.JButton ButtonCrearERAFN;
+    private javax.swing.JButton ButtonCrearTablaLL1;
+    private javax.swing.JButton ButtonCrearTablaLL2;
     private javax.swing.JButton ButtonGuardarTablaArchivo;
     private javax.swing.JButton ButtonOpcional;
     private javax.swing.JButton ButtonProbadorLexicoAbrirArchivo;
@@ -2087,6 +2591,7 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JButton ButtonProbadorLexicoSalir1;
     private javax.swing.JButton ButtonProbadorLexicoSelecionar;
     private javax.swing.JButton ButtonProbadorLexicoSelecionar1;
+    private javax.swing.JButton ButtonProbarLexicoEnLL1;
     private javax.swing.JButton ButtonUnionEspecial;
     private javax.swing.JButton ButtonUnirAFN;
     private javax.swing.JComboBox<String> ComboBoxAFNaAFD;
@@ -2094,7 +2599,9 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBoxCerraduraTransitiva;
     private javax.swing.JComboBox<String> ComboBoxConcatenar1;
     private javax.swing.JComboBox<String> ComboBoxConcatenar2;
+    private javax.swing.JComboBox<String> ComboBoxERAFN;
     private javax.swing.JComboBox<String> ComboBoxOpcional;
+    private javax.swing.JComboBox<String> ComboBoxProbadorLL1Memoria;
     private javax.swing.JComboBox<String> ComboBoxProbadorLexicoMemoria;
     private javax.swing.JComboBox<String> ComboBoxProbadorLexicoMemoria1;
     private javax.swing.JComboBox<String> ComboBoxUnion1;
@@ -2109,8 +2616,10 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JFrame FrameAFNUnion;
     private javax.swing.JFrame FrameAFNUnionLexico;
     private javax.swing.JFrame FrameConvertirAFNaAFD;
+    private javax.swing.JFrame FrameEFAFN;
     private javax.swing.JFrame FrameEvaluadorExpresiones;
     private javax.swing.JFrame FrameOpenTable;
+    private javax.swing.JFrame FrameProbadorLL1;
     private javax.swing.JFrame FrameProbadorLexico;
     private javax.swing.JFrame FrameSaveTable;
     private javax.swing.JMenu MenuAFN;
@@ -2138,20 +2647,35 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JPanel PanelAFNUnion;
     private javax.swing.JPanel PanelAFNUnionLexico;
     private javax.swing.JPanel PanelConvertirAFNaAFD;
+    private javax.swing.JPanel PanelERAFN;
     private javax.swing.JPanel PanelOpenTable;
+    private javax.swing.JPanel PanelProbadorLL1;
     private javax.swing.JPanel PanelProbadorLexico;
     private javax.swing.JPanel PanelProbadorLexico1;
     private javax.swing.JPanel PanelSaveTable;
     private javax.swing.JScrollPane ScrollPaneConvertirAFNaAFD;
+    private javax.swing.JScrollPane ScrollPaneProbadorLexicoLL1;
     private javax.swing.JScrollPane ScrollPaneProbadorLexicoTabla;
     private javax.swing.JScrollPane ScrollPaneProbadorLexicoText;
     private javax.swing.JScrollPane ScrollPaneProbadorLexicoText1;
     private javax.swing.JScrollPane ScrollPaneProbadorLexicoText2;
     private javax.swing.JScrollPane ScrollPaneProbadorLexicoText3;
+    private javax.swing.JScrollPane ScrollPaneRegistroLL1;
+    private javax.swing.JScrollPane ScrollPaneTableLexicoLL1;
+    private javax.swing.JScrollPane ScrollPaneTableLexicoLLNoterminales;
+    private javax.swing.JScrollPane ScrollPaneTableLexicoLLterminales;
     private javax.swing.JScrollPane ScrollPaneUnionLexico;
     private javax.swing.JTable TableConvertirAFNaAFD;
+    private javax.swing.JTable TableLexicoLL1;
+    private javax.swing.JTable TableLexicoLLNoterminales;
+    private javax.swing.JTable TableLexicoLLterminales;
     private javax.swing.JTable TableProbadorLexico;
+    private javax.swing.JTable TableProbadorLexicoLL1;
+    private javax.swing.JTable TableRegistroLL1;
     private javax.swing.JTable TableUnionLexico;
+    private javax.swing.JTextArea TextAreaAsigmaLL1;
+    private javax.swing.JTextArea TextAreaErAFN;
+    private javax.swing.JTextArea TextAreaGramaticaLL1;
     private javax.swing.JTextArea TextAreaProbadorLexico;
     private javax.swing.JTextArea TextAreaProbadorLexico1;
     private javax.swing.JTextArea TextAreaProbadorLexico2;
@@ -2161,14 +2685,24 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JTextField TextIDAFN;
     private javax.swing.JTextField TextIdAFNUnionLexico;
     private javax.swing.JTextField TextIdAFNaAFD;
+    private javax.swing.JTextField TextIdERAFN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2177,5 +2711,8 @@ public class mainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenuDescensoRecursivo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

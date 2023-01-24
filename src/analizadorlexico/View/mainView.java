@@ -2836,7 +2836,32 @@ public class mainView extends javax.swing.JFrame {
 
     private void ButtonAnalizarCadenaLL2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAnalizarCadenaLL2MousePressed
         // TODO add your handling code here:
-        resultll1
+        String sigma = TextAreaAsigmaLL1.getText();
+        resultll1.analizarCadena(sigma);
+        
+        ArrayList<Triplet<ArrayList<String>, String, String>> registro = resultll1.getRegistroLL1();
+        
+        Object[][] data;
+        Object[] columnNames = {"Pila","Cadena","Accion"};
+
+        int l = registro.size();
+        int columnl = columnNames.length;
+        data = new Object[l][columnl];
+        for (int i = 0; i < l; i++) {
+            Triplet<ArrayList<String>, String, String> aux = registro.get(i);
+            data[i][0] = aux.getValue0().toString();
+            data[i][1] = aux.getValue1();
+            data[i][2] = aux.getValue2();
+        }
+        //        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
+        DefaultTableModel modeltable = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        TableRegistroLL1.setModel(modeltable);
+        TableRegistroLL1.setVisible(true);
     }//GEN-LAST:event_ButtonAnalizarCadenaLL2MousePressed
 
     private void ButtonLL1AsignarTokensMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonLL1AsignarTokensMousePressed

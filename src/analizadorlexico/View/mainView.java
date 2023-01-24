@@ -2868,6 +2868,13 @@ public class mainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         ArrayList<SimboloGramatica> noterminales = new ArrayList<>(gramaticall1.getSimbolosNoTerminales());
         ArrayList<SimboloGramatica> terminales = new ArrayList<>(gramaticall1.getSimbolosTerminales());
+        int l = TableLexicoLLterminales.getModel().getRowCount();
+
+        for (int i = 0; i < l; i++) {
+            int tokenterminal = Integer.parseInt(TableLexicoLLterminales.getModel().getValueAt(i, 1).toString());
+            String simb = TableLexicoLLterminales.getModel().getValueAt(i, 0).toString();
+            gramaticall1.getConjuntoSimbolos().get(simb).setToken(tokenterminal);
+        }
         
         resultll1 = null;
         resultll1 = new LL1(gramaticall1);

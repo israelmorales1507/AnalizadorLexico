@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Controller/AnalizadorLexico.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/ExpresionRegularToAFN.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/DesRecGram_Gram.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/GramaticaDeGramaticasTokens.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/ERtoAFNTokens.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/View/mainView.java</file>
-            <file>file:/C:/Users/Israel%20Morales/Documents/Compiladores/AnalizadorLexico/src/analizadorlexico/Model/Gramatica.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

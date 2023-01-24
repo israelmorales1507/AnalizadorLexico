@@ -4,13 +4,14 @@
  */
 package analizadorlexico.Controller;
 
-import analizadorlexico.Model.AFD;
+import analizadorlexico.Models.AFD.AFD;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  *
@@ -38,7 +39,7 @@ public class UtilFile {
             FileInputStream fileIn = new FileInputStream(archivo.getAbsolutePath());
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             Object obj = objectIn.readObject();
-            AFD.conjutnoAFD =(ArrayList<AFD>) obj;
+            AFD.conjuntoAFDs =(HashSet<AFD>) obj;
             objectIn.close();
             return "Archivo abierto correctamente! : "+archivo.getName();
         } catch (Exception ex) {

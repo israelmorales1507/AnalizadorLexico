@@ -122,6 +122,7 @@ public class Gramatica {
         // Crear el analizador lexico de gramáticas
         AFN afnGramatica = new AFN();
         AFD afdGramatica = afnGramatica.crearAFNGramaticaDeGramaticas().toAFD();
+        
         GramaticaDeGramaticas descensoRecursivoGramatica = new GramaticaDeGramaticas(cadenaGramatica, afdGramatica);
 
         // Validar la gramática mediante descenso recursivo

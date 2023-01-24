@@ -2726,6 +2726,7 @@ public class mainView extends javax.swing.JFrame {
         
         gramaticall1.crearGramatica(cadenagramatica);
         
+        
         String[] r = ComboBoxProbadorLL1Memoria.getSelectedItem().toString().split(" ");
         Optional<AFD> op = AFD.conjuntoAFDs.stream().filter(x -> x.getIdAFD() == Integer.parseInt(r[r.length - 1])).findFirst();
         gramaticall1.setAfdGramatica(op.get());
@@ -2832,6 +2833,35 @@ public class mainView extends javax.swing.JFrame {
     private void ButtonProbarLexicoEnLL1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonProbarLexicoEnLL1MousePressed
         // TODO add your handling code here:
         String sigma = TextAreaAsigmaLL1.getText();
+        String[] r = ComboBoxProbadorLL1Memoria.getSelectedItem().toString().split(" ");
+        Optional<AFD> op = AFD.conjuntoAFDs.stream().filter(x -> x.getIdAFD() == Integer.parseInt(r[r.length - 1])).findFirst();
+        System.out.println("Cadena a analizar: " + sigma);
+        AnalizadorLexico lexico = new AnalizadorLexico(sigma, op.get());
+        List<AnalizadorLexicoDTO> tmp = lexico.analizarCadena();
+        
+        System.out.println("TABLA: " + tmp.toString());
+
+        Object[][] data;
+        Object[] columnNames = {"Token", "Lexema"};
+
+        int l = tmp.size() - 1;
+        int columnl = columnNames.length;
+        data = new Object[l][columnl];
+        for (int i = 0; i < l; i++) {
+            data[i][0] = tmp.get(i).getToken();
+            data[i][1] = tmp.get(i).getLexema();
+        }
+        
+        //        final Class[] columnClass = new Class[]{String.class, Integer.class, Boolean.class};
+        DefaultTableModel modeltable = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        TableLexicoLL1.setModel(modeltable);
+        TableLexicoLL1.setVisible(true);
     }//GEN-LAST:event_ButtonProbarLexicoEnLL1MousePressed
 
     private void ButtonAnalizarCadenaLL2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAnalizarCadenaLL2MousePressed
@@ -2879,6 +2909,8 @@ public class mainView extends javax.swing.JFrame {
         resultll1 = null;
         resultll1 = new LL1(gramaticall1);
         resultll1.generarTablaLL1();
+        resultll1.imprimirTablaLL1();
+        
         Table<String, String, CeldaTabla> tablaLL1 = resultll1.getTablaLL1();
         
         Object[][] data3;
@@ -2906,10 +2938,7 @@ public class mainView extends javax.swing.JFrame {
             }
         };
         TableProbadorLexicoLL1.setModel(modeltable3);
-        TableProbadorLexicoLL1.setVisible(true);
-        
-        resultll1.imprimirTablaLL1();
-        
+        TableProbadorLexicoLL1.setVisible(true);        
     }//GEN-LAST:event_ButtonLL1AsignarTokensMousePressed
 
     /**

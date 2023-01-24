@@ -31,7 +31,7 @@ public class LL1 {
         this.tablaLL1 = tablaLL1;
         this.registroLL1 = registroLL1;
     }
-
+    
     public LL1() {
     }
 
@@ -75,7 +75,7 @@ public class LL1 {
             CeldaTabla celdaLL1 = new CeldaTabla(gramatica.getArregloReglas().indexOf(regla), ladoDerecho);
             columnas = gramatica.First(ladoDerecho);
 
-            if (columnas.contains(Gramatica.epsilon)) {
+            if (columnas.contains(Gramatica.epsilon) || columnas.isEmpty()) {
                 columnas.remove(Gramatica.epsilon);
                 columnas.addAll(gramatica.Follow(fila));
             }
@@ -132,7 +132,6 @@ public class LL1 {
                 elementosPila.add(simboloGramaticaPila.getSimbolo());
 
             SimboloGramatica columnaSimboloGramatica = Gramatica.$;
-
             if (columnaToken != 0) {
                 for (SimboloGramatica simboloGramatica : gramatica.getConjuntoSimbolos().values())
                     if (simboloGramatica.getToken() == columnaToken) {

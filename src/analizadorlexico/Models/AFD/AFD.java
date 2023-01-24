@@ -14,8 +14,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import static java.lang.Math.log;
-import static java.lang.StrictMath.log;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;

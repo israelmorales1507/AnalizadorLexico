@@ -2720,16 +2720,14 @@ public class mainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("Se inicia la tabla LL1");
         String cadenagramatica = TextAreaGramaticaLL1.getText();
-        String sigma = TextAreaAsigmaLL1.getText();
         gramaticall1 = null;
         gramaticall1 = new Gramatica();
-        
-        gramaticall1.crearGramatica(cadenagramatica);
-        
         
         String[] r = ComboBoxProbadorLL1Memoria.getSelectedItem().toString().split(" ");
         Optional<AFD> op = AFD.conjuntoAFDs.stream().filter(x -> x.getIdAFD() == Integer.parseInt(r[r.length - 1])).findFirst();
         gramaticall1.setAfdGramatica(op.get());
+        gramaticall1.crearGramatica(cadenagramatica);
+        
         
         ArrayList<SimboloGramatica> noterminales = new ArrayList<>(gramaticall1.getSimbolosNoTerminales());
         ArrayList<SimboloGramatica> terminales = new ArrayList<>(gramaticall1.getSimbolosTerminales());
@@ -2904,6 +2902,7 @@ public class mainView extends javax.swing.JFrame {
             int tokenterminal = Integer.parseInt(TableLexicoLLterminales.getModel().getValueAt(i, 1).toString());
             String simb = TableLexicoLLterminales.getModel().getValueAt(i, 0).toString();
             gramaticall1.getConjuntoSimbolos().get(simb).setToken(tokenterminal);
+            System.out.println("Nuevo token: "+gramaticall1.getConjuntoSimbolos().get(simb).getSimbolo() + " v: "+ gramaticall1.getConjuntoSimbolos().get(simb).getToken());
         }
         
         resultll1 = null;

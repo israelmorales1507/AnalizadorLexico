@@ -4,10 +4,15 @@
  */
 package analizadorlexico.Models.Gramatica;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author Israel Morales
  */
+@Data
+@NoArgsConstructor
 public class SimboloGramatica {
     private String simbolo;
     private String expresionRegular;
